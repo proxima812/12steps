@@ -1,0 +1,66 @@
+---
+import Toc from "../icons/Toc.astro";
+import TableOfContentsHeading from "./TabletOfContentsHeading.astro";
+
+const { headings } = Astro.props;
+
+type TableOfContent = {
+  depth: number;
+  text: string;
+  slug: string;
+  subheadings: TableOfContent[];
+};
+
+const toc = buildToc(headings);
+function buildToc(headings: TableOfContent[]) {
+  let toc: TableOfContent[] = [];
+  let parentHeadings = new Map();
+  headings.forEach((h) => {
+    let heading = { ...h, subheadings: [] };
+    parentHeadings.set(heading.depth, heading);
+    // Change 2 to 1 if your markdown includes your <h1>
+    if (heading.depth === 2 || heading.depth === 3 || heading.depth === 4) {
+      toc.push(heading);
+    }
+    // else {
+    //   parentHeadings.get(heading.depth - 1).subheadings.push(heading);
+    // }
+    const parent = parentHeadings.get(heading.depth - 1);
+    if (parent && parent.subheadings) {
+      parent.subheadings.push(heading);
+    }
+  });
+  return toc;
+}
+---
+
+<aside>
+  <button
+    id="toc_open"
+    class="fixed right-5 top-5 z-50 rounded-md bg-white/80 px-2 py-1 shadow-sm ring-1 ring-gray-100 backdrop-blur-sm md:right-10 md:top-10"
+  >
+    <Toc />
+  </button>
+  <ul
+    aria-label="Содержание поста"
+    class="fixed md:ml-0 ml-5 right-5 top-[75px] z-50 flex hidden flex-col gap-2 rounded-lg bg-white p-3 shadow-2xl ring-1 ring-gray-100 md:right-10 md:top-[95px] max-h-full h-[70vh] overflow-y-scroll"
+    id="toc"
+  >
+    <span class="py-2 font-bold uppercase leading-none"
+      >&#10022; Содержание</span
+    >
+    {toc.map((heading) => <TableOfContentsHeading heading={heading} />)}
+  </ul>
+</aside>
+
+<script is:inline>
+  // ViewTransitions
+  const nav = document.addEventListener("astro:page-load", () => {
+    const toc = document.querySelector("#toc");
+    const toc_open = document.querySelector("#toc_open");
+    toc_open.addEventListener("click", () => {
+      toc.classList.toggle("hidden");
+    });
+  });
+  document.addEventListener("astro:after-swap", nav);
+</script>

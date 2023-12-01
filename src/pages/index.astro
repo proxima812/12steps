@@ -1,0 +1,24 @@
+---
+import Blur from "@/components/Blur.astro";
+import ListPosts from "@/components/ListPosts.astro";
+import Search from "@/components/Search";
+import { DEFAULT_TITLE } from "@/config/settings";
+import theme from "@/data/theme";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getSinglePage } from "@/utils/libs/getSinglePage";
+
+const posts = await getSinglePage("posts");
+const { description, title } = Astro.props;
+---
+
+<BaseLayout
+  title="Посты на тему 12 шагов"
+  description={`${DEFAULT_TITLE}. Более (${posts.length}) постов по 12 шагам и принципам`}
+>
+  <div class="relative flex flex-col gap-6 py-6">
+    <Search client:load postsList={posts} />
+    <ListPosts posts={posts} />
+    <Blur position="top" color={theme.colors.blur.top} />
+    <Blur position="bottom" color={theme.colors.blur.bottom} />
+  </div>
+</BaseLayout>

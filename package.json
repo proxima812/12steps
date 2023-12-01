@@ -1,0 +1,43 @@
+{
+  "name": "blog1",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.3.1",
+    "@astrojs/markdoc": "^0.7.2",
+    "@astrojs/mdx": "^1.1.5",
+    "@astrojs/partytown": "^2.0.2",
+    "@astrojs/react": "^3.0.5",
+    "@astrojs/rss": "^3.0.0",
+    "@astrojs/sitemap": "^3.0.3",
+    "@astrojs/tailwind": "^5.0.2",
+    "@astrojs/vercel": "^5.2.0",
+    "@keystatic/astro": "^2.0.0",
+    "@keystatic/core": "^0.2.4",
+    "@resvg/resvg-js": "^2.6.0",
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
+    "@vercel/analytics": "^1.1.1",
+    "astro": "^3.5.5",
+    "fuse.js": "^7.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "slugify": "^1.6.6",
+    "tailwind-merge": "^2.0.0",
+    "tailwindcss": "^3.3.5",
+    "typescript": "^5.2.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.10",
+    "prettier": "^3.1.0",
+    "prettier-plugin-astro": "^0.12.2",
+    "prettier-plugin-tailwindcss": "^0.5.7"
+  }
+}

@@ -1,0 +1,46 @@
+---
+import { Image } from "astro:assets";
+import Tag from "./icons/Tag.astro";
+const { data, slug } = Astro.props;
+---
+
+<article
+  role="article"
+  class="group mb-6 break-inside-avoid rounded-xl bg-white px-6 py-5"
+>
+  <div class="flex flex-col gap-4">
+    {
+      data.heroImage && (
+        <Image
+          class="h-[150px] rounded-xl bg-center object-cover transition-transform ease-linear group-hover:-translate-y-[1.25px]"
+          src={data.heroImage}
+          format="avif"
+          width={450}
+          height={450}
+          alt={data.title}
+        />
+      )
+    }
+
+    <h2
+      class="text-3xl font-bold leading-tight transition-transform ease-linear group-hover:-translate-y-[2px]"
+    >
+      <a href={`/posts/${slug}`}>{data.title}</a>
+    </h2>
+    <div
+      aria-label="Теги"
+      class="flex gap-4 transition-transform ease-linear group-hover:translate-y-[1.10px]"
+    >
+      {
+        data.tags &&
+          data.tags.slice(0, 3).map((tag) => (
+            <span class="flex items-center gap-1 rounded-full bg-white px-3 py-1 text-xs font-medium tracking-widest shadow-md ring-1 ring-slate-300 ring-offset-2">
+              <Tag />
+              {tag}
+            </span>
+          ))
+      }
+    </div>
+    <p class="leading-relaxed text-gray-600">{data.description}</p>
+  </div>
+</article>

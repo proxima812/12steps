@@ -1,0 +1,107 @@
+---
+import RelatedPosts from "@/components/RelatedPosts.astro";
+import TableOfContents from "@/components/TOC/TableOfContents.astro";
+import Tag from "@/components/icons/Tag.astro";
+import Code from "@/components/mdx/Code.astro";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import BaseLayout from "src/layouts/BaseLayout.astro";
+
+const posts = await getCollection("posts");
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
+}
+
+const post = Astro.props;
+
+// Похожие посты по тегам
+const getRelatedPosts = (post: any) => {
+  const relatedPosts = posts.filter(
+    (p) =>
+      p.slug !== post.slug &&
+      p.data.tags.some((t) => post.data.tags.includes(t)),
+  );
+  return relatedPosts.slice(0, 3);
+};
+
+// Похожие посты по тегам - вывести relatedPosts
+const relatedPosts = getRelatedPosts(post);
+const { Content, headings } = await post.render();
+
+// export const prerender = true;
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  tags={post.data.tags}
+  heroImage={post.data.heroImage}
+  type
+  container_max_w="max-w-4xl"
+>
+  {headings && headings.length > 0 && <TableOfContents {headings} />}
+  <!-- prose-heading:max-w-3xl - для TOC чтобы не перекрывал -->
+
+  <article class="flex flex-col gap-3">
+    <div aria-label="Заголовки поста" class="relative">
+      <aside
+        class="absolute top-0 flex w-full items-center justify-between gap-3 p-5"
+        aria-label="Сайдбар"
+      >
+        <a
+          href="/"
+          class="rounded-full bg-black/50 px-3 py-1 text-white backdrop-blur-xl backdrop-brightness-75"
+          >Назад к постам</a
+        >
+        <div class="flex gap-2" aria-label="Теги поста">
+          {
+            post.data.tags &&
+              post.data.tags.map((tag) => (
+                <span class="flex items-center gap-1 rounded-full bg-black/50 px-3 py-1 text-white backdrop-blur-xl backdrop-brightness-75">
+                  <Tag colorSVG="white" />
+                  {tag}
+                </span>
+              ))
+          }
+        </div>
+      </aside>
+      <div
+        class="absolute bottom-0 flex w-full flex-col gap-5 rounded-xl bg-black/50 p-5 backdrop-blur-lg backdrop-brightness-75"
+      >
+        <h1 class="text-4xl font-bold leading-tight text-gray-100 md:text-5xl">
+          {post.data.title}
+        </h1>
+        <p class="text-lg leading-relaxed text-gray-300">
+          {post.data.description}
+        </p>
+      </div>
+      {
+        post.data.heroImage ? (
+          <Image
+            src={post.data.heroImage}
+            alt={post.data.title}
+            format="avif"
+            width={820}
+            height={820}
+            class="h-[350px] w-full rounded-2xl object-cover"
+          />
+        ) : (
+          <div class="h-[350px] w-full rounded-2xl bg-gray-100" />
+        )
+      }
+    </div>
+
+    <div
+      aria-label="Контент поста"
+      class="md:prose-md prose prose-slate max-w-none lg:prose-lg xl:prose-xl prose-headings:max-w-[280px] sm:prose-headings:max-w-full"
+    >
+      <Content components={{ pre: Code }} />
+    </div>
+    {relatedPosts.length > 0 && <RelatedPosts posts={relatedPosts} />}
+  </article>
+</BaseLayout>

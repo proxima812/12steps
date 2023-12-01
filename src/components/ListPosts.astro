@@ -1,0 +1,33 @@
+---
+import PostCard from "./PostCard.astro";
+import PostFirst from "./PostFirst.astro";
+const { posts } = Astro.props;
+---
+
+<!-- grid grid-cols-1 items-start gap-12 md:grid-cols-2 lg:grid-cols-3
+
+mt-6 gap-12 columns-1 md:columns-2 lg:columns-3
+
+columns-1 gap-12 columns-1 md:columns-2 lg:columns-3 [&>aritcle:not(:first-child)]:mt-6
+-->
+<main class="flex flex-col gap-12" aria-label="Блог контент секция">
+  <div
+    class="mt-8 flex h-[600px] grid-rows-[repeat(7,minmax(0,1fr))] flex-col gap-6 lg:grid lg:grid-cols-3"
+  >
+    {
+      posts
+        .slice(0, 5)
+        .map((item, index) => (
+          <PostFirst slug={item.slug} index={index} data={item.data} />
+        ))
+    }
+  </div>
+  <h4 class="text-3xl font-bold">Последние посты</h4>
+  <div class="columns-1 gap-6 md:columns-2 lg:columns-3">
+    {
+      posts
+        .slice(5)
+        .map((item) => <PostCard slug={item.slug} data={item.data} />)
+    }
+  </div>
+</main>

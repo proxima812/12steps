@@ -1,0 +1,44 @@
+---
+import Footer from "@/components/partials/Footer.astro";
+import Header from "@/components/partials/Header.astro";
+import SEOTags from "@/components/seo/SEOTags.astro";
+import "@/styles/global.css";
+
+const {
+  name,
+  author,
+  title,
+  type,
+  description,
+  heroImage,
+  locale = "ru",
+  tags,
+  container_max_w,
+  canonicalURL = new URL(Astro.url.pathname, Astro.site),
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="ru" class="scroll-smooth">
+  <SEOTags
+    author={author}
+    title={title}
+    description={description}
+    name={name}
+    type={type}
+    heroImage={heroImage}
+    locale={locale}
+    tags={tags}
+    canonicalURL={canonicalURL}
+  />
+  <!-- <ViewTransitions fallback='swap'/> -->
+  <body class="bg-gray-50">
+    <Header />
+    <div
+      class:list={`${container_max_w ?? "max-w-5xl"} container mx-auto px-5`}
+    >
+      <slot />
+    </div>
+    <Footer />
+  </body>
+</html>
