@@ -1,7 +1,6 @@
 ---
 import { Image } from "astro:assets";
 import { twMerge } from "tailwind-merge";
-import img from "../assets/2.jpg";
 const { data, slug, index } = Astro.props;
 ---
 
@@ -13,11 +12,20 @@ const { data, slug, index } = Astro.props;
     index === 0 ? "row_span-7" : index === 2 || index === 3 ? "row-span-4" : "",
   )}
 >
-  <Image
-    class="h-full w-full rounded-xl bg-center object-cover transition-transform ease-linear group-hover:-translate-y-[1.25px]"
-    src={data.heroImage ?? img}
-    alt={data.title}
-  />
+  {
+    data.heroImage ? (
+      <Image
+        class="h-full w-full rounded-xl bg-center object-cover transition-transform ease-linear group-hover:-translate-y-[1.25px]"
+        src={data.heroImage}
+        alt={data.title}
+        format="avif"
+        width={1200}
+        height={1200}
+      />
+    ) : (
+      <div class="h-full w-full bg-gradient-to-t from-slate-800 to-slate-950" />
+    )
+  }
   <!-- <div
     class="absolute right-0 top-0 rounded-bl-xl bg-red-300/50 px-3 py-1 leading-tight text-white ring-1 ring-red-300 backdrop-blur-xl backdrop-brightness-75"
   >
