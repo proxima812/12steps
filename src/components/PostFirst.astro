@@ -2,6 +2,8 @@
 import { Image } from "astro:assets";
 import { twMerge } from "tailwind-merge";
 const { data, slug, index } = Astro.props;
+
+const url = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <a
@@ -13,17 +15,15 @@ const { data, slug, index } = Astro.props;
   )}
 >
   {
-    data.heroImage ? (
+    (
       <Image
         class="h-full w-full rounded-xl bg-center object-cover transition-transform ease-linear group-hover:-translate-y-[1.25px]"
-        src={data.heroImage}
+        src={Astro.url + `posts/${slug}.og`}
         alt={data.title}
         format="avif"
         width={1200}
         height={1200}
       />
-    ) : (
-      <div class="h-full w-full bg-gradient-to-t from-slate-800 to-slate-950" />
     )
   }
   <!-- <div

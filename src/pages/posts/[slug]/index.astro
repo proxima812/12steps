@@ -7,6 +7,10 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import BaseLayout from "src/layouts/BaseLayout.astro";
 
+import { SITE_URL } from "@/config/settings";
+
+import img from "../../../assets/1.webp";
+
 const posts = await getCollection("posts");
 
 export async function getStaticPaths() {
@@ -48,6 +52,16 @@ const { Content, headings } = await post.render();
   <!-- prose-heading:max-w-3xl - для TOC чтобы не перекрывал -->
 
   <article class="flex flex-col gap-3">
+    <script
+      async
+      src="https://comments.app/js/widget.js?3"
+      data-comments-app-website={process.env.NODE_ENV === "development"
+        ? "http://localhost:4321/"
+        : "GfeoTRL0"}
+      data-limit="5"
+      data-height="500"
+      data-page-id={`${post.data.slug}`}></script>
+
     <div aria-label="Заголовки поста" class="relative">
       <aside
         class="absolute top-0 flex w-full items-center justify-between gap-3 p-5"
@@ -83,7 +97,7 @@ const { Content, headings } = await post.render();
       {
         post.data.heroImage ? (
           <Image
-            src={post.data.heroImage}
+            src={post.data.heroImage && img}
             alt={post.data.title}
             format={"avif"}
             width={820}

@@ -1,5 +1,5 @@
 ---
-import { DEFAULT_TITLE } from "@/config/settings";
+import { DEFAULT_TITLE, SITE_URL } from "@/config/settings";
 import Metricks from "../Metricks.astro";
 interface Props {
   name?: string;
@@ -78,6 +78,13 @@ const themeColor = "#fff";
     )
   }
   {heroImage && <meta property="og:image" content={heroImage} />}
-
+  <meta
+    property="og:image"
+    content={canonicalURL + `.og`}
+  />
   <Metricks />
 </head>
+
+<style>
+  a{justify-content: center;}
+</style>
