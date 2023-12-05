@@ -59,17 +59,6 @@ const ogUrl = new URL(`/posts/${post.slug}.png`, Astro.url.origin).href;
           class="rounded-full bg-black/50 px-3 py-1 text-white backdrop-blur-xl backdrop-brightness-75"
           >Назад к постам</a
         >
-        <div class="flex gap-2" aria-label="Теги поста">
-          {
-            post.data.tags &&
-              post.data.tags.map((tag) => (
-                <span class="flex items-center gap-1 rounded-full bg-black/50 px-3 py-1 text-white backdrop-blur-xl backdrop-brightness-75">
-                  <Tag colorSVG="white" />
-                  {tag}
-                </span>
-              ))
-          }
-        </div>
       </aside>
       <div
         class="absolute bottom-0 flex w-full flex-col gap-5 rounded-xl bg-black/50 p-5 backdrop-blur-lg backdrop-brightness-75"
@@ -83,13 +72,25 @@ const ogUrl = new URL(`/posts/${post.slug}.png`, Astro.url.origin).href;
       </div>
 
       <div
-        class="md:h-[350px] h-[420px] rounded-2xl bg-black"
+        class="h-[420px] rounded-2xl bg-black md:h-[350px]"
         style="
         background-color: rgb(29, 78, 216);
         background-image: radial-gradient(at 7% 35%, rgb(224, 242, 254) 0, transparent 100%), radial-gradient(at 22% 33%, rgb(237, 233, 254) 0, transparent 72%), radial-gradient(at 34% 38%, rgb(240, 171, 252) 0, transparent 99%), radial-gradient(at 49% 48%, rgb(185, 28, 28) 0, transparent 33%), radial-gradient(at 56% 75%, rgb(109, 40, 217) 0, transparent 37%), radial-gradient(at 6% 99%, rgb(237, 233, 254) 0, transparent 86%);
       "
       >
       </div>
+    </div>
+
+    <div class="my-4 flex gap-2" aria-label="Теги поста">
+      {
+        post.data.tags &&
+          post.data.tags.map((tag) => (
+            <span class="flex items-center gap-1 rounded-full bg-black/50 px-3 py-1 text-white backdrop-blur-xl backdrop-brightness-75">
+              <Tag colorSVG="white" />
+              {tag}
+            </span>
+          ))
+      }
     </div>
 
     <div

@@ -1,6 +1,9 @@
 ---
 import Logo from "@/components/Logo.astro";
 import { DEFAULT_TITLE } from "@/config/settings";
+import { version } from "../../../version.json";
+
+const versionSet = version;
 ---
 
 <header class="relative z-10 bg-white py-12 md:py-24">
@@ -19,8 +22,10 @@ import { DEFAULT_TITLE } from "@/config/settings";
       >
         <b>12 шагов:</b> материалы, статьи, публикации, опыт и многое другое.
       </p>
-      <p class="text-purple-600 rounded-full bg-purple-50 px-4 py-1 ring-1 ring-purple-400">
-        v.12.2
+      <p
+        class="rounded-full bg-purple-50 px-4 py-1 text-purple-600 ring-1 ring-purple-400"
+      >
+        {versionSet}
       </p>
     </div>
     <!-- <div class="flex max-w-[360px] flex-wrap gap-2">
