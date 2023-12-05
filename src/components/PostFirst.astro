@@ -1,9 +1,6 @@
 ---
-import { Image } from "astro:assets";
 import { twMerge } from "tailwind-merge";
 const { data, slug, index } = Astro.props;
-
-const url = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <a
@@ -14,25 +11,17 @@ const url = new URL(Astro.url.pathname, Astro.site);
     index === 0 ? "row_span-7" : index === 2 || index === 3 ? "row-span-4" : "",
   )}
 >
-  {
-    (
-      <Image
-        class="h-full w-full rounded-xl bg-center object-cover transition-transform ease-linear group-hover:-translate-y-[1.25px]"
-        src={Astro.url + `posts/${slug}.og`}
-        alt={data.title}
-        format="avif"
-        width={1200}
-        height={1200}
-      />
-    )
-  }
-  <!-- <div
-    class="absolute right-0 top-0 rounded-bl-xl bg-red-300/50 px-3 py-1 leading-tight text-white ring-1 ring-red-300 backdrop-blur-xl backdrop-brightness-75"
+  <div
+    class="h-full w-full bg-black"
+    style="min-height: 200px;
+        background-color: rgb(147, 51, 234);
+        background-image: radial-gradient(at 21% 25%, rgb(103, 232, 249) 0, transparent 45%), radial-gradient(at 60% 63%, rgb(187, 247, 208) 0, transparent 82%), radial-gradient(at 78% 71%, rgb(29, 78, 216) 0, transparent 1%), radial-gradient(at 37% 45%, rgb(253, 230, 138) 0, transparent 36%), radial-gradient(at 93% 94%, rgb(38, 38, 38) 0, transparent 88%), radial-gradient(at 4% 2%, rgb(209, 213, 219) 0, transparent 13%);
+      "
   >
-    новый &#128293;
-  </div> -->
+  </div>
+
   <div class="bg_glass">
-    <div class="absolute bottom-0 z-10 flex flex-col gap-3 p-5">
+    <div class="absolute bottom-0 z-10 flex w-full flex-col gap-3 p-5">
       <h2
         class="text-xl font-bold leading-tight text-white transition-transform ease-linear group-hover:-translate-y-[2px]"
       >

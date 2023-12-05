@@ -1,7 +1,9 @@
 ---
-import { Image } from "astro:assets";
+import { Image } from 'astro:assets'
 import Tag from "./icons/Tag.astro";
 const { data, slug } = Astro.props;
+
+const ogUrl = new URL(`/posts/${slug}.png`, Astro.url.origin).href;
 ---
 
 <article
@@ -9,18 +11,24 @@ const { data, slug } = Astro.props;
   class="group mb-6 break-inside-avoid rounded-xl bg-white px-6 py-5"
 >
   <div class="flex flex-col gap-4">
-    {
-      data.heroImage && (
+    <!-- {
+      (
         <Image
-          class="h-[150px] rounded-xl bg-center object-cover transition-transform ease-linear group-hover:-translate-y-[1.25px]"
-          src={data.heroImage}
+          class="h-[150px] rounded-xl object-cover transition-transform ease-linear group-hover:-translate-y-[1.25px]"
+          src={ogUrl}
           format="avif"
           width={450}
           height={450}
           alt={data.title}
         />
       )
-    }
+    } -->
+
+    <!-- <div class="relative h-[400px] w-full bg-black">
+      <div class="absolute inset-4 rounded-xl bg-white text-center">
+        Lorem, ipsum dolor.
+      </div>
+    </div> -->
 
     <h2
       class="text-3xl font-bold leading-tight transition-transform ease-linear group-hover:-translate-y-[2px]"

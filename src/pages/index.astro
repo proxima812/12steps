@@ -8,12 +8,12 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getSinglePage } from "@/utils/libs/getSinglePage";
 
 const posts = await getSinglePage("posts");
-const { description, title } = Astro.props;
 ---
 
 <BaseLayout
   title="Посты на тему 12 шагов"
   description={`${DEFAULT_TITLE}. Более (${posts.length}) постов по 12 шагам и принципам`}
+  container_max_w="max-w-6xl"
 >
   <div class="relative flex flex-col gap-6 py-6">
     <Search client:load postsList={posts} />

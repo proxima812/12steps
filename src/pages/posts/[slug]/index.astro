@@ -3,13 +3,8 @@ import RelatedPosts from "@/components/RelatedPosts.astro";
 import TableOfContents from "@/components/TOC/TableOfContents.astro";
 import Tag from "@/components/icons/Tag.astro";
 import Code from "@/components/mdx/Code.astro";
-import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import BaseLayout from "src/layouts/BaseLayout.astro";
-
-import { SITE_URL } from "@/config/settings";
-
-import img from "../../../assets/1.webp";
 
 const posts = await getCollection("posts");
 
@@ -38,13 +33,15 @@ const relatedPosts = getRelatedPosts(post);
 const { Content, headings } = await post.render();
 
 // export const prerender = true;
+
+const ogUrl = new URL(`/posts/${post.slug}.png`, Astro.url.origin).href;
 ---
 
 <BaseLayout
   title={post.data.title}
   description={post.data.description}
   tags={post.data.tags}
-  heroImage={post.data.heroImage}
+  heroImage={ogUrl}
   type
   container_max_w="max-w-4xl"
 >
@@ -52,16 +49,6 @@ const { Content, headings } = await post.render();
   <!-- prose-heading:max-w-3xl - для TOC чтобы не перекрывал -->
 
   <article class="flex flex-col gap-3">
-    <script
-      async
-      src="https://comments.app/js/widget.js?3"
-      data-comments-app-website={process.env.NODE_ENV === "development"
-        ? "http://localhost:4321/"
-        : "GfeoTRL0"}
-      data-limit="5"
-      data-height="500"
-      data-page-id={`${post.data.slug}`}></script>
-
     <div aria-label="Заголовки поста" class="relative">
       <aside
         class="absolute top-0 flex w-full items-center justify-between gap-3 p-5"
@@ -90,24 +77,19 @@ const { Content, headings } = await post.render();
         <h1 class="text-4xl font-bold leading-tight text-gray-100 md:text-5xl">
           {post.data.title}
         </h1>
-        <p class="text-lg leading-relaxed text-gray-300">
+        <p class="text-base leading-relaxed text-gray-300 md:text-lg">
           {post.data.description}
         </p>
       </div>
-      {
-        post.data.heroImage ? (
-          <Image
-            src={post.data.heroImage && img}
-            alt={post.data.title}
-            format={"avif"}
-            width={820}
-            height={820}
-            class="h-[350px] w-full rounded-2xl object-cover"
-          />
-        ) : (
-          <div class="h-[350px] w-full rounded-2xl bg-gray-100" />
-        )
-      }
+
+      <div
+        class="md:h-[350px] h-[420px] rounded-2xl bg-black"
+        style="
+        background-color: rgb(29, 78, 216);
+        background-image: radial-gradient(at 7% 35%, rgb(224, 242, 254) 0, transparent 100%), radial-gradient(at 22% 33%, rgb(237, 233, 254) 0, transparent 72%), radial-gradient(at 34% 38%, rgb(240, 171, 252) 0, transparent 99%), radial-gradient(at 49% 48%, rgb(185, 28, 28) 0, transparent 33%), radial-gradient(at 56% 75%, rgb(109, 40, 217) 0, transparent 37%), radial-gradient(at 6% 99%, rgb(237, 233, 254) 0, transparent 86%);
+      "
+      >
+      </div>
     </div>
 
     <div
