@@ -28,6 +28,9 @@ export default config({
           links: true,
           images: true,
         }),
+        pubDate: fields.date({
+          label: "Дата публикации",
+        }),
         description: fields.text({
           label: "Описание",
           multiline: true,
@@ -43,15 +46,12 @@ export default config({
             validation: { length: { min: 1 } },
           },
         ),
-        image: fields.image({
-          label: "Изображение к посту",
-          directory: "src/assets/images/posts",
-          publicPath: "../../assets/images/posts",
-        }),
-
-        pubDate: fields.date({
-          label: "Дата публикации",
-        }),
+        // image: fields.image({
+        //   label: "Изображение к посту",
+        //   directory: "src/assets/images/posts",
+        //   publicPath: "../../assets/images/posts",
+        // }),
+        image: fields.empty(),
         draft: fields.checkbox({
           label: "Черновик",
           defaultValue: false,

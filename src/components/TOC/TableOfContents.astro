@@ -43,7 +43,7 @@ function buildToc(headings: TableOfContent[]) {
   </button>
   <ul
     aria-label="Содержание поста"
-    class="fixed md:ml-0 ml-5 right-5 top-[75px] z-50 flex hidden flex-col gap-2 rounded-lg bg-white p-3 shadow-2xl ring-1 ring-gray-100 md:right-10 md:top-[95px] max-h-full h-[70vh] overflow-y-scroll"
+    class="fixed right-5 top-[75px] z-50 ml-5 flex hidden h-[70vh] max-h-full flex-col gap-2 overflow-y-scroll rounded-lg bg-white p-3 shadow-2xl ring-1 ring-gray-100 md:right-10 md:top-[95px] md:ml-0"
     id="toc"
   >
     <span class="py-2 font-bold uppercase leading-none"
@@ -55,12 +55,11 @@ function buildToc(headings: TableOfContent[]) {
 
 <script is:inline>
   // ViewTransitions
-  const nav = document.addEventListener("astro:page-load", () => {
-    const toc = document.querySelector("#toc");
-    const toc_open = document.querySelector("#toc_open");
-    toc_open.addEventListener("click", () => {
-      toc.classList.toggle("hidden");
-    });
+  const toc = document.querySelector("#toc");
+  const toc_open = document.querySelector("#toc_open");
+  toc_open.addEventListener("click", () => {
+    toc.classList.toggle("hidden");
   });
-  document.addEventListener("astro:after-swap", nav);
+  // const nav = document.addEventListener("astro:page-load", () => {});
+  // document.addEventListener("astro:after-swap", nav);
 </script>
