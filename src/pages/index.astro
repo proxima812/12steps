@@ -1,5 +1,6 @@
 ---
 import Blur from "@/components/Blur.astro";
+import ButtonFeedBack from "@/components/ButtonFeedBack.astro";
 import ListPosts from "@/components/ListPosts.astro";
 import Search from "@/components/Search";
 import { DEFAULT_TITLE } from "@/config/settings";
@@ -16,7 +17,10 @@ const posts = await getSinglePage("posts");
   container_max_w="max-w-6xl"
 >
   <div class="relative flex flex-col gap-6 py-6">
-    <Search client:load postsList={posts} />
+    <aside class="flex justify-center gap-5">
+      <Search client:load postsList={posts} />
+      <div class="hidden md:block"><ButtonFeedBack /></div>
+    </aside>
     <ListPosts posts={posts} />
     <Blur position="top" color={theme.colors.blur.top} />
     <Blur position="bottom" color={theme.colors.blur.bottom} />

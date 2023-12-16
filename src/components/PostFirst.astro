@@ -1,6 +1,23 @@
 ---
 import { twMerge } from "tailwind-merge";
 const { data, slug, index } = Astro.props;
+
+function getPostClassName(index) {
+  switch (index) {
+    case 1:
+      return "bg-post-1";
+    case 2:
+      return "bg-post-2";
+    case 3:
+      return "bg-post-3";
+    case 4:
+      return "bg-post-4";
+    case 5:
+      return "bg-post-5";
+    default:
+      return "bg-post-6";
+  }
+}
 ---
 
 <a
@@ -12,16 +29,14 @@ const { data, slug, index } = Astro.props;
   )}
 >
   <div
-    class="h-full w-full bg-black"
-    style="min-height: 200px;
-        background-color: rgb(147, 51, 234);
-        background-image: radial-gradient(at 21% 25%, rgb(103, 232, 249) 0, transparent 45%), radial-gradient(at 60% 63%, rgb(187, 247, 208) 0, transparent 82%), radial-gradient(at 78% 71%, rgb(29, 78, 216) 0, transparent 1%), radial-gradient(at 37% 45%, rgb(253, 230, 138) 0, transparent 36%), radial-gradient(at 93% 94%, rgb(38, 38, 38) 0, transparent 88%), radial-gradient(at 4% 2%, rgb(209, 213, 219) 0, transparent 13%);
-      "
+    class={`h-full w-full bg-black ${getPostClassName(index)}`}
+    style="min-height: 200px;"
   >
   </div>
 
-  <div class="bg_glass">
-    <div class="absolute bottom-0 z-10 flex w-full flex-col gap-3 p-5">
+  <div>
+    <div class="absolute bottom-0 z-10 flex
+      w-full flex-col gap-3 p-5 bg-black/50 backdrop-blur-md backdrop-brightness-50 rounded-xl">
       <h2
         class="text-xl font-bold leading-tight text-white transition-transform ease-linear group-hover:-translate-y-[2px]"
       >
@@ -65,29 +80,6 @@ const { data, slug, index } = Astro.props;
     content: "";
     z-index: -1;
     border-radius: inherit;
-  }
-  .bg_glass {
-    @apply absolute bottom-0 h-full w-full;
-  }
-  /* .bg_glass:hover:after {
-    transition: all 0.2s linear;
-    background-size: 0 0;
-  } */
-  .bg_glass:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      180deg,
-      transparent,
-      rgba(0, 0, 0, 0.7) 60%,
-      #121122 90%,
-      #272727
-    );
-    transition: all 0.2s linear;
   }
 
   .row_span-7 {

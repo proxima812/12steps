@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets'
 import Tag from "./icons/Tag.astro";
 const { data, slug } = Astro.props;
 
@@ -8,7 +7,7 @@ const ogUrl = new URL(`/posts/${slug}.png`, Astro.url.origin).href;
 
 <article
   role="article"
-  class="group mb-6 break-inside-avoid rounded-xl bg-white px-6 py-5"
+  class="bg-center-gradient group mb-6 break-inside-avoid rounded-xl px-6 py-5 ring-1 ring-white/10"
 >
   <div class="flex flex-col gap-4">
     <!-- {
@@ -42,13 +41,13 @@ const ogUrl = new URL(`/posts/${slug}.png`, Astro.url.origin).href;
       {
         data.tags &&
           data.tags.slice(0, 3).map((tag) => (
-            <span class="flex items-center gap-1 rounded-full bg-white px-3 py-1 text-xs font-medium tracking-widest shadow-md ring-1 ring-slate-300 ring-offset-2">
-              <Tag />
+            <span class="flex items-center gap-1">
+              <Tag colorSVG="white" />
               {tag}
             </span>
           ))
       }
     </div>
-    <p class="leading-relaxed text-gray-600">{data.description}</p>
+    <p class="leading-relaxed text-gray-300">{data.description}</p>
   </div>
 </article>
