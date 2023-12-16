@@ -11,6 +11,8 @@ const posts = defineCollection({
       // categories: z.array(z.string()).default(["Другое"]),
       pubDate: z.coerce.date(),
       heroImage: image().optional(),
+      speechVoice: z.boolean().default(false).optional(),
+      audioFile: z.string().optional(),
     }),
 });
 

@@ -2,7 +2,6 @@
 import RelatedPosts from "@/components/RelatedPosts.astro";
 import TableOfContents from "@/components/TOC/TableOfContents.astro";
 import Code from "@/components/mdx/Code.astro";
-import { customSlugify } from "@/utils/libs/customSlugify";
 import { getCollection } from "astro:content";
 import BaseLayout from "src/layouts/BaseLayout.astro";
 
@@ -95,6 +94,14 @@ const ogUrl = new URL(`/posts/${post.slug}.png`, Astro.url.origin).href;
           ))
       }
     </div> -->
+
+    {
+      post.data.speechVoice && (
+        <audio controls class="w-full">
+          <source src={post.data.audioFile} type="audio/mpeg" />
+        </audio>
+      )
+    }
 
     <div
       aria-label="Контент поста"

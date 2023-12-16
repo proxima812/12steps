@@ -1,6 +1,5 @@
 ---
-import { customSlugify } from '@/utils/libs/customSlugify'
-import Tag from "./icons/Tag.astro";
+import { customSlugify } from "@/utils/libs/customSlugify";
 const { data, slug } = Astro.props;
 
 const ogUrl = new URL(`/posts/${slug}.png`, Astro.url.origin).href;
@@ -30,6 +29,14 @@ const ogUrl = new URL(`/posts/${slug}.png`, Astro.url.origin).href;
       </div>
     </div> -->
 
+    {
+      data.speechVoice && (
+        <span class="rounded-full self-start ring-1 ring-blue-500/90 bg-blue-950/90 px-3 py-1 text-sm">
+          🔈 пост озвучен
+        </span>
+      )
+    }
+
     <h2
       class="text-3xl font-bold leading-tight transition-transform ease-linear group-hover:-translate-y-[2px]"
     >
@@ -39,18 +46,18 @@ const ogUrl = new URL(`/posts/${slug}.png`, Astro.url.origin).href;
       aria-label="Теги"
       class="flex gap-4 transition-transform ease-linear group-hover:translate-y-[1.10px]"
     >
-       {
-          data.tags &&
-            data.tags.map((tag) => (
-              <span
-                class={`pill-${customSlugify(
-                  tag,
-                )} relative rounded-full px-3 py-1 text-xs leading-tight text-white`}
-              >
-                {tag}
-              </span>
-            ))
-        }
+      {
+        data.tags &&
+          data.tags.map((tag) => (
+            <span
+              class={`pill-${customSlugify(
+                tag,
+              )} relative rounded-full px-3 py-1 text-xs leading-tight text-white`}
+            >
+              {tag}
+            </span>
+          ))
+      }
     </div>
     <p class="leading-relaxed text-gray-300">{data.description}</p>
   </div>

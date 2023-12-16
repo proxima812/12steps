@@ -58,13 +58,22 @@ export default config({
         //   directory: "src/assets/images/posts",
         //   publicPath: "../../assets/images/posts",
         // }),
-        image: fields.empty(),
+        audioFile: fields.file({
+          label: "Аудио файл",
+          directory: "public/audio",
+          publicPath: "/public/audio/",
+        }),
+        speechVoice: fields.checkbox({
+          label: "Озвученный?",
+          defaultValue: false,
+        }),
         draft: fields.checkbox({
           label: "Черновик",
           defaultValue: false,
           description:
-            "Установите этот пост как черновик, чтобы предотвратить его публикацию.",
+          "Установите этот пост как черновик, чтобы предотвратить его публикацию.",
         }),
+        image: fields.empty(),
       },
     }),
     tags: collection({
