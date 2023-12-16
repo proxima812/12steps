@@ -1,4 +1,5 @@
 ---
+import { customSlugify } from "@/utils/libs/customSlugify";
 import { twMerge } from "tailwind-merge";
 const { data, slug, index } = Astro.props;
 
@@ -35,8 +36,10 @@ function getPostClassName(index) {
   </div>
 
   <div>
-    <div class="absolute bottom-0 z-10 flex
-      w-full flex-col gap-3 p-5 bg-black/50 backdrop-blur-md backdrop-brightness-50 rounded-xl">
+    <div
+      class="absolute bottom-0 z-10 flex
+      w-full flex-col gap-3 rounded-xl bg-black/50 p-5 backdrop-blur-md backdrop-brightness-50"
+    >
       <h2
         class="text-xl font-bold leading-tight text-white transition-transform ease-linear group-hover:-translate-y-[2px]"
       >
@@ -49,7 +52,11 @@ function getPostClassName(index) {
         {
           data.tags &&
             data.tags.map((tag) => (
-              <span class="pill relative rounded-full px-3 py-1 text-xs leading-tight text-white">
+              <span
+                class={`pill-${customSlugify(
+                  tag,
+                )} relative rounded-full px-3 py-1 text-xs leading-tight text-white`}
+              >
                 {tag}
               </span>
             ))
@@ -60,28 +67,6 @@ function getPostClassName(index) {
 </a>
 
 <style>
-  .pill:before {
-    position: absolute;
-    inset: 0;
-    content: "";
-    margin: -1px;
-    border-radius: inherit;
-    background: linear-gradient(
-      45deg,
-      rgb(67, 216, 51) 0%,
-      rgb(65, 255, 246) 100%
-    );
-    z-index: -2;
-  }
-  .pill:after {
-    position: absolute;
-    inset: 0;
-    background-color: #0d0f1480;
-    content: "";
-    z-index: -1;
-    border-radius: inherit;
-  }
-
   .row_span-7 {
     grid-row: span 7;
   }

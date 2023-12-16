@@ -1,0 +1,89 @@
+.pill-shagi:before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  margin: -1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    45deg,
+    rgb(67, 216, 51) 0%,
+    rgb(65, 255, 246) 100%
+  );
+  z-index: -2;
+}
+.pill-shagi:after {
+  position: absolute;
+  inset: 0;
+  background-color: #0d0f1480;
+  content: "";
+  z-index: -1;
+  border-radius: inherit;
+}
+
+
+.pill-molitvy:before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  margin: -1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    45deg,
+    rgb(51, 158, 216) 0%,
+    rgb(255, 65, 65) 100%
+  );
+  z-index: -2;
+}
+.pill-molitvy:after {
+  position: absolute;
+  inset: 0;
+  background-color: #0d0f1480;
+  content: "";
+  z-index: -1;
+  border-radius: inherit;
+}
+
+.pill-principy:before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  margin: -1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    45deg,
+    rgb(100, 51, 216) 0%,
+    rgb(255, 65, 242) 100%
+  );
+  z-index: -2;
+}
+.pill-principy:after {
+  position: absolute;
+  inset: 0;
+  background-color: #0d0f1480;
+  content: "";
+  z-index: -1;
+  border-radius: inherit;
+}
+
+.pill-opyt:before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  margin: -1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    45deg,
+    rgb(172, 216, 51) 0%,
+    rgb(255, 211, 65) 100%
+  );
+  z-index: -2;
+}
+.pill-opyt:after {
+  position: absolute;
+  inset: 0;
+  background-color: #0d0f1480;
+  content: "";
+  z-index: -1;
+  border-radius: inherit;
+}
+

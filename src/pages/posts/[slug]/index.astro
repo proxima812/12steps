@@ -48,7 +48,7 @@ const ogUrl = new URL(`/posts/${post.slug}.png`, Astro.url.origin).href;
   {headings && headings.length > 0 && <TableOfContents {headings} />}
   <!-- prose-heading:max-w-3xl - для TOC чтобы не перекрывал -->
 
-  <article class="flex flex-col gap-3">
+  <article class="flex flex-col gap-12">
     <div aria-label="Заголовки поста" class="relative">
       <aside
         class="absolute top-0 flex w-full items-center justify-between gap-3 p-5"

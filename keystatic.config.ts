@@ -1,10 +1,17 @@
 import { collection, config, fields } from "@keystatic/core";
 
-export default config({
-  storage: {
-    kind: "local",
-  },
+const isProd = import.meta.env.PROD;
 
+export default config({
+  storage: isProd
+    ? {
+        kind: "github",
+        repo: {
+          owner: "",
+          name: "",
+        },
+      }
+    : { kind: "local" },
   ui: {
     brand: {
       name: "12 шагов - находки",

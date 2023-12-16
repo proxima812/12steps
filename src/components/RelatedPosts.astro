@@ -3,15 +3,15 @@ import PostCard from "./PostCard.astro";
 const { posts } = Astro.props;
 ---
 
-<h2
-  class="mb-4 text-3xl font-semibold text-gray-300 underline underline-offset-4"
->
-  🎩 Похожие посты
-</h2>
-<div class="grid items-start gap-6 md:grid-cols-2">
-  {
-    posts
-      .slice(0, 2)
-      .map((post) => <PostCard data={post.data} slug={post.slug} />)
-  }
-</div>
+<aside class="flex flex-col gap-6">
+  <h2 class="text-3xl font-medium text-gray-300">
+    🎩 Похожие посты
+  </h2>
+  <div class="grid items-start gap-6 md:grid-cols-2">
+    {
+      posts
+        .slice(0, 2)
+        .map((post) => <PostCard data={post.data} slug={post.slug} />)
+    }
+  </div>
+</aside>

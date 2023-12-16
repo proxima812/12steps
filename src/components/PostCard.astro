@@ -1,4 +1,5 @@
 ---
+import { customSlugify } from '@/utils/libs/customSlugify'
 import Tag from "./icons/Tag.astro";
 const { data, slug } = Astro.props;
 
@@ -38,15 +39,18 @@ const ogUrl = new URL(`/posts/${slug}.png`, Astro.url.origin).href;
       aria-label="Теги"
       class="flex gap-4 transition-transform ease-linear group-hover:translate-y-[1.10px]"
     >
-      {
-        data.tags &&
-          data.tags.slice(0, 3).map((tag) => (
-            <span class="flex items-center gap-1">
-              <Tag colorSVG="white" />
-              {tag}
-            </span>
-          ))
-      }
+       {
+          data.tags &&
+            data.tags.map((tag) => (
+              <span
+                class={`pill-${customSlugify(
+                  tag,
+                )} relative rounded-full px-3 py-1 text-xs leading-tight text-white`}
+              >
+                {tag}
+              </span>
+            ))
+        }
     </div>
     <p class="leading-relaxed text-gray-300">{data.description}</p>
   </div>
