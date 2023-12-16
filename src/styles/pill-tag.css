@@ -111,3 +111,49 @@
   border-radius: inherit;
 }
 
+
+
+.pill-dokument:before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  margin: -1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    45deg,
+    rgb(51, 161, 216) 0%,
+    rgb(65, 65, 255) 100%
+  );
+  z-index: -2;
+}
+.pill-dokument:after {
+  position: absolute;
+  inset: 0;
+  background-color: #0d0f1480;
+  content: "";
+  z-index: -1;
+  border-radius: inherit;
+}
+
+
+.pill-tradicii:before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  margin: -1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    45deg,
+    rgb(216, 51, 51) 0%,
+    rgb(255, 109, 65) 100%
+  );
+  z-index: -2;
+}
+.pill-tradicii:after {
+  position: absolute;
+  inset: 0;
+  background-color: #0d0f1480;
+  content: "";
+  z-index: -1;
+  border-radius: inherit;
+}
