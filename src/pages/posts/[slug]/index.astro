@@ -1,8 +1,8 @@
 ---
 import RelatedPosts from "@/components/RelatedPosts.astro";
 import TableOfContents from "@/components/TOC/TableOfContents.astro";
-import Tag from "@/components/icons/Tag.astro";
 import Code from "@/components/mdx/Code.astro";
+import { customSlugify } from "@/utils/libs/customSlugify";
 import { getCollection } from "astro:content";
 import BaseLayout from "src/layouts/BaseLayout.astro";
 
@@ -81,17 +81,20 @@ const ogUrl = new URL(`/posts/${post.slug}.png`, Astro.url.origin).href;
       </div>
     </div>
 
-    <div class="my-4 flex gap-2" aria-label="Теги поста">
+    <!-- <div class="flex gap-2" aria-label="Теги поста">
       {
         post.data.tags &&
           post.data.tags.map((tag) => (
-            <span class="flex items-center gap-1 rounded-full bg-black/50 px-3 py-1 text-white backdrop-blur-xl backdrop-brightness-75">
-              <Tag colorSVG="white" />
+            <span
+              class={`pill-${customSlugify(
+                tag,
+              )} relative rounded-full px-3 py-1 text-xs leading-tight text-white`}
+            >
               {tag}
             </span>
           ))
       }
-    </div>
+    </div> -->
 
     <div
       aria-label="Контент поста"
