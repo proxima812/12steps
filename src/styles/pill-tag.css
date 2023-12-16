@@ -21,6 +21,30 @@
 }
 
 
+.pill-razrabotka:before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  margin: -1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    45deg,
+    rgb(216, 158, 51) 0%,
+    rgb(255, 65, 65) 100%
+  );
+  z-index: -2;
+}
+.pill-razrabotka:after {
+  position: absolute;
+  inset: 0;
+  background-color: #0d0f1480;
+  content: "";
+  z-index: -1;
+  border-radius: inherit;
+}
+
+
+
 .pill-molitvy:before {
   position: absolute;
   inset: 0;
