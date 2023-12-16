@@ -98,7 +98,10 @@ const ogUrl = new URL(`/posts/${post.slug}.png`, Astro.url.origin).href;
     {
       post.data.speechVoice && (
         <audio controls class="w-full">
-          <source src={post.data.audioFile} type="audio/mpeg" />
+          <source
+            src={post.data.audioFile.replace("public/", "")}
+            type="audio/mpeg"
+          />
         </audio>
       )
     }
