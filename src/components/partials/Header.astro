@@ -2,6 +2,7 @@
 import { version } from "../../../version.json";
 import ButtonFeedBack from "../ButtonFeedBack.astro";
 import Logo from "../Logo.astro";
+import RSS from "../RSS.astro";
 import BotHeader from "./BotHeader.astro";
 const versionSet = version;
 const { container_max_w } = Astro.props;
@@ -29,7 +30,10 @@ const shouldRenderBotHeader = urlIndex !== "/";
           {versionSet}
         </span> -->
       </div>
-      <div class="block md:hidden"><ButtonFeedBack /></div>
+      <div class="flex gap-1">
+        <div class="block md:hidden"><RSS /></div>
+        <div class="block md:hidden"><ButtonFeedBack /></div>
+      </div>
     </div>
   </section>
   <BotHeader />
