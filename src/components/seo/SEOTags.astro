@@ -38,6 +38,8 @@ function formatCanonicalURL(url: string | URL) {
   return path.replace(/\/?$/, hasQueryParams ? "" : "/");
 }
 
+const defaultOgImage = "";
+
 const themeColor = "#fff";
 ---
 
@@ -78,7 +80,6 @@ const themeColor = "#fff";
       <meta name="keywords" content={tags.join(", ")} />
     )
   }
-  {heroImage && <meta property="og:image" content={heroImage} />}
+  <meta property="og:image" content={heroImage || defaultOgImage} />
   <Metricks />
 </head>
-

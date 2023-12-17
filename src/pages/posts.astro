@@ -2,6 +2,7 @@
 import Aside from "@/components/Aside.astro";
 import Blur from "@/components/Blur.astro";
 import PostCard from "@/components/PostCard.astro";
+import { DEFAULT_TITLE } from "@/config/settings";
 import theme from "@/data/theme";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getTaxonomy } from "@/utils/getTaxonomy";
@@ -14,6 +15,7 @@ const postsLength = (await getCollection("posts")).length;
 const tags = await getTaxonomy("posts", "tags");
 const tagCounts = {};
 posts.forEach((post) => {
+  // @ts-ignore
   post.data.tags.forEach((tag) => {
     if (!tagCounts[tag]) {
       tagCounts[tag] = 0;
@@ -23,10 +25,14 @@ posts.forEach((post) => {
 });
 ---
 
-<BaseLayout title="" description="" container_max_w="max-w-6xl">
+<BaseLayout
+  title="Посты на тему 12 шагов"
+  description={`${DEFAULT_TITLE}. Более (${posts.length}) постов: 12 шагов, материалы, опыт, разработка и другое.`}
+  container_max_w="max-w-6xl"
+>
   <main class="flex flex-col gap-12" aria-label="Блог контент секция">
     <Aside />
-    <div class="flex items-center justify-between">
+    <div class="flex flex-wrap items-center justify-between gap-4">
       <a href="/" class="rounded-full bg-white px-3 py-1 text-black"
         >🏠 Главная</a
       >
@@ -47,7 +53,7 @@ posts.forEach((post) => {
       }
     </div>
     <div class="columns-1 gap-6 md:columns-2 lg:columns-3">
-      {posts.map((item) => <PostCard slug={item.slug} data={item.data} />)}
+      {posts.map((item: any) => <PostCard slug={item.slug} data={item.data} />)}
     </div>
   </main>
   <Blur position="top" color={theme.colors.blur.top} />

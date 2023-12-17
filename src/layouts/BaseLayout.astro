@@ -4,6 +4,19 @@ import Header from "@/components/partials/Header.astro";
 import SEOTags from "@/components/seo/SEOTags.astro";
 import "@/styles/global.css";
 
+interface Props {
+  name?: string;
+  title: string;
+  type?: string;
+  description: string;
+  heroImage?: string;
+  locale?: string;
+  tags?: string;
+  canonicalURL?: string;
+  author?: string;
+  container_max_w?: string;
+}
+
 const {
   name,
   author,

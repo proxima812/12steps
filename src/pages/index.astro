@@ -11,8 +11,8 @@ const posts = await getSinglePage("posts");
 ---
 
 <BaseLayout
-  title="Посты на тему 12 шагов"
-  description={`${DEFAULT_TITLE}. Более (${posts.length}) постов по 12 шагам и принципам`}
+  title="12 шагов - находка"
+  description={`${DEFAULT_TITLE}. Более (${posts.length}) постов по 12 шагам`}
   container_max_w="max-w-6xl"
 >
   <ListPosts posts={posts} />

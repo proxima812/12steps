@@ -1,14 +1,11 @@
 ---
-import { getTaxonomy } from "@/utils/getTaxonomy";
-import { customSlugify } from "@/utils/libs/customSlugify";
 import { getCollection } from "astro:content";
+import Aside from "./Aside.astro";
 import PostCard from "./PostCard.astro";
 import PostFirst from "./PostFirst.astro";
-import Aside from './Aside.astro'
 const { posts } = Astro.props;
 
 const postsLength = (await getCollection("posts")).length;
-
 ---
 
 <main class="flex flex-col gap-12" aria-label="Блог контент секция">
@@ -25,13 +22,12 @@ const postsLength = (await getCollection("posts")).length;
     }
   </div>
   <div class="flex flex-col gap-4">
-    <div class="flex items-center justify-between">
+    <div class="flex flex-wrap items-center justify-between gap-4">
       <h4 class="text-3xl font-bold">Последние посты</h4>
       <a href="/posts" class="rounded-full bg-white px-3 py-1 text-black"
-        >Ко всем постам ({postsLength})</a
+        >📁 Ко всем постам ({postsLength})</a
       >
     </div>
-
   </div>
 
   <div class="columns-1 gap-6 md:columns-2 lg:columns-3">
