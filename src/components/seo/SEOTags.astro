@@ -38,7 +38,7 @@ function formatCanonicalURL(url: string | URL) {
   return path.replace(/\/?$/, hasQueryParams ? "" : "/");
 }
 
-const defaultOgImage = "";
+const defaultOgImage = `${Astro.site}defaultOgImage.png`;
 
 const themeColor = "#fff";
 ---
