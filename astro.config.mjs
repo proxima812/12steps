@@ -17,7 +17,9 @@ export default defineConfig({
   compressHTML: true,
   integrations: [
     tailwind(),
-    sitemap(),
+    sitemap({
+        filter: (page) => !page.includes("keystatic"),
+      }),
     mdx(),
     react(),
     markdoc(),
