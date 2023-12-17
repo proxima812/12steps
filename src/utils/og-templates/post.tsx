@@ -2,9 +2,35 @@ import type { CollectionEntry } from "astro:content";
 
 export default (post: CollectionEntry<"posts">) => {
   return (
-    <div tw="flex flex-col w-full h-full items-center justify-center bg-white p-12 relative">
-      <div tw="flex relative h-full w-full">
-        <div tw="flex -right-[200px] -top-[200px] absolute">
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        height: "100%",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "white",
+        padding: "12px",
+        position: "relative",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          position: "relative",
+          height: "100%",
+          width: "100%",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            position: "absolute",
+            right: "-200px",
+            top: "-200px",
+          }}
+        >
           <svg
             width="851"
             height="780"
@@ -84,11 +110,28 @@ export default (post: CollectionEntry<"posts">) => {
             </defs>
           </svg>
         </div>
-        <div tw="flex items-center justify-center">
-          <p tw="text-5xl max-w-3xl leading-tight">{post.data.title}</p>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <p style={{ fontSize: "40px", maxWidth: "3xl", lineHeight: "tight" }}>
+            {post.data.title}
+          </p>
         </div>
 
-        <div tw="flex items-center gap-4 left-0 bottom-0 absolute">
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "4",
+            position: "absolute",
+            left: "0",
+            bottom: "0",
+          }}
+        >
           <svg
             width="54"
             height="54"
@@ -128,7 +171,9 @@ export default (post: CollectionEntry<"posts">) => {
               </linearGradient>
             </defs>
           </svg>
-          <div tw="ml-5 text-3xl">12 шагов - находки</div>
+          <div style={{ marginLeft: "5px", fontSize: "24px" }}>
+            12 шагов - находки
+          </div>
         </div>
       </div>
     </div>

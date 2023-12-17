@@ -53,11 +53,11 @@ export default config({
             validation: { length: { min: 1 } },
           },
         ),
-        // image: fields.image({
-        //   label: "Изображение к посту",
-        //   directory: "src/assets/images/posts",
-        //   publicPath: "../../assets/images/posts",
-        // }),
+        heroImage: fields.image({
+          label: "Изображение к посту",
+          directory: "src/assets/images/posts",
+          publicPath: "../../assets/images/posts",
+        }),
         audioFile: fields.file({
           label: "Аудио файл",
           directory: "public/audio",
@@ -71,9 +71,8 @@ export default config({
           label: "Черновик",
           defaultValue: false,
           description:
-          "Установите этот пост как черновик, чтобы предотвратить его публикацию.",
+            "Установите этот пост как черновик, чтобы предотвратить его публикацию.",
         }),
-        image: fields.empty(),
       },
     }),
     tags: collection({
