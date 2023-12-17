@@ -1,8 +1,37 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { YouTube } from "@astro-community/astro-embed-youtube";
+import YB from '@/components/icons/YB.astro'
+
+import { videosTraditionsLinks } from "@/data/videosTraditionsLinks";
 ---
 
-<BaseLayout title="" description="">
-  <YouTube id="xtTy5nKay_Y" />
+<BaseLayout
+  title="12 Традиций видео спикерские"
+  description="12 Традиций: видео изучение и познания, спикерские от членов соодружества"
+>
+  <div class="flex flex-wrap items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <a href="/" class="rounded-full bg-white px-3 py-1 text-black"
+        >🏠 Главная</a
+      >
+      <a href="/posts" class="rounded-full bg-white px-3 py-1 text-black"
+        >📁 Посты</a
+      >
+      <a
+        href="https://t.me/fb_steps_bot"
+        class="flex items-center gap-1 rounded-full bg-red-200 px-3 py-1 text-red-800 ring-1 ring-red-500"
+        ><YB /><span>Прислать видео</span></a
+      >
+    </div>
+    <div>
+      <h4 class="text-3xl font-bold">
+        Видео по 12 Традициям ({videosTraditionsLinks.length})
+      </h4>
+      <p class="text-right text-gray-400">Видео от канала Надя П.</p>
+    </div>
+  </div>
+  <main class="grid gap-6 md:grid-cols-2">
+    {videosTraditionsLinks.map((item) => <YouTube id={item.id} />)}
+  </main>
 </BaseLayout>
