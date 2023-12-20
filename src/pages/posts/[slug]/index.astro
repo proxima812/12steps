@@ -1,9 +1,9 @@
 ---
-import RelatedPosts from "@/components/RelatedPosts.astro";
-import TableOfContents from "@/components/TOC/TableOfContents.astro";
-import Code from "@/components/mdx/Code.astro";
-import { getCollection } from "astro:content";
-import BaseLayout from "src/layouts/BaseLayout.astro";
+import RelatedPosts from "@/components/RelatedPosts.astro"
+import TableOfContents from "@/components/TOC/TableOfContents.astro"
+import Code from "@/components/mdx/Code.astro"
+import { getCollection } from "astro:content"
+import BaseLayout from "src/layouts/BaseLayout.astro"
 
 const posts = await getCollection("posts");
 
@@ -108,7 +108,7 @@ const ogUrl = new URL(`/posts/${post.slug}.png`, Astro.url.origin).href;
 
     <div
       aria-label="Контент поста"
-      class="md:prose-md prose prose-slate prose-invert max-w-none lg:prose-lg xl:prose-xl prose-headings:max-w-[280px] sm:prose-headings:max-w-full"
+      class="md:prose-md  prose-a:text-blue-400 prose prose-slate prose-invert max-w-none lg:prose-lg xl:prose-xl prose-headings:max-w-[280px] sm:prose-headings:max-w-full"
     >
       <Content components={{ pre: Code }} />
     </div>
