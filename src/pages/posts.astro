@@ -1,14 +1,15 @@
 ---
-import Aside from "@/components/Aside.astro";
-import Blur from "@/components/Blur.astro";
-import PostCard from "@/components/PostCard.astro";
-import { DEFAULT_TITLE } from "@/config/settings";
-import theme from "@/data/theme";
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import { getTaxonomy } from "@/utils/getTaxonomy";
-import { customSlugify } from "@/utils/libs/customSlugify";
-import { getSinglePage } from "@/utils/libs/getSinglePage";
-import { getCollection } from "astro:content";
+import Aside from "@/components/Aside.astro"
+import Blur from "@/components/Blur.astro"
+import Button from '@/components/Button.astro'
+import PostCard from "@/components/PostCard.astro"
+import { DEFAULT_TITLE } from "@/config/settings"
+import theme from "@/data/theme"
+import BaseLayout from "@/layouts/BaseLayout.astro"
+import { getTaxonomy } from "@/utils/getTaxonomy"
+import { customSlugify } from "@/utils/libs/customSlugify"
+import { getSinglePage } from "@/utils/libs/getSinglePage"
+import { getCollection } from "astro:content"
 
 const posts = await getSinglePage("posts");
 const postsLength = (await getCollection("posts")).length;
@@ -33,9 +34,14 @@ posts.forEach((post) => {
   <main class="flex flex-col gap-12" aria-label="Блог контент секция">
     <Aside />
     <div class="flex flex-wrap items-center justify-between gap-4">
-      <a href="/" class="rounded-full bg-white px-3 py-1 text-black"
-        >🏠 Главная</a
-      >
+      <div class="flex gap-5">
+        <Button link='/'>
+         🏠 Главная 
+        </Button>
+        <Button link='/traditions'>
+         📜 Традиции 
+        </Button>
+      </div>
       <h4 class="text-3xl font-bold">Все посты ({postsLength})</h4>
     </div>
     <div class="flex flex-wrap gap-3">

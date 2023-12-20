@@ -1,9 +1,11 @@
 ---
-import YB from "@/components/icons/YB.astro";
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import { YouTube } from "@astro-community/astro-embed-youtube";
+import YB from "@/components/icons/YB.astro"
+import BaseLayout from "@/layouts/BaseLayout.astro"
+import { YouTube } from "@astro-community/astro-embed-youtube"
 
-import { videosTraditionsLinks } from "@/data/videosTraditionsLinks";
+import Button from '@/components/Button.astro'
+import { videosTraditionsLinks } from "@/data/videosTraditionsLinks"
+
 ---
 
 <BaseLayout
@@ -11,18 +13,17 @@ import { videosTraditionsLinks } from "@/data/videosTraditionsLinks";
   description="12 Традиций: видео изучение и познания, спикерские от членов соодружества"
 >
   <div class="flex flex-wrap items-center justify-between gap-4">
-    <div class="flex flex-wrap items-center gap-3">
-      <a href="/" class="rounded-full bg-white px-3 py-1 text-black"
-        >🏠 Главная</a
-      >
-      <a href="/posts" class="rounded-full bg-white px-3 py-1 text-black"
-        >📁 Посты</a
-      >
-      <a
-        href="https://t.me/fb_steps_bot"
-        class="flex items-center gap-1 rounded-full bg-white px-3 py-1 text-red-500"
-        ><YB /><span>Прислать видео</span></a
-      >
+    <div class="flex flex-wrap items-center gap-5">
+      <Button link='/'>
+      🏠 Главная
+      </Button>
+      <Button link='/posts'>
+       📁 Посты
+      </Button>
+      <Button link='https://t.me/fb_steps_bot' className='text-red-500'>
+        <YB /><span>Прислать видео</span>
+      </Button>
+
     </div>
     <div>
       <h4 class="text-3xl font-bold">
