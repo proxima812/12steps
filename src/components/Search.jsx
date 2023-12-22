@@ -60,7 +60,7 @@ function Search({ postsList }) {
             <LoopIcon />
           </span>
           <input
-            aria-label="Введите запрос для поиска"
+            aria-label="Поле поиска"
             className="w-full rounded-2xl bg-gray-900 py-3 pl-[62px] pr-5 focus:outline-none "
             role="search"
             type="text"
