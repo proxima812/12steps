@@ -33,22 +33,23 @@ const options = {
 
 function Search({ postsList }) {
   const [query, setQuery] = useState("");
-  const [selectedTag, setSelectedTag] = useState("");
+  const [selectedTag, setSelectedTag] = useState(""); // State for selected radio button
 
   const fuse = new Fuse(postsList, options);
 
+  // Modify this part to filter by the selected tag
   const filteredPosts = selectedTag
     ? postsList.filter((post) => post.data.tags.includes(selectedTag))
     : postsList;
 
+  // Perform the search on the filtered posts
   const posts = fuse
     .search(query, { list: filteredPosts })
     .map((result) => result.item)
     .slice(0, 6);
 
-  function handleOnSearch({ target = {} }) {
-    const { value } = target;
-    setQuery(value);
+  function handleOnSearch({ target }) {
+    setQuery(target.value);
   }
 
   return (
@@ -59,6 +60,7 @@ function Search({ postsList }) {
             <LoopIcon />
           </span>
           <input
+            aria-label="Введите запрос для поиска"
             className="w-full rounded-2xl bg-gray-900 py-3 pl-[62px] pr-5 focus:outline-none "
             role="search"
             type="text"
@@ -81,7 +83,10 @@ function Search({ postsList }) {
 
             <div className="mt-8 flex flex-col gap-3">
               {posts.map((post) => (
-                <li className="ring-white/10 rounded-lg bg-black p-2 ring-1  transition-colors duration-75 ease-linear ">
+                <li
+                  className="rounded-lg bg-black p-2 ring-1 ring-white/10  transition-colors duration-75 ease-linear"
+                  key={post.slug}
+                >
                   <a href={`/posts/${post.slug}`}>
                     <h4 className="font-bold">&#10149; {post.data.title}</h4>
                     {post.data.description && (

@@ -24,6 +24,7 @@ function getPostClassName(index) {
 <a
   href={`/posts/${slug}`}
   role="article"
+  aria-label={`Читайте про "${data.title}"`}
   class:list={twMerge(
     `group relative row-span-3 min-h-[208px] justify-end overflow-hidden rounded-xl`,
     index === 0 ? "row_span-7" : index === 2 || index === 3 ? "row-span-4" : "",
