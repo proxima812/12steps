@@ -1,6 +1,6 @@
 ---
 import TableOfContents from "@/components/TOC/TableOfContents.astro";
-import { getCollection } from "astro:content";
+import { CollectionEntry, getCollection } from "astro:content";
 import BaseLayout from "src/layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
@@ -11,7 +11,6 @@ export async function getStaticPaths() {
     .sort((a, b) => a.id.length - b.id.length)
     .map((post, i) => ({
       params: { slug: post.slug },
-
       props: {
         post,
         // Previous post
@@ -28,7 +27,12 @@ export async function getStaticPaths() {
     }));
 }
 
+interface Props {
+  post: CollectionEntry<"postsBB">;
+}
+
 const { post, prevPost, nextPost } = Astro.props;
+const { title, description } = post.data;
 
 const { Content, headings } = await post.render();
 
@@ -38,8 +42,8 @@ const ogUrl = new URL(`/posts/${post.slug}.png`, Astro.url.origin).href;
 ---
 
 <BaseLayout
-  title={post.data.title}
-  description={post.data.description}
+  title={title}
+  description={description}
   heroImage={ogUrl}
   type
   container_max_w="max-w-4xl"
@@ -57,7 +61,7 @@ const ogUrl = new URL(`/posts/${post.slug}.png`, Astro.url.origin).href;
             >
               <span class="text-sm text-zinc-500">Предыдущий пост</span>{" "}
               <span class="self-start font-semibold text-blue-500 underline underline-offset-4 transition-colors ease-linear hover:text-blue-400">
-                {nextPost?.data?.title}
+                {nextPost.data.title}
               </span>
             </a>
           )}
@@ -69,7 +73,7 @@ const ogUrl = new URL(`/posts/${post.slug}.png`, Astro.url.origin).href;
               <span class="text-sm text-zinc-500">Следущий пост</span>
               <span class="self-start font-semibold text-blue-500 underline underline-offset-4 transition-colors ease-linear hover:text-blue-400">
                 {" "}
-                {prevPost?.data?.title}
+                {prevPost.data.title}
               </span>
             </a>
           )}
@@ -96,7 +100,7 @@ const ogUrl = new URL(`/posts/${post.slug}.png`, Astro.url.origin).href;
               >
                 <span class="text-sm text-zinc-500">Предыдущий пост</span>{" "}
                 <span class="self-start font-semibold text-blue-500 underline underline-offset-4 transition-colors ease-linear hover:text-blue-400">
-                  {nextPost?.data?.title}
+                  {nextPost.data.title}
                 </span>
               </a>
             )}
@@ -108,7 +112,7 @@ const ogUrl = new URL(`/posts/${post.slug}.png`, Astro.url.origin).href;
                 <span class="text-sm text-zinc-500">Следущий пост</span>
                 <span class="self-start font-semibold text-blue-500 underline underline-offset-4 transition-colors ease-linear hover:text-blue-400">
                   {" "}
-                  {prevPost?.data?.title}
+                  {prevPost.data.title}
                 </span>
               </a>
             )}
