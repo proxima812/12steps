@@ -46,7 +46,7 @@ const ogUrl = new URL(`/posts/${post.slug}.png`, Astro.url.origin).href;
 >
   {headings && headings.length > 0 && <TableOfContents {headings} />}
 
-  <div class="my-6">
+  <div>
     {
       (nextPost || prevPost) && (
         <div class="flex justify-between">
@@ -56,7 +56,7 @@ const ogUrl = new URL(`/posts/${post.slug}.png`, Astro.url.origin).href;
               href={`/bigbook/${nextPost.slug}`}
             >
               <span class="text-sm text-zinc-500">Предыдущий пост</span>{" "}
-              <span class="self-start font-semibold text-blue-500 underline underline-offset-4 hover:text-blue-400 transition-colors ease-linear">
+              <span class="self-start font-semibold text-blue-500 underline underline-offset-4 transition-colors ease-linear hover:text-blue-400">
                 {nextPost?.data?.title}
               </span>
             </a>
@@ -67,7 +67,7 @@ const ogUrl = new URL(`/posts/${post.slug}.png`, Astro.url.origin).href;
               href={`/bigbook/${prevPost.slug}`}
             >
               <span class="text-sm text-zinc-500">Следущий пост</span>
-              <span class="self-start font-semibold text-blue-500 underline underline-offset-4 hover:text-blue-400 transition-colors ease-linear">
+              <span class="self-start font-semibold text-blue-500 underline underline-offset-4 transition-colors ease-linear hover:text-blue-400">
                 {" "}
                 {prevPost?.data?.title}
               </span>
@@ -84,6 +84,37 @@ const ogUrl = new URL(`/posts/${post.slug}.png`, Astro.url.origin).href;
       class="md:prose-md prose prose-zinc prose-invert max-w-none lg:prose-lg xl:prose-xl prose-headings:max-w-[280px] prose-h4:text-orange-300 prose-a:text-blue-400 prose-a:underline prose-strong:text-green-500 sm:prose-headings:max-w-full"
     >
       <Content />
+    </div>
+    <div>
+      {
+        (nextPost || prevPost) && (
+          <div class="flex justify-between">
+            {nextPost && (
+              <a
+                class="flex flex-col items-center"
+                href={`/bigbook/${nextPost.slug}`}
+              >
+                <span class="text-sm text-zinc-500">Предыдущий пост</span>{" "}
+                <span class="self-start font-semibold text-blue-500 underline underline-offset-4 transition-colors ease-linear hover:text-blue-400">
+                  {nextPost?.data?.title}
+                </span>
+              </a>
+            )}
+            {prevPost && (
+              <a
+                class="flex flex-col items-center"
+                href={`/bigbook/${prevPost.slug}`}
+              >
+                <span class="text-sm text-zinc-500">Следущий пост</span>
+                <span class="self-start font-semibold text-blue-500 underline underline-offset-4 transition-colors ease-linear hover:text-blue-400">
+                  {" "}
+                  {prevPost?.data?.title}
+                </span>
+              </a>
+            )}
+          </div>
+        )
+      }
     </div>
   </article>
 </BaseLayout>
