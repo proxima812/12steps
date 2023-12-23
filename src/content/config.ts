@@ -1,3 +1,4 @@
+import { defineConfig } from 'astro/config'
 import { defineCollection, z } from "astro:content";
 
 const posts = defineCollection({
@@ -16,10 +17,24 @@ const posts = defineCollection({
     }),
 });
 
+const postsBB = defineConfig({
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      head: z.string(),
+      description: z.string(),
+      coverImage: image().optional(),
+      // Удали позже
+      img: z.string().optional(),
+      id: z.string().optional(),
+      poster: z.string().optional(),
+    }),
+});
+
 const tags = defineCollection({
   schema: z.object({
     title: z.string().optional(),
   }),
 });
 
-export const collections = { posts, tags };
+export const collections = { posts, tags,postsBB };

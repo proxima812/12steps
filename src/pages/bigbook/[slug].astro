@@ -1,0 +1,82 @@
+---
+import TableOfContents from "@/components/TOC/TableOfContents.astro";
+import { getCollection } from "astro:content";
+import BaseLayout from "src/layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("postsBB");
+  const postCount = posts.length;
+
+  return posts
+    .sort((a, b) => a.id.length - b.id.length)
+    .map((post, i) => ({
+      params: { slug: post.slug },
+
+      props: {
+        post,
+        // Previous post
+        prevPost:
+          i + 1 === postCount // If the current post is the oldest
+            ? { data: "" }
+            : posts[i + 1],
+        // Next post
+        nextPost:
+          i === 0 // If the current post is the newest
+            ? { data: "" }
+            : posts[i - 1],
+      },
+    }));
+}
+
+const { post, prevPost, nextPost } = Astro.props;
+
+const { Content, headings } = await post.render();
+
+// export const prerender = true;
+
+const ogUrl = new URL(`/posts/${post.slug}.png`, Astro.url.origin).href;
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  heroImage={ogUrl}
+  type
+  container_max_w="max-w-4xl"
+>
+  {headings && headings.length > 0 && <TableOfContents {headings} />}
+
+  <div class="my-6">
+    {
+      (nextPost || prevPost) && (
+        <div class="flex justify-between">
+          {nextPost && (
+            <a
+              class="flex items-center font-semibold text-blue-500 underline underline-offset-4"
+              href={`/bigbook/${nextPost.slug}`}
+            >
+              Предыдущий пост - {nextPost?.data?.title}
+            </a>
+          )}  
+          {prevPost && (
+            <a
+              class="flex items-center font-semibold text-blue-500 underline underline-offset-4"
+              href={`/bigbook/${prevPost.slug}`}
+            >
+              Следущий пост - {prevPost?.data?.title}
+            </a>
+          )}
+        </div>
+      )
+    }
+  </div>
+
+  <article class="flex flex-col gap-12">
+    <div
+      aria-label="Контент поста"
+      class="md:prose-md prose prose-zinc prose-invert max-w-none lg:prose-lg xl:prose-xl prose-headings:max-w-[280px] prose-h4:text-orange-300 prose-a:text-blue-400 prose-a:underline prose-strong:text-green-500 sm:prose-headings:max-w-full"
+    >
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
