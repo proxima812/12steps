@@ -52,18 +52,25 @@ const ogUrl = new URL(`/posts/${post.slug}.png`, Astro.url.origin).href;
         <div class="flex justify-between">
           {nextPost && (
             <a
-              class="flex items-center font-semibold text-blue-500 underline underline-offset-4"
+              class="flex flex-col items-center"
               href={`/bigbook/${nextPost.slug}`}
             >
-              Предыдущий пост - {nextPost?.data?.title}
+              <span class="text-sm text-zinc-500">Предыдущий пост</span>{" "}
+              <span class="self-start font-semibold text-blue-500 underline underline-offset-4 hover:text-blue-400 transition-colors ease-linear">
+                {nextPost?.data?.title}
+              </span>
             </a>
-          )}  
+          )}
           {prevPost && (
             <a
-              class="flex items-center font-semibold text-blue-500 underline underline-offset-4"
+              class="flex flex-col items-center"
               href={`/bigbook/${prevPost.slug}`}
             >
-              Следущий пост - {prevPost?.data?.title}
+              <span class="text-sm text-zinc-500">Следущий пост</span>
+              <span class="self-start font-semibold text-blue-500 underline underline-offset-4 hover:text-blue-400 transition-colors ease-linear">
+                {" "}
+                {prevPost?.data?.title}
+              </span>
             </a>
           )}
         </div>

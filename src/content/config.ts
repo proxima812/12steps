@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config'
+import { defineConfig } from "astro/config";
 import { defineCollection, z } from "astro:content";
 
 const posts = defineCollection({
@@ -17,7 +17,7 @@ const posts = defineCollection({
     }),
 });
 
-const postsBB = defineConfig({
+const postsBB = defineCollection({
   schema: ({ image }) =>
     z.object({
       title: z.string(),
@@ -37,4 +37,4 @@ const tags = defineCollection({
   }),
 });
 
-export const collections = { posts, tags,postsBB };
+export const collections = { posts, tags, postsBB };
