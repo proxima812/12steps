@@ -1,0 +1,48 @@
+---
+import { links } from "@/data/links";
+import { getCollection } from "astro:content";
+import ButtonLink from "./Customs/ButtonLink.astro";
+
+const posts = (await getCollection("posts")).length;
+---
+
+<nav
+  class="flex items-center justify-center overflow-x-auto"
+  aria-label="Навигация по сайту"
+>
+  <div
+    class="scroll flex max-w-full gap-2 rounded-xl bg-zinc-900/70 p-2 backdrop-blur-2xl"
+  >
+    <!-- {
+      links
+        .filter((item) => !item.socialLink)
+        .map((item: any) => (
+          <a class="rounded-xl bg-white px-6 py-3 text-black" href={item.link}>
+            {item.name} {item.postsLength ? `(${posts})` : null}
+          </a>
+        ))
+    } -->
+    {
+      links
+        .filter((item) => !item.socialLink)
+        .map((item: any) => (
+          <ButtonLink link={item.link} class="shrink-0">
+            {item.name}
+            {item.postsLength ? ` (${posts})` : null}
+          </ButtonLink>
+        ))
+    }
+  </div>
+</nav>
+
+<style>
+  .scroll {
+    white-space: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+  }
+  .scroll::-webkit-scrollbar {
+    display: none;
+  }
+</style>

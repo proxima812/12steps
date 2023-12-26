@@ -1,15 +1,11 @@
 ---
-import Aside from "@/components/Aside.astro"
-import Blur from "@/components/Blur.astro"
-import Button from '@/components/Button.astro'
-import PostCard from "@/components/PostCard.astro"
-import { DEFAULT_TITLE } from "@/config/settings"
-import theme from "@/data/theme"
-import BaseLayout from "@/layouts/BaseLayout.astro"
-import { getTaxonomy } from "@/utils/getTaxonomy"
-import { customSlugify } from "@/utils/libs/customSlugify"
-import { getSinglePage } from "@/utils/libs/getSinglePage"
-import { getCollection } from "astro:content"
+import PostCard from "@/components/PostCard.astro";
+import { DEFAULT_TITLE } from "@/config/settings";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getTaxonomy } from "@/utils/getTaxonomy";
+import { customSlugify } from "@/utils/libs/customSlugify";
+import { getSinglePage } from "@/utils/libs/getSinglePage";
+import { getCollection } from "astro:content";
 
 const posts = await getSinglePage("posts");
 const postsLength = (await getCollection("posts")).length;
@@ -32,36 +28,25 @@ posts.forEach((post) => {
   container_max_w="max-w-6xl"
 >
   <main class="flex flex-col gap-12" aria-label="Блог контент секция">
-    <Aside />
-    <div class="flex flex-wrap items-center justify-between gap-4">
-      <div class="flex gap-5">
-        <Button link='/'>
-         🏠 Главная 
-        </Button>
-        <Button link='/traditions'>
-         📜 Традиции 
-        </Button>
+    <div class="flex flex-wrap items-end justify-between gap-12">
+      <h4 class="text-2xl font-medium">Все посты ({postsLength})</h4>
+      <div class="flex flex-wrap gap-3">
+        {
+          tags &&
+            tags.map((tag) => (
+              <span
+                class={`pill-${customSlugify(
+                  tag,
+                )} relative rounded-full px-3 py-1 text-xs leading-tight text-white`}
+              >
+                {tag} ({tagCounts[tag] || 0})
+              </span>
+            ))
+        }
       </div>
-      <h4 class="text-3xl font-bold">Все посты ({postsLength})</h4>
-    </div>
-    <div class="flex flex-wrap gap-3">
-      {
-        tags &&
-          tags.map((tag) => (
-            <span
-              class={`pill-${customSlugify(
-                tag,
-              )} relative rounded-full px-3 py-1 text-xs leading-tight text-white`}
-            >
-              {tag} ({tagCounts[tag] || 0})
-            </span>
-          ))
-      }
     </div>
     <div class="columns-1 gap-6 md:columns-2 lg:columns-3">
       {posts.map((item: any) => <PostCard slug={item.slug} data={item.data} />)}
     </div>
   </main>
-  <Blur position="top" color={theme.colors.blur.top} />
-  <Blur position="bottom" color={theme.colors.blur.bottom} />
 </BaseLayout>

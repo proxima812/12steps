@@ -2,6 +2,18 @@
 @import url("./pill-tag.css");
 /* @import url("./base.css"); */
 
+:root {
+  --color-white-010: rgba(160, 160, 160, 0.3);
+  --box-shadow-highlight-soft: 0px 2px 8px 0px rgba(0, 0, 0, 0.1),
+    0px 1px 0px 0px var(--color-white-010) inset;
+  --box-shadow-highlight-hard: 0px 2px 8px 0px rgba(0, 0, 0, 0.1),
+    0px 1px 0px 0px rgba(255, 255, 255, 0.3) inset;
+}
+
+.shadow-box{
+  box-shadow: var(--box-shadow-highlight-soft);
+}
+
 /* Отступ для якоря */
 :target:before {
   content: "";
@@ -17,4 +29,3 @@
     rgba(26, 26, 26, 0.38) 100%
   );
 }
-

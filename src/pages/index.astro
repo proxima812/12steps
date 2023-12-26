@@ -1,9 +1,8 @@
 ---
-import Aside from "@/components/Aside.astro";
-import Blur from "@/components/Blur.astro";
-import ListPosts from "@/components/ListPosts.astro";
+import DecorationBlobBlur from "@/components/DecorationBlobBlur.astro";
+import NavMenu from "@/components/NavMenu.astro";
+import MainHeading from "@/components/partials/MainHeading.astro";
 import { DEFAULT_TITLE } from "@/config/settings";
-import theme from "@/data/theme";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getSinglePage } from "@/utils/libs/getSinglePage";
 
@@ -15,7 +14,10 @@ const posts = await getSinglePage("posts");
   description={`${DEFAULT_TITLE}. Более (${posts.length}) постов по 12 шагам`}
   container_max_w="max-w-6xl"
 >
-  <ListPosts posts={posts} />
-  <Blur position="top" color={theme.colors.blur.top} />
-  <Blur position="bottom" color={theme.colors.blur.bottom} />
+  <DecorationBlobBlur />
+  <MainHeading />
+  <NavMenu />
+  <section></section>
+  <!--   
+  <ListPosts posts={posts} /> -->
 </BaseLayout>

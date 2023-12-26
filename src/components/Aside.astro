@@ -1,17 +1,11 @@
 ---
-import { getSinglePage } from "@/utils/libs/getSinglePage";
-import ButtonFeedBack from "./ButtonFeedBack.astro";
-import RSS from "./RSS.astro";
-import Search from "./Search";
+import { getSinglePage } from "@/utils/libs/getSinglePage"
+import Search from "./Search"
 const posts = await getSinglePage("posts");
 ---
 
 <aside class="flex justify-center gap-5">
-  <div class="hidden md:block">
-    <RSS />
-  </div>
+
   <Search client:load postsList={posts} />
-  <div class="hidden md:block">
-    <ButtonFeedBack />
-  </div>
+
 </aside>

@@ -1,4 +1,6 @@
 ---
+import Blur from "@/components/Customs/Blur.astro";
+import NavMenu from "@/components/NavMenu.astro";
 import Footer from "@/components/partials/Footer.astro";
 import Header from "@/components/partials/Header.astro";
 import SEOTags from "@/components/seo/SEOTags.astro";
@@ -45,15 +47,29 @@ const {
     canonicalURL={canonicalURL}
   />
   <!-- <ViewTransitions fallback='swap'/> -->
-  <body class="bg-black text-white">
+  <body class="bg-zinc-950 text-white">
     <Header />
-    <div
+    <main
       class:list={`${container_max_w ?? "max-w-5xl"} container mx-auto px-5`}
     >
-      <div class="relative flex flex-col gap-6 py-6">
+      <div class="flex flex-col gap-12 py-12">
+        {Astro.url.pathname === "/" ? null : <NavMenu />}
         <slot />
       </div>
-    </div>
+    </main>
     <Footer />
+    <!-- BLURS EFFECTS -->
+    {
+      Astro.url.pathname === "/"
+        ? null
+        : [
+            <>
+              <Blur position="top-left" color="bg-purple-500" />
+              <Blur position="top-right" color="bg-amber-500" />
+              <Blur position="bottom-right" color="bg-gray-500" />
+              <Blur position="bottom-left" color="bg-blue-500" />
+            </>,
+          ]
+    }
   </body>
 </html>

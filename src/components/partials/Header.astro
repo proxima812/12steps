@@ -1,40 +1,18 @@
 ---
-import { version } from "../../../version.json";
-import ButtonFeedBack from "../ButtonFeedBack.astro";
 import Logo from "../Logo.astro";
-import RSS from "../RSS.astro";
-import BotHeader from "./BotHeader.astro";
-const versionSet = version;
 const { container_max_w } = Astro.props;
-
-// BotHeader.astro надо оставить у index '/' на posts не должно быть
-const isProd = import.meta.env.PROD;
-const urlIndex = isProd ? "/" : new URL(Astro.url.pathname, Astro.site);
-const shouldRenderBotHeader = urlIndex !== "/";
 ---
 
-<header class="relative z-10">
-  <section class="bg-black py-5">
-    <div
-      class:list={`${
-        container_max_w ?? "max-w-6xl"
-      } container mx-auto flex items-center justify-between px-5`}
-    >
-      <div class="flex items-center gap-1">
-        <a href="/" aria-label="Логотип">
-          <Logo />
-        </a>
-        <!-- <span
-          class="rounded-full bg-purple-50 px-4 py-1 text-purple-600 ring-1 ring-purple-400"
-        >
-          {versionSet}
-        </span> -->
-      </div>
-      <div class="flex gap-1">
-        <div class="block md:hidden"><RSS /></div>
-        <div class="block md:hidden"><ButtonFeedBack /></div>
-      </div>
+<header class="relative z-10 py-4">
+  <div
+    class:list={`${
+      container_max_w ?? "max-w-6xl"
+    } container mx-auto flex items-center justify-between px-5`}
+  >
+    <div class="flex items-center gap-1">
+      <a href="/" aria-label="Логотип">
+        <Logo />
+      </a>
     </div>
-  </section>
-  <BotHeader />
+  </div>
 </header>

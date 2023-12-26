@@ -1,0 +1,20 @@
+---
+import { twMerge } from "tailwind-merge";
+interface Props {
+  link: string;
+  className?: string;
+}
+const { link, className } = Astro.props;
+---
+
+<a
+  href={link}
+  class={twMerge(
+    "ring-2 ring-white z-10 relative flex gap-1 items-center rounded-full bg-gray-50 px-3 py-1 text-black shadow-box",
+    className,
+  )}
+>
+  <slot />
+</a>
+
+

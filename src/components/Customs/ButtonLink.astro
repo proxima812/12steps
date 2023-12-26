@@ -1,0 +1,25 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { twMerge } from "tailwind-merge";
+
+interface Props extends HTMLAttributes<"a"> {
+  link: string;
+}
+
+const { link, class: className, ...props } = Astro.props;
+
+const { pathname } = Astro.url;
+const isActive = link === pathname || link === pathname.replace(/\/$/, "");
+---
+
+<a
+  href={link}
+  class={twMerge(
+    "rounded-xl bg-white px-6 py-3 text-black",
+    isActive ? "bg-gradient-to-tr from-blue-500 to-sky-200 text-white" : "",
+    className,
+  )}
+  {...props}
+>
+  <slot />
+</a>
