@@ -1,7 +1,7 @@
 ---
 import NextPosts from "@/components/NextPosts.astro";
 import TableOfContents from "@/components/TOC/TableOfContents.astro";
-import { CollectionEntry, getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import BaseLayout from "src/layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
