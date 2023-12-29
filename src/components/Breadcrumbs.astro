@@ -11,6 +11,8 @@ interface BreadcrumbItem {
 const { indexText = "Домой", baseUrl = "/" } = Astro.props;
 
 // Получаем данные из getCollections
+
+
 const collections = await getCollection("posts");
 
 // Формируем хлебные крошки на основе данных из collections
