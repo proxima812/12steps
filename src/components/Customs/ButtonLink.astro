@@ -15,8 +15,8 @@ const isActive = link === pathname || link === pathname.replace(/\/$/, "");
 <a
   href={link}
   class={twMerge(
-    "rounded-xl bg-white px-6 py-3 text-black",
-    isActive ? "bg-gradient-to-tr from-blue-500 to-sky-200 text-white" : "",
+    "rounded-md px-3.5 py-1.5 text-white",
+    isActive ? "bg-gradient-to-tr from-zinc-600 to-zinc-700 text-white" : "",
     className,
   )}
   {...props}

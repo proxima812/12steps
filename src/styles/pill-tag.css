@@ -20,7 +20,6 @@
   border-radius: inherit;
 }
 
-
 .pill-razrabotka:before {
   position: absolute;
   inset: 0;
@@ -42,8 +41,6 @@
   z-index: -1;
   border-radius: inherit;
 }
-
-
 
 .pill-molitvy:before {
   position: absolute;
@@ -111,8 +108,6 @@
   border-radius: inherit;
 }
 
-
-
 .pill-dokument:before {
   position: absolute;
   inset: 0;
@@ -134,7 +129,6 @@
   z-index: -1;
   border-radius: inherit;
 }
-
 
 .pill-tradicii:before {
   position: absolute;

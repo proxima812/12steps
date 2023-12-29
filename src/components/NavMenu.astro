@@ -11,17 +11,8 @@ const posts = (await getCollection("posts")).length;
   aria-label="Навигация по сайту"
 >
   <div
-    class="scroll flex max-w-full gap-2 rounded-xl bg-zinc-900/70 p-2 backdrop-blur-2xl"
+    class="scroll flex max-w-full gap-2 rounded-md bg-zinc-900/70 p-2 backdrop-blur-2xl"
   >
-    <!-- {
-      links
-        .filter((item) => !item.socialLink)
-        .map((item: any) => (
-          <a class="rounded-xl bg-white px-6 py-3 text-black" href={item.link}>
-            {item.name} {item.postsLength ? `(${posts})` : null}
-          </a>
-        ))
-    } -->
     {
       links
         .filter((item) => !item.socialLink)
