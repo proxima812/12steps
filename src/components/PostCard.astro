@@ -1,47 +1,51 @@
 ---
 import { customSlugify } from "@/utils/libs/customSlugify";
+import { Icon } from "astro-icon/components";
 const { data, slug } = Astro.props;
-
 const ogUrl = new URL(`/posts/${slug}.png`, Astro.url.origin).href;
 ---
 
-<article
-  aria-label={`Читайте про "${data.title}"`}
-  role="article"
-  class="z-[4] bg-center-gradient group relative mb-6 break-inside-avoid rounded-xl px-6 py-5 ring-1 ring-white/10"
->
-  <!-- <div class="top-0 left-0 rounded-2xl -z-[1] absolute"style="background-image: url('/jopa.png');opacity: 0.1;width: 100%;background-size: 128px;height: 100%;background-repeat: repeat;"></div> -->
-  <div class="flex flex-col gap-4">
-    {
-      data.speechVoice && (
-        <span class="self-start rounded-full bg-blue-950/90 px-3 py-1 text-sm ring-1 ring-blue-500/90">
-          🔈 пост озвучен
-        </span>
-      )
-    }
-
-    <h2
-      class="text-3xl font-bold leading-tight transition-transform ease-linear group-hover:-translate-y-[2px]"
-    >
-      <a href={`/posts/${slug}`}>{data.title}</a>
-    </h2>
-    <div
-      aria-label="Теги"
-      class="flex gap-4 transition-transform ease-linear group-hover:translate-y-[1.10px]"
-    >
-      {
-        data.tags &&
-          data.tags.map((tag) => (
-            <span
-              class={`pill-${customSlugify(
-                tag,
-              )} relative rounded-full px-3 py-1 text-xs leading-tight text-white`}
-            >
-              {tag}
-            </span>
-          ))
-      }
+<a href={`/posts/${slug}`} aria-label={`Читайте про "${data.title}"`}>
+  <article
+    role="article"
+    class="bg-center-gradient group relative z-[4] mb-6 break-inside-avoid rounded-xl px-6 py-5 ring-1 ring-white/10"
+  >
+    <div class="absolute right-4 top-4">
+      <Icon name="mdi:gesture-double-tap" />
     </div>
-    <p class="leading-relaxed text-gray-300">{data.description}</p>
-  </div>
-</article>
+    <!-- <div class="top-0 left-0 rounded-2xl -z-[1] absolute"style="background-image: url('/jopa.png');opacity: 0.1;width: 100%;background-size: 128px;height: 100%;background-repeat: repeat;"></div> -->
+    <div class="flex flex-col gap-4">
+      {
+        data.speechVoice && (
+          <span class="self-start rounded-full bg-blue-950/90 px-3 py-1 text-sm ring-1 ring-blue-500/90">
+            🔈 пост озвучен
+          </span>
+        )
+      }
+
+      <h2
+        class="text-3xl font-bold leading-tight transition-transform ease-linear group-hover:-translate-y-[2px]"
+      >
+        {data.title}
+      </h2>
+      <div
+        aria-label="Теги"
+        class="flex gap-4 transition-transform ease-linear group-hover:translate-y-[1.10px]"
+      >
+        {
+          data.tags &&
+            data.tags.map((tag) => (
+              <span
+                class={`pill-${customSlugify(
+                  tag,
+                )} relative rounded-full px-3 py-1 text-xs leading-tight text-white`}
+              >
+                {tag}
+              </span>
+            ))
+        }
+      </div>
+      <p class="text-sm leading-relaxed text-gray-300">{data.description}</p>
+    </div>
+  </article>
+</a>

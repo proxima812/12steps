@@ -1,10 +1,12 @@
 ---
 import DecorationBlobBlur from "@/components/DecorationBlobBlur.astro";
 import NavMenu from "@/components/NavMenu.astro";
+import PostCard from "@/components/PostCard.astro";
 import MainHeading from "@/components/partials/MainHeading.astro";
 import { DEFAULT_TITLE } from "@/config/settings";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getSinglePage } from "@/utils/libs/getSinglePage";
+import { Icon } from "astro-icon/components";
 
 const posts = await getSinglePage("posts");
 ---
@@ -17,7 +19,41 @@ const posts = await getSinglePage("posts");
   <DecorationBlobBlur />
   <MainHeading />
   <NavMenu />
-  <section></section>
-  <!--   
+  <section class="mx-auto flex max-w-4xl flex-col gap-12">
+    <p class="text-center text-lg">
+      Мы содружество и товарищи, которые делятся своим <b><u>опытом</u></b>, <b
+        ><u>силами</u></b
+      > и <b><u>надеждами</u></b> друг с другом для того, чтобы решать <b
+        ><u>наши общие или же схожие</u>
+      </b>проблемы и помогать решить их другим.
+    </p>
+
+    <div class="flex flex-col gap-6">
+      <span
+        class="relative inline-block self-start overflow-hidden rounded-full p-[1px]"
+      >
+        <span
+          class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]"
+        ></span>
+        <div
+          class="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950/90 px-3 py-1 text-sm text-white backdrop-blur-3xl"
+        >
+          <Icon name="mdi:flower" />
+          Последние посты
+        </div>
+      </span>
+
+      <article class="grid grid-cols-1 items-start gap-5 md:grid-cols-2">
+        {
+          posts
+            .sort((a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate))
+            .slice(0, 2)
+            .map((post: any) => <PostCard slug={post.slug} data={post.data} />)
+        }
+      </article>
+    </div>
+
+    <!--   
   <ListPosts posts={posts} /> -->
+  </section>
 </BaseLayout>

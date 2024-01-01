@@ -14,6 +14,10 @@
   box-shadow: var(--box-shadow-highlight-soft);
 }
 
+.myBg{
+  @apply bg-zinc-900/70 backdrop-blur-2xl
+}
+
 /* Отступ для якоря */
 :target:before {
   content: "";
