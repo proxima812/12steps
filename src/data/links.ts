@@ -1,16 +1,19 @@
 export const links = [
   {
-    name: "🏠 Главная",
+    name: "Главная",
     link: "/",
+    iconName: "mdi:apps",
   },
   {
-    name: "📁 Посты",
+    name: "Посты",
     link: "/posts",
+    iconName: "mdi:cloud",
     postsLength: true,
   },
   {
-    name: "📈 Традиции",
+    name: "Традиции",
     link: "/traditions",
+    iconName: "mdi:layers",
   },
   // {
   //   name: "🗒 Джо и Чарли - семинар",

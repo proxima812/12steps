@@ -34,7 +34,6 @@ const options = {
 function Search({ postsList }) {
   const [query, setQuery] = useState("");
   const [selectedTag, setSelectedTag] = useState(""); // State for selected radio button
-
   const fuse = new Fuse(postsList, options);
 
   // Modify this part to filter by the selected tag

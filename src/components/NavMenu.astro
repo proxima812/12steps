@@ -1,5 +1,6 @@
 ---
 import { links } from "@/data/links";
+import { Icon } from "astro-icon/components";
 import { getCollection } from "astro:content";
 import ButtonLink from "./Customs/ButtonLink.astro";
 
@@ -10,14 +11,13 @@ const posts = (await getCollection("posts")).length;
   class="flex items-center justify-center overflow-x-auto"
   aria-label="Навигация по сайту"
 >
-  <div
-    class="scroll flex max-w-full gap-2 rounded-xl p-2 myBg"
-  >
+  <div class="scroll myBg flex max-w-full gap-2 rounded-xl p-2">
     {
       links
         .filter((item) => !item.socialLink)
         .map((item: any) => (
-          <ButtonLink link={item.link} class="shrink-0">
+          <ButtonLink link={item.link} class="flex shrink-0 items-center gap-1">
+            <Icon name={item.iconName} />
             {item.name}
             {item.postsLength ? ` (${posts})` : null}
           </ButtonLink>

@@ -12,7 +12,6 @@ const { indexText = "Домой", baseUrl = "/" } = Astro.props;
 
 // Получаем данные из getCollections
 
-
 const collections = await getCollection("posts");
 
 // Формируем хлебные крошки на основе данных из collections
@@ -49,7 +48,7 @@ if (collections && collections.length > 0) {
             <a href={href} class="font-medium text-blue-500">
               {text}
             </a>
-          ) : ( 
+          ) : (
             <span class="line-clamp-1 text-zinc-400">{text}</span>
           )}
 
