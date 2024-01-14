@@ -1,5 +1,5 @@
 ---
-import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import Breadcrumbs from "@/components/Customs/Breadcrumbs.astro";
 import FormattedDate from "@/components/Customs/FormattedDate.astro";
 import RelatedPosts from "@/components/RelatedPosts.astro";
 import TableOfContents from "@/components/TOC/TableOfContents.astro";
@@ -37,6 +37,18 @@ const { Content, headings } = await post.render();
 // export const prerender = true;
 
 const ogUrl = new URL(`/posts/${post.slug}.png`, Astro.url.origin).href;
+
+const customCrumbs = [
+  {
+    text: 'Все посты',
+    href: "/posts",
+    title: "Part of the breadcrumb list",
+  },
+  {
+    text: post.data.title,
+    href: "#",
+  },
+]; 
 ---
 
 <BaseLayout
@@ -47,7 +59,21 @@ const ogUrl = new URL(`/posts/${post.slug}.png`, Astro.url.origin).href;
   type
   container_max_w="max-w-4xl"
 >
-  <!-- <Breadcrumbs /> -->
+  <Breadcrumbs mainBemClass="flex gap-1 items-center" crumbs={customCrumbs}>
+    <svg
+      slot="separator"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      ><polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </Breadcrumbs>
   <article class="flex flex-col gap-12">
     <div class="flex flex-col gap-6">
       <h1 class="text-4xl font-bold lg:text-6xl">

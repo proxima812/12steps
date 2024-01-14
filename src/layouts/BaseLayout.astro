@@ -1,6 +1,6 @@
 ---
 import Blur from "@/components/Customs/Blur.astro";
-import NavMenu from "@/components/NavMenu.astro";
+
 import Footer from "@/components/partials/Footer.astro";
 import Header from "@/components/partials/Header.astro";
 import SEOTags from "@/components/seo/SEOTags.astro";
@@ -53,7 +53,6 @@ const {
       class:list={`${container_max_w ?? "max-w-5xl"} container mx-auto px-5`}
     >
       <div class="flex flex-col gap-12 py-12">
-        {Astro.url.pathname === "/" ? null : <NavMenu />}
         <slot />
       </div>
     </main>

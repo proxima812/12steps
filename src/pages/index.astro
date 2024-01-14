@@ -1,6 +1,5 @@
 ---
 import DecorationBlobBlur from "@/components/DecorationBlobBlur.astro";
-import NavMenu from "@/components/NavMenu.astro";
 import PostCard from "@/components/PostCard.astro";
 import MainHeading from "@/components/partials/MainHeading.astro";
 import { DEFAULT_TITLE } from "@/config/settings";
@@ -18,7 +17,6 @@ const posts = await getSinglePage("posts");
 >
   <DecorationBlobBlur />
   <MainHeading />
-  <NavMenu />
   <section class="mx-auto flex max-w-4xl flex-col gap-12">
     <p class="text-center text-lg">
       Мы содружество и товарищи, которые делятся своим <b><u>опытом</u></b>, <b

@@ -1,0 +1,207 @@
+---
+interface BreadcrumbsProps {
+  indexText?: string;
+  mainBemClass?: string;
+  ariaLabel?: string;
+  crumbs?: Array<BreadcrumbItem>;
+  schemaJsonScript?: boolean;
+  baseUrl?: string;
+}
+
+interface BreadcrumbItem {
+  text: string;
+  href: string;
+  "aria-current"?: string;
+}
+
+const {
+  indexText = "Home",
+  mainBemClass = "",
+  ariaLabel = "breadcrumbs",
+  crumbs = [],
+  schemaJsonScript = true,
+  baseUrl,
+} = Astro.props as BreadcrumbsProps;
+
+const hasBaseUrl = baseUrl?.length;
+
+/**
+ * Log a warning message to the console.
+ *
+ * @param message
+ */
+const coloredWarnLog = (message: string) => {
+  console.warn(
+    "\x1b[43m",
+    "Astro Breadcrumbs",
+    "\x1b[0m",
+    "\x1b[33m",
+    message,
+    "\x1b[0m",
+  );
+};
+
+/**
+ * Check if a URL is valid.
+ *
+ * @param url
+ */
+const isValidUrl = (url: string | undefined): boolean => {
+  if (!url) return false;
+
+  let urlToCheck;
+
+  try {
+    urlToCheck = new URL(url);
+  } catch (e) {
+    return false;
+  }
+
+  const checkProtocal =
+    urlToCheck.protocol === "http:" || urlToCheck.protocol === "https:";
+
+  if (!checkProtocal) {
+    coloredWarnLog("Astro Breadcrumbs");
+  }
+  return checkProtocal;
+};
+
+/**
+ * Check if a URL ends with a slash.
+ *
+ * @param url
+ */
+const endsWithSlash = (url: string | undefined): boolean => {
+  if (!url) return false;
+
+  return url.endsWith("/");
+};
+
+/**
+ * Get the base URL.
+ * If the base URL is not valid, return a relative URL.
+ *
+ */
+const getBaseUrl = (): string | undefined => {
+  if (endsWithSlash(baseUrl) && hasBaseUrl) {
+    coloredWarnLog(
+      "Base URL should not end with a slash. Falling back to relative URL.",
+    );
+  }
+  if (!isValidUrl(baseUrl) && hasBaseUrl) {
+    coloredWarnLog("Base URL is not valid. Falling back to relative URL.");
+  }
+
+  return baseUrl;
+};
+
+let parts: Array<BreadcrumbItem> = [];
+
+/**
+ * If no crumbs are passed, generate them dynamically.
+ */
+if (crumbs.length === 0) {
+  const paths = Astro.url.pathname.split("/").filter((crumb: any) => crumb);
+
+  /**
+   * Array of breadcrumb items.
+   * The first item is the index page.
+   */
+  parts = [
+    {
+      text: indexText,
+      href: getBaseUrl() ?? "/",
+    },
+  ];
+
+  /**
+   * Loop through the paths and create a breadcrumb item for each.
+   */
+  paths.forEach((text: string, index: number) => {
+    const generateHref = `/${paths.slice(0, index + 1).join("/")}`;
+    const finalHref = getBaseUrl() ?? "" + generateHref;
+
+    // strip out any file extensions
+    const matches = text.match(/^(.+?)(\.[a-z0-9]+)?$/i);
+
+    if (matches && matches[2]) {
+      text = matches[1];
+    }
+
+    parts = [
+      ...parts,
+      {
+        text: text.replace(/[-_]/g, " "),
+        href: finalHref,
+      },
+    ];
+  });
+}
+
+/**
+ * If crumbs are passed, use them.
+ */
+if (crumbs.length > 0) {
+  parts = crumbs;
+}
+
+/**
+ * Generate the schema.org JSON.
+ */
+const schemaJson = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: parts.map((part, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    item: {
+      "@id": part.href,
+      name: part.text,
+    },
+  })),
+});
+---
+
+<nav aria-label={ariaLabel} class={mainBemClass}>
+  <ol
+    class={`${mainBemClass}__crumbs${
+      Astro.slots.has("separator") ? " has-separators" : " has-no-separators"
+    }`}
+  >
+    {
+      parts.map(({ text, ...attrs }, index, array) => (
+        <li class={`${mainBemClass}__crumb`}>
+          {Astro.slots.has("index") && index === 0 && (
+            <a {...attrs} class={`${mainBemClass}__link is-index`}>
+              <slot name="index" />
+            </a>
+          )}
+
+          {(!Astro.slots.has("index") ||
+            (Astro.slots.has("index") && index !== 0)) && (
+            <a
+              {...attrs}
+              class={` ${mainBemClass}__link${
+                index + 1 === array.length ? " is-current" : ""
+              }`}
+              aria-current={index + 1 === array.length ? "location" : false}
+            >
+              {text}
+            </a>
+          )}
+
+          {Astro.slots.has("separator") && array.length - 1 !== index && (
+            <span class="c-breadcrumbs__separator " aria-hidden="true">
+              <slot name="separator" />
+            </span>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav>
+{
+  schemaJsonScript && (
+    <script type="application/ld+json" set:html={schemaJson} />
+  )
+}

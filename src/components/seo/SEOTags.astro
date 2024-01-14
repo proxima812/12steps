@@ -1,6 +1,7 @@
 ---
 import { DEFAULT_TITLE } from "@/config/settings";
 import Metricks from "../Metricks.astro";
+import Favicons from './Favicons.astro'
 interface Props {
   name?: string;
   title: string;
@@ -48,10 +49,8 @@ const themeColor = "#fff";
   <meta name="viewport" content="width=device-width" />
   <title>{title}</title>
   <meta name="generator" content={Astro.generator} />
-  <meta name="theme-color" content={themeColor} />
-  <link rel="mask-icon" href="/favicon.svg" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="sitemap" href="/sitemap-index.xml" />
+
   <link
     rel="alternate"
     type="application/rss+xml"
@@ -81,5 +80,9 @@ const themeColor = "#fff";
     )
   }
   <meta property="og:image" content={heroImage || defaultOgImage} />
+
+  <script is:inline src="/registerSW.js"></script>
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <Favicons />
   <Metricks />
 </head>
