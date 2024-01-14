@@ -169,9 +169,11 @@ const schemaJson = JSON.stringify({
     }`}
   >
     {
+      
       parts.map(({ text, ...attrs }, index, array) => (
         <li class={`${mainBemClass}__crumb`}>
           {Astro.slots.has("index") && index === 0 && (
+            // @ts-ignore
             <a {...attrs} class={`${mainBemClass}__link is-index`}>
               <slot name="index" />
             </a>
