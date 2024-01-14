@@ -50,25 +50,19 @@ const {
   <body class="bg-zinc-950 text-white">
     <Header />
     <main
-      class:list={`${container_max_w ?? "max-w-5xl"} container mx-auto px-5`}
+      class:list={`${
+        container_max_w ?? "max-w-5xl"
+      } container relative z-50 mx-auto px-5`}
     >
       <div class="flex flex-col gap-12 py-12">
         <slot />
       </div>
     </main>
     <Footer />
-    <!-- BLURS EFFECTS -->
-    {
-      Astro.url.pathname === "/"
-        ? null
-        : [
-            <>
-              <Blur position="top-left" color="bg-purple-500" />
-              <Blur position="top-right" color="bg-amber-500" />
-              <Blur position="bottom-right" color="bg-gray-500" />
-              <Blur position="bottom-left" color="bg-blue-500" />
-            </>,
-          ]
-    }
+
+    <Blur position="top-left" color="bg-purple-500" />
+    <Blur position="top-right" color="bg-amber-500" />
+    <Blur position="bottom-right" color="bg-gray-500" />
+    <Blur position="bottom-left" color="bg-blue-500" />
   </body>
 </html>

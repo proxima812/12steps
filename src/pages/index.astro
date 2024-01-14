@@ -1,5 +1,4 @@
 ---
-import DecorationBlobBlur from "@/components/DecorationBlobBlur.astro";
 import PostCard from "@/components/PostCard.astro";
 import MainHeading from "@/components/partials/MainHeading.astro";
 import { DEFAULT_TITLE } from "@/config/settings";
@@ -15,7 +14,6 @@ const posts = await getSinglePage("posts");
   description={`${DEFAULT_TITLE}. Более (${posts.length}) постов по 12 шагам`}
   container_max_w="max-w-6xl"
 >
-  <DecorationBlobBlur />
   <MainHeading />
   <section class="mx-auto flex max-w-4xl flex-col gap-12">
     <p class="text-center text-lg">
