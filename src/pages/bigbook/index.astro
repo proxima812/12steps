@@ -3,10 +3,29 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getSinglePage } from "@/utils/libs/getSinglePage";
 
 const posts = (await getSinglePage("postsBB")).sort(
-  (a:any, b:any) => a.data.id - b.data.id,
+  (a, b) => a.data.id - b.data.id,
 );
+
+const criteria = [
+  "pre",
+  "doctor",
+  "bill",
+  "exit",
+  "alc",
+  "agnostic",
+  "moving",
+  "work",
+  "12step",
+];
 ---
 
 <BaseLayout title="" description="">
-  {posts.map((post:any) => <a href={`/bigbook/${post.slug}`}>{post.data.title}</a>)}
+  <div class="rounded-xl bg-zinc-900 p-6">
+    {
+      posts &&
+        posts.map((post) => (
+          <a href={`/bigbook/${post.slug}`}>{post.data.title}</a>
+        ))
+    }
+  </div>
 </BaseLayout>
