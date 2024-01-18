@@ -1,11 +1,12 @@
 ---
-import Breadcrumbs from "@/components/Customs/Breadcrumbs.astro"
-import FormattedDate from "@/components/Customs/FormattedDate.astro"
-import RelatedPosts from "@/components/RelatedPosts.astro"
-import Tag from '@/components/Tag.astro'
-import Code from "@/components/mdx/Code.astro"
-import { getCollection } from "astro:content"
-import BaseLayout from "src/layouts/BaseLayout.astro"
+import Breadcrumbs from "@/components/Customs/Breadcrumbs.astro";
+import FormattedDate from "@/components/Customs/FormattedDate.astro";
+import RelatedPosts from "@/components/RelatedPosts.astro";
+import Tag from "@/components/Tag.astro";
+import Code from "@/components/mdx/Code.astro";
+import { Icon } from "astro-icon/components";
+import { getCollection } from "astro:content";
+import BaseLayout from "src/layouts/BaseLayout.astro";
 
 const posts = await getCollection("posts");
 
@@ -37,7 +38,7 @@ const ogUrl = new URL(`/posts/${post.slug}.png`, Astro.url.origin).href;
 
 const customCrumbs = [
   {
-    text: 'Посты',
+    text: "Посты",
     href: "/posts",
     title: "Part of the breadcrumb list",
   },
@@ -45,9 +46,8 @@ const customCrumbs = [
     text: post.data.title,
     href: "#",
   },
-]; 
+];
 ---
-
 
 <BaseLayout
   title={post.data.title}
@@ -58,19 +58,7 @@ const customCrumbs = [
   container_max_w="max-w-4xl"
 >
   <Breadcrumbs crumbs={customCrumbs}>
-    <svg
-      slot="separator"
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      ><polyline points="9 18 15 12 9 6"></polyline>
-    </svg>
+    <Icon name="mdi:chevron-right" slot='separator'/>
   </Breadcrumbs>
   <article class="flex flex-col gap-12">
     <div class="flex flex-col gap-6">
@@ -83,12 +71,7 @@ const customCrumbs = [
         </p>
         <div class="flex flex-wrap items-center justify-between gap-3">
           <div class="z-[2] flex gap-3" aria-label="Теги поста">
-            {
-              post.data.tags &&
-                post.data.tags.map((tag) => (
-                  <Tag tag={tag} />
-                ))
-            }
+            {post.data.tags && post.data.tags.map((tag) => <Tag tag={tag} />)}
           </div>
           <FormattedDate date={post.data.pubDate} />
         </div>
@@ -108,15 +91,13 @@ const customCrumbs = [
 
     <div
       aria-label="Контент поста"
-      class="md:prose-md prose prose-slate prose-invert max-w-none font-light lg:prose-lg prose-headings:max-w-[280px] prose-a:text-blue-500 sm:prose-headings:max-w-full  prose-li:marker:text-yellow-300 prose-blockquote:text-blue-300 prose-blockquote:border-blue-100"
+      class="md:prose-md prose prose-slate prose-invert max-w-none font-light lg:prose-lg prose-headings:max-w-[280px] prose-a:text-blue-500 prose-blockquote:border-blue-100 prose-blockquote:text-blue-300 prose-li:marker:text-yellow-300 sm:prose-headings:max-w-full"
     >
       <Content components={{ pre: Code }} />
     </div>
     {relatedPosts.length > 0 && <RelatedPosts posts={relatedPosts} />}
   </article>
-  
 
-
-<!-- Стилизуй и пойми, нужно ли TOC -->
+  <!-- Стилизуй и пойми, нужно ли TOC -->
   <!-- {headings && headings.length > 0 && <TableOfContents {headings} />} -->
 </BaseLayout>
