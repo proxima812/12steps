@@ -1,6 +1,6 @@
 @import url("./bg-post.css");
 @import url("./pill-tag.css");
-/* @import url("./base.css"); */
+@import url("./tailwind.css");
 
 :root {
   --color-white-010: rgba(160, 160, 160, 0.3);
@@ -10,12 +10,12 @@
     0px 1px 0px 0px rgba(255, 255, 255, 0.3) inset;
 }
 
-.shadow-box{
+.shadow-box {
   box-shadow: var(--box-shadow-highlight-soft);
 }
 
-.myBg{
-  @apply bg-zinc-900/70 backdrop-blur-2xl
+.myBg {
+  @apply bg-zinc-900/70 backdrop-blur-2xl;
 }
 
 /* Отступ для якоря */

@@ -1,12 +1,11 @@
 ---
-import Breadcrumbs from "@/components/Customs/Breadcrumbs.astro";
-import FormattedDate from "@/components/Customs/FormattedDate.astro";
-import RelatedPosts from "@/components/RelatedPosts.astro";
-import TableOfContents from "@/components/TOC/TableOfContents.astro";
-import Code from "@/components/mdx/Code.astro";
-import { customSlugify } from "@/utils/libs/customSlugify";
-import { getCollection } from "astro:content";
-import BaseLayout from "src/layouts/BaseLayout.astro";
+import Breadcrumbs from "@/components/Customs/Breadcrumbs.astro"
+import FormattedDate from "@/components/Customs/FormattedDate.astro"
+import RelatedPosts from "@/components/RelatedPosts.astro"
+import Tag from '@/components/Tag.astro'
+import Code from "@/components/mdx/Code.astro"
+import { getCollection } from "astro:content"
+import BaseLayout from "src/layouts/BaseLayout.astro"
 
 const posts = await getCollection("posts");
 
@@ -34,8 +33,6 @@ const getRelatedPosts = (post: any) => {
 const relatedPosts = getRelatedPosts(post);
 const { Content, headings } = await post.render();
 
-// export const prerender = true;
-
 const ogUrl = new URL(`/posts/${post.slug}.png`, Astro.url.origin).href;
 
 const customCrumbs = [
@@ -50,6 +47,7 @@ const customCrumbs = [
   },
 ]; 
 ---
+
 
 <BaseLayout
   title={post.data.title}
@@ -88,13 +86,7 @@ const customCrumbs = [
             {
               post.data.tags &&
                 post.data.tags.map((tag) => (
-                  <span
-                    class={`pill-${customSlugify(
-                      tag,
-                    )} relative rounded-full px-3 py-1 text-xs leading-tight text-white`}
-                  >
-                    {tag}
-                  </span>
+                  <Tag tag={tag} />
                 ))
             }
           </div>
@@ -116,11 +108,15 @@ const customCrumbs = [
 
     <div
       aria-label="Контент поста"
-      class="md:prose-md prose prose-slate prose-invert max-w-none font-light lg:prose-lg prose-headings:max-w-[280px] prose-a:text-blue-400 sm:prose-headings:max-w-full"
+      class="md:prose-md prose prose-slate prose-invert max-w-none font-light lg:prose-lg prose-headings:max-w-[280px] prose-a:text-blue-500 sm:prose-headings:max-w-full  prose-li:marker:text-yellow-300 prose-blockquote:text-blue-300 prose-blockquote:border-blue-100"
     >
       <Content components={{ pre: Code }} />
     </div>
     {relatedPosts.length > 0 && <RelatedPosts posts={relatedPosts} />}
   </article>
-  {headings && headings.length > 0 && <TableOfContents {headings} />}
+  
+
+
+<!-- Стилизуй и пойми, нужно ли TOC -->
+  <!-- {headings && headings.length > 0 && <TableOfContents {headings} />} -->
 </BaseLayout>

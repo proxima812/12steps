@@ -1,0 +1,12 @@
+---
+import { customSlugify } from "@/utils/libs/customSlugify"
+const { tag } = Astro.props;
+---
+
+<span
+  class={`pill-${customSlugify(
+    tag,
+  )} relative rounded-full px-2 py-0.5 text-xs leading-tight text-white`}
+>
+  {tag}
+</span>

@@ -51,14 +51,15 @@ const ogUrl = new URL(`/posts/${post.slug}.png`, Astro.url.origin).href;
   type
   container_max_w="max-w-4xl"
 >
-  {headings && headings.length > 0 && <TableOfContents {headings} />}
+<!-- Стилизуй и пойми, нужно ли TOC -->
+  <!-- {headings && headings.length > 0 && <TableOfContents {headings} />} -->
 
   <NextPosts prevPost={prevPost} nextPost={nextPost} />
 
   <article class="flex flex-col gap-12">
     <div
       aria-label="Контент поста"
-      class="md:prose-md prose prose-zinc prose-invert max-w-none lg:prose-lg xl:prose-xl prose-headings:max-w-[280px] prose-h4:text-orange-300 prose-a:text-blue-400 prose-a:underline prose-strong:text-green-500 sm:prose-headings:max-w-full"
+      class="md:prose-md prose prose-zinc prose-invert max-w-none lg:prose-lg xl:prose-xl prose-headings:max-w-[280px] prose-h4:text-orange-300 prose-a:text-blue-400 prose-a:underline prose-strong:text-green-500 sm:prose-headings:max-w-full prose-li:marker:text-yellow-300 prose-blockquote:text-blue-300 prose-blockquote:border-blue-100"
     >
       <Content />
     </div>

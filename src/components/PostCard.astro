@@ -1,20 +1,17 @@
 ---
-import { customSlugify } from "@/utils/libs/customSlugify";
-import { Icon } from "astro-icon/components";
+import FormattedDate from "./Customs/FormattedDate.astro"
+import Tag from "./Tag.astro"
 const { data, slug } = Astro.props;
-const ogUrl = new URL(`/posts/${slug}.png`, Astro.url.origin).href;
 ---
 
-<a href={`/posts/${slug}`} aria-label={`Читайте про "${data.title}"`}>
+<a href={`/posts/${slug}`} aria-label={`Читайте про "${data.title}"`} class="group">
   <article
     role="article"
-    class="bg-center-gradient group relative z-[4] mb-6 break-inside-avoid rounded-xl px-6 py-5 ring-1 ring-white/10"
+    class="h-[230px] transition-transform ease-linear bg-center-gradient group-hover:translate-y-[-1px] rounded-xl p-6 ring-1 ring-white/10"
   >
-    <!-- <div class="absolute right-4 top-4">
-      <Icon name="mdi:gesture-double-tap" />
-    </div> -->
-    <!-- <div class="top-0 left-0 rounded-2xl -z-[1] absolute"style="background-image: url('/jopa.png');opacity: 0.1;width: 100%;background-size: 128px;height: 100%;background-repeat: repeat;"></div> -->
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col h-full justify-between">
+
+      <div class="flex flex-col gap-4">
       {
         data.speechVoice && (
           <span class="self-start rounded-full bg-blue-950/90 px-3 py-1 text-sm ring-1 ring-blue-500/90">
@@ -22,30 +19,32 @@ const ogUrl = new URL(`/posts/${slug}.png`, Astro.url.origin).href;
           </span>
         )
       }
-
-      <h2
-        class="text-3xl font-bold leading-tight transition-transform ease-linear group-hover:-translate-y-[2px]"
-      >
-        {data.title}
-      </h2>
-      <div
-        aria-label="Теги"
-        class="flex gap-4 transition-transform ease-linear group-hover:translate-y-[1.10px]"
-      >
-        {
-          data.tags &&
-            data.tags.map((tag) => (
-              <span
-                class={`pill-${customSlugify(
-                  tag,
-                )} relative rounded-full px-3 py-1 text-xs leading-tight text-white`}
-              >
-                {tag}
-              </span>
-            ))
-        }
+        <h2
+          class="line-clamp-2 text-2xl font-bold leading-tight transition-transform ease-linear group-hover:-translate-y-[2px]"
+        >
+          {data.title}
+        </h2>
+  
+        <p class="line-clamp-3 text-sm leading-relaxed text-gray-300">
+          {data.description}
+        </p>
       </div>
-      <p class="text-sm leading-relaxed text-gray-300">{data.description}</p>
+
+      <div class="flex items-center justify-between gap-1">
+        <aside
+          aria-label="Теги"
+          
+          class="flex flex-wrap gap-2"
+        >
+          {data.tags && data.tags.map((tag) => <Tag tag={tag} />)}
+        </aside>
+
+        <FormattedDate
+          aria-label="Дата публикации"
+          date={data.pubDate}
+          class="text-sm shrink-0"
+        />
+      </div>
     </div>
   </article>
 </a>

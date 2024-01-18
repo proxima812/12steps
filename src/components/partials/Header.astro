@@ -8,7 +8,7 @@ const { container_max_w } = Astro.props;
 const posts = (await getCollection("posts")).length;
 ---
 
-<header class="relative z-10 py-4">
+<header id="header" class="py-4">
   <div
     class:list={`${
       container_max_w ?? "max-w-6xl"
@@ -17,6 +17,7 @@ const posts = (await getCollection("posts")).length;
     <a href="/" aria-label="Логотип">
       <Logo />
     </a>
+
     <div class="hidden items-center gap-3 lg:flex">
       {
         links
@@ -33,53 +34,43 @@ const posts = (await getCollection("posts")).length;
           ))
       }
     </div>
-    <div class="block lg:hidden">
-      <span class="sr-only">Меню</span>
-      <div id="open" class="block bg-white text-black px-3 py-1 rounded-md lg:hidden z-[999]">Меню</div>
-      <div
-        id="menu"
-        class="hidden absolute left-0 top-20 z-[999] h-full w-full bg-black/95"
-      >
-        <div class="absolute right-5 top-5 flex flex-col gap-3">
-          {
-            links
-              .filter((item) => !item.socialLink)
-              .map((item: any) => (
-                <ButtonLink
-                  link={item.link}
-                  class="flex shrink-0 items-center gap-1 text-xl"
-                >
-                  <Icon name={item.iconName} />
-                  {item.name}
-                  {item.postsLength ? ` (${posts})` : null}
-                </ButtonLink>
-              ))
-          }
-        </div>
+
+    <span
+      aria-label="Меню"
+      id="openMenu"
+      class="block lg:hidden rounded-md bg-white px-3.5 py-1.5 text-black">Меню</span
+    >
+
+    <div
+      id="menu"
+      class="absolute left-0 top-20 z-[99] hidden h-full w-full bg-black/60 backdrop-blur-lg"
+    >
+      <div class="flex flex-col items-end gap-3 pr-5 pt-5">
+        {
+          links
+            .filter((item) => !item.socialLink)
+            .map((item: any) => (
+              <ButtonLink
+                link={item.link}
+                class="flex shrink-0 items-center gap-1 text-xl"
+              >
+                <Icon name={item.iconName} />
+                {item.name}
+                {item.postsLength ? ` (${posts})` : null}
+              </ButtonLink>
+            ))
+        }
       </div>
     </div>
   </div>
 </header>
-
-<script is:inline>
-  // Функция для переключения классов
-  function toggleMenu() {
-    if (menu && open) {
-      menu.classList.toggle("hidden");
-      document.body.classList.toggle("overflow-hidden");
-    }
-  }
-
-  // Получение элементов
+<script>
+  const openMenu = document.querySelector("#openMenu");
   const menu = document.querySelector("#menu");
-  const open = document.querySelector("#open");
+  const header = document.querySelector("#header");
 
-  // Назначение обработчика событий, если элементы существуют
-  if (menu && open) {
-    open.addEventListener("click", toggleMenu);
-  }
-
-  // При необходимости, можно будет легко удалить слушателя событий
-  // open.removeEventListener("click", toggleMenu);
+  openMenu.addEventListener("click", () => {
+    menu.classList.toggle("hidden");
+    header.classList.toggle("bg-black/60");
+  });
 </script>
-

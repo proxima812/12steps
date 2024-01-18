@@ -1,12 +1,10 @@
 ---
-interface Props {
-  date: Date;
-}
 
-const { date } = Astro.props;
+
+const { date, ...attrs } = Astro.props;
 ---
 
-<time datetime={date.toISOString()} class="font-medium">
+<time datetime={date.toISOString()} {...attrs}>
   🗓 {
     date.toLocaleDateString("ru-RU", {
       year: "numeric",

@@ -1,5 +1,6 @@
 import Fuse from "fuse.js";
 import { useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 function LoopIcon() {
   return (
@@ -31,7 +32,13 @@ const options = {
   threshold: 0.5,
 };
 
-function Search({ postsList }) {
+function Search({
+  postsList,
+  classNameMainDiv,
+  classNameIcon,
+  classNameSearch,
+  placeHolder,
+}) {
   const [query, setQuery] = useState("");
   const [selectedTag, setSelectedTag] = useState(""); // State for selected radio button
   const fuse = new Fuse(postsList, options);
@@ -53,24 +60,34 @@ function Search({ postsList }) {
 
   return (
     <>
-      <div className="w-full max-w-[556px] md:relative">
+      <div
+        className={twMerge("relative w-full max-w-[556px]", classNameMainDiv)}
+      >
         <div className="relative">
-          <span className="absolute left-0 top-0 flex h-[48px] w-[48px] items-center justify-center rounded-xl bg-gray-800">
+          <span
+            className={twMerge(
+              "absolute left-0 top-0 flex h-[48px] w-[48px] items-center justify-center rounded-lg bg-zinc-800",
+              classNameIcon,
+            )}
+          >
             <LoopIcon />
           </span>
           <input
             aria-label="Поле поиска"
-            className="w-full rounded-2xl bg-gray-900 py-3 pl-[62px] pr-5 focus:outline-none "
+            className={twMerge(
+              "h-[48px] w-full rounded-lg bg-zinc-900 py-3 pl-[62px] pr-5 focus:outline-none",
+              classNameSearch,
+            )}
             role="search"
             type="text"
             value={query}
             onChange={handleOnSearch}
-            placeholder="Три способа работы по 12 шагам..."
+            placeholder="Изучение традиций"
           />
         </div>
 
         {posts && posts.length > 0 && (
-          <ul className="absolute top-[75px] z-50 w-full rounded-xl bg-black/80 p-3 ring-1 ring-white/40 backdrop-blur-md">
+          <ul className="absolute top-[48px] z-50 w-full rounded-xl bg-black/80 p-3 backdrop-blur-md">
             {query.length > 1 && (
               <p className="text-gray-300">
                 Найдено <b>{posts.length}</b>{" "}
@@ -80,14 +97,14 @@ function Search({ postsList }) {
               </p>
             )}
 
-            <div className="mt-8 flex flex-col gap-3">
+            <div className="mt-4 flex flex-col gap-4">
               {posts.map((post) => (
                 <li
-                  className="rounded-lg bg-black p-2 ring-1 ring-white/10  transition-colors duration-75 ease-linear"
+                  className="rounded-lg bg-zinc-900 p-2 ring-1 ring-white/10  transition-colors duration-75 ease-linear hover:bg-zinc-950"
                   key={post.slug}
                 >
                   <a href={`/posts/${post.slug}`}>
-                    <h4 className="font-bold">&#10149; {post.data.title}</h4>
+                    <h4 className="font-bold">{post.data.title}</h4>
                     {post.data.description && (
                       <p className="text-sm text-gray-400">
                         {post.data.description}
