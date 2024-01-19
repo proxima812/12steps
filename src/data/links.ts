@@ -15,10 +15,10 @@ export const links = [
     link: "/traditions",
     iconName: "mdi:layers",
   },
-  // {
-  //   name: "🗒 Джо и Чарли - семинар",
-  //   link: "/bigbook",
-  // },
+  {
+    name: "🗒 Джо и Чарли - семинар",
+    link: "/bigbook/seminar",
+  },
   {
     socialLink: true,
     name: "12 шагов - база знаний",

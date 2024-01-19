@@ -1,0 +1,66 @@
+---
+import NextPosts from "@/components/NextPosts.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "src/layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("postsBB");
+  const postCount = posts.length;
+
+  return posts
+    .sort((a, b) => a.id.length - b.id.length)
+    .map((post, i) => ({
+      params: { slug: post.slug },
+      props: {
+        post,
+        // Previous post
+        prevPost:
+          i + 1 === postCount // If the current post is the oldest
+            ? { data: "" }
+            : posts[i + 1],
+        // Next post
+        nextPost:
+          i === 0 // If the current post is the newest
+            ? { data: "" }
+            : posts[i - 1],
+      },
+    }));
+}
+
+interface Props {
+  post: CollectionEntry<"postsBB">;
+  prevPost?: CollectionEntry<"postsBB">;
+  nextPost?: CollectionEntry<"postsBB">;
+}
+
+const { post, prevPost, nextPost } = Astro.props;
+const { title, description } = post.data;
+
+const { Content, headings } = await post.render();
+---
+
+<BaseLayout title={title} description={description} type>
+  <!-- Стилизуй и пойми, нужно ли TOC -->
+  <!-- {headings && headings.length > 0 && <TableOfContents {headings} />} -->
+
+  <NextPosts
+    link="/bigbook/seminar/more-about-alcoholism/"
+    prevPost={prevPost}
+    nextPost={nextPost}
+  />
+
+  <article class="flex flex-col gap-12">
+    <div
+      aria-label="Контент поста"
+      class="md:prose-md prose prose-zinc prose-invert max-w-none lg:prose-lg xl:prose-xl prose-headings:max-w-[280px] prose-h4:text-orange-300 prose-a:text-blue-400 prose-a:underline prose-blockquote:border-blue-100 prose-blockquote:text-blue-300 prose-strong:text-green-500 prose-li:marker:text-yellow-300 sm:prose-headings:max-w-full"
+    >
+      <Content />
+    </div>
+
+    <NextPosts
+      link="/bigbook/seminar/more-about-alcoholism/"
+      prevPost={prevPost}
+      nextPost={nextPost}
+    />
+  </article>
+</BaseLayout>

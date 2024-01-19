@@ -1,5 +1,5 @@
 ---
-const { nextPost, prevPost } = Astro.props;
+const { nextPost, prevPost, link } = Astro.props;
 ---
 
 <div>
@@ -9,11 +9,12 @@ const { nextPost, prevPost } = Astro.props;
         {nextPost && (
           <a
             class="line-clamp-2 flex flex-col items-center"
-            href={`/bigbook/${nextPost.slug}`}
+            href={link + nextPost.slug}
           >
             <span class="self-start text-sm text-zinc-500">
               Предыдущий пост
-            </span>{" "}
+            </span>
+
             <span class="self-start font-semibold text-blue-500 underline underline-offset-4 transition-colors ease-linear hover:text-blue-400">
               {nextPost.data.title}
             </span>
@@ -22,7 +23,7 @@ const { nextPost, prevPost } = Astro.props;
         {prevPost && (
           <a
             class="line-clamp-2 flex flex-col items-center"
-            href={`/bigbook/${prevPost.slug}`}
+            href={link + prevPost.slug}
           >
             <span class="self-start text-sm text-zinc-500 sm:self-end">
               Следущий пост

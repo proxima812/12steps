@@ -25,7 +25,7 @@ const urlFull = new URL(Astro.url.pathname, Astro.site);
 >
   <ButtonLink
     link="/posts"
-    class:list={Astro.url.pathname === "/posts" || urlFull === "/posts"
+    class:list={Astro.url.pathname === "/posts" 
       ? "whitespace-nowrap"
       : "whitespace-nowrap bg-white text-black hover:bg-white "}
   >

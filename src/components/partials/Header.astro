@@ -27,7 +27,7 @@ const posts = (await getCollection("posts")).length;
               link={item.link}
               class="flex shrink-0 items-center gap-1"
             >
-              <Icon name={item.iconName} />
+              {item.iconName && <Icon name={item.iconName} />}
               {item.name}
               {item.postsLength ? ` (${posts})` : null}
             </ButtonLink>
@@ -38,7 +38,8 @@ const posts = (await getCollection("posts")).length;
     <span
       aria-label="Меню"
       id="openMenu"
-      class="block lg:hidden rounded-md bg-white px-3.5 py-1.5 text-black">Меню</span
+      class="block rounded-md bg-white px-3.5 py-1.5 text-black lg:hidden"
+      >Меню</span
     >
 
     <div
@@ -54,7 +55,7 @@ const posts = (await getCollection("posts")).length;
                 link={item.link}
                 class="flex shrink-0 items-center gap-1 text-xl"
               >
-                <Icon name={item.iconName} />
+                  {item.iconName && <Icon name={item.iconName} />}
                 {item.name}
                 {item.postsLength ? ` (${posts})` : null}
               </ButtonLink>

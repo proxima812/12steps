@@ -1,0 +1,43 @@
+---
+import PostCard from "@/components/PostCard.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getSinglePage } from "@/utils/libs/getSinglePage";
+
+const posts = (await getSinglePage("postsBB")).sort(
+  (a, b) => a.data.id - b.data.id,
+);
+
+const criteria = {
+  pre: "Предисловие",
+  doctor: "Мнение доктора",
+  bill: "Рассказ Билла",
+  exit: "Есть решение",
+  alc: "Ещё об алкоголизме",
+  agnostic: "Обращение к агностикам",
+  moving: "Как это работает?",
+  work: "В действии!",
+  "12step": "Работая с другими",
+};
+---
+
+<BaseLayout
+  title={`Глава: ${criteria.pre}`}
+  description={`Семинар по изучению БКАА с Джо и Чарли - Глава: ${criteria.pre}`}
+>
+  <main
+    class="grid grid-cols-1 items-start gap-6 md:grid-cols-2 lg:grid-cols-3"
+  >
+    {
+      posts &&
+        posts
+          .filter((post: any) => post.data.head === "pre")
+          .map((post: any) => (
+            <PostCard
+              isBB="/bigbook/seminar/preface/"
+              data={post.data}
+              slug={post.slug}
+            />
+          ))
+    }
+  </main>
+</BaseLayout>

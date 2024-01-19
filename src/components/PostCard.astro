@@ -1,50 +1,63 @@
 ---
-import FormattedDate from "./Customs/FormattedDate.astro"
-import Tag from "./Tag.astro"
-const { data, slug } = Astro.props;
+import FormattedDate from "./Customs/FormattedDate.astro";
+import Tag from "./Tag.astro";
+const { data, slug, isBB } = Astro.props;
 ---
 
-<a href={`/posts/${slug}`} aria-label={`Читайте про "${data.title}"`} class="group">
+<a
+  href={`${isBB ? `${isBB + slug}` : `/posts/${slug}`}`}
+  aria-label={`Читайте про "${data.title}"`}
+  class="group"
+>
   <article
     role="article"
-    class="h-[230px] transition-transform ease-linear bg-center-gradient group-hover:translate-y-[-1px] rounded-xl p-6 ring-1 ring-white/10"
+    class:list={`${
+      data.pubDate || data.tags ? "h-[230px]" : ""
+    } bg-center-gradient  rounded-xl p-6 ring-1 ring-white/10 transition-transform ease-linear group-hover:translate-y-[-1px]`}
   >
-    <div class="flex flex-col h-full justify-between">
-
+    <div class="flex h-full flex-col justify-between">
       <div class="flex flex-col gap-4">
-      {
-        data.speechVoice && (
-          <span class="self-start rounded-full bg-blue-950/90 px-3 py-1 text-sm ring-1 ring-blue-500/90">
-            🔈 пост озвучен
-          </span>
-        )
-      }
+        {
+          data.speechVoice && (
+            <span class="self-start rounded-full bg-blue-950/90 px-3 py-1 text-sm ring-1 ring-blue-500/90">
+              🔈 пост озвучен
+            </span>
+          )
+        }
         <h2
           class="line-clamp-2 text-2xl font-bold leading-tight transition-transform ease-linear group-hover:-translate-y-[2px]"
         >
           {data.title}
         </h2>
-  
-        <p class="line-clamp-3 text-sm leading-relaxed text-gray-300">
-          {data.description}
-        </p>
+
+        {
+          data.description && (
+            <p class="line-clamp-3 text-sm leading-relaxed text-gray-300">
+              {data.description}
+            </p>
+          )
+        }
       </div>
 
-      <div class="flex items-center justify-between gap-1">
-        <aside
-          aria-label="Теги"
-          
-          class="flex flex-wrap gap-2"
-        >
-          {data.tags && data.tags.map((tag) => <Tag tag={tag} />)}
-        </aside>
+      {
+        (data.pubDate || data.tags) && (
+          <div class="flex items-center justify-between gap-1">
+            {data.tags && (
+              <aside aria-label="Теги" class="flex flex-wrap gap-2">
+                {data.tags.map((tag) => (
+                  <Tag tag={tag} />
+                ))}
+              </aside>
+            )}
 
-        <FormattedDate
-          aria-label="Дата публикации"
-          date={data.pubDate}
-          class="text-sm shrink-0"
-        />
-      </div>
+            <FormattedDate
+              aria-label="Дата публикации"
+              date={data.pubDate}
+              class="shrink-0 text-sm"
+            />
+          </div>
+        )
+      }
     </div>
   </article>
 </a>

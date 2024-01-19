@@ -1,0 +1,33 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+
+const links = [
+  { name: "Предисловие", href: "/bigbook/seminar/preface" },
+  { name: "Мнение доктора", href: "/bigbook/seminar/doctors-opinion" },
+  { name: "Рассказ Билла", href: "/bigbook/seminar/bills-story" },
+  { name: "Выход есть", href: "/bigbook/seminar/there-is-a-solution" },
+  {
+    name: "Ещё об алкоголизме",
+    href: "/bigbook/seminar/more-about-alcoholism",
+  },
+  {
+    name: "Обращение к агностикам",
+    href: "/bigbook/seminar/addressing-agnostics",
+  },
+  { name: "Как это работает?", href: "/bigbook/seminar/how-does-it-work" },
+  { name: "В действии!", href: "/bigbook/seminar/in-action" },
+  { name: "Работая с другими", href: "/bigbook/seminar/working-with-others" },
+];
+
+import bigboookImg from "../../../../public/defaultOgImage.png";
+---
+
+<BaseLayout container_max_w='max-w-6xl' title="" description="">
+  <main class="flex gap-12">
+    <div><Image src={bigboookImg} alt="" format="avif" /></div>
+    <div class="flex flex-col gap-3">
+      {links.map((item) => <a href={item.href}>{item.name}</a>)}
+    </div>
+  </main>
+</BaseLayout>
