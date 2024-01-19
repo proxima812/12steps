@@ -16,6 +16,8 @@ posts.forEach((post) => {
     tagCounts[tag]++;
   });
 });
+
+const urlFull = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <nav
@@ -23,7 +25,7 @@ posts.forEach((post) => {
 >
   <ButtonLink
     link="/posts"
-    class:list={Astro.url.pathname === "/posts"
+    class:list={Astro.url.pathname === "/posts" || urlFull === "/posts"
       ? "whitespace-nowrap"
       : "whitespace-nowrap bg-white text-black hover:bg-white "}
   >
