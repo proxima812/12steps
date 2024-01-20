@@ -8,7 +8,7 @@ import { Icon } from "astro-icon/components";
 import { getCollection } from "astro:content";
 import BaseLayout from "src/layouts/BaseLayout.astro";
 
-import { customSlugify } from "@/utils/libs/customSlugify";
+import Share from "@/components/Share.astro";
 
 const posts = await getCollection("posts");
 
@@ -67,15 +67,18 @@ const customCrumbs = [
       <h1 class="text-4xl font-bold lg:text-6xl">
         {post.data.title}
       </h1>
+      <p class="text-sm text-zinc-300 md:text-lg">
+        {post.data.description}
+      </p>
       <div class="flex flex-col gap-3">
-        <p class="text-sm text-zinc-300 md:text-lg">
-          {post.data.description}
-        </p>
         <div class="flex flex-wrap items-center justify-between gap-3">
           <div class="z-[2] flex gap-3" aria-label="Теги поста">
             {post.data.tags && post.data.tags.map((tag) => <Tag tag={tag} />)}
           </div>
-          <FormattedDate date={post.data.pubDate} />
+          <div class="flex flex-wrap items-center gap-3">
+            <FormattedDate date={post.data.pubDate} />
+            <Share data={post.data} slug={post.slug} />
+          </div>
         </div>
       </div>
     </div>
@@ -97,7 +100,7 @@ const customCrumbs = [
     >
       <Content components={{ pre: Code }} />
     </div>
-    <script
+    <!-- <script
       async
       data-page-id={customSlugify(post.data.title)}
       src="https://comments.app/js/widget.js?3"
@@ -105,7 +108,7 @@ const customCrumbs = [
       data-limit="15"
       data-color="72E350"
       data-colorful="1"
-      data-dark="1"></script>
+      data-dark="1"></script> -->
     {relatedPosts.length > 0 && <RelatedPosts posts={relatedPosts} />}
   </article>
 
