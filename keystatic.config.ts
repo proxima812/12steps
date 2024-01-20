@@ -33,7 +33,10 @@ export default config({
           formatting: true,
           dividers: true,
           links: true,
-          images: true,
+          images: {
+            directory: "src/assets/images/posts",
+            publicPath: "../../assets/images/posts/",
+          },
         }),
         pubDate: fields.date({
           label: "Дата публикации",
@@ -56,7 +59,7 @@ export default config({
         heroImage: fields.image({
           label: "Изображение к посту",
           directory: "src/assets/images/posts",
-          publicPath: "../../assets/images/posts",
+          publicPath: "../../assets/images/posts/",
         }),
         audioFile: fields.file({
           label: "Аудио файл",
