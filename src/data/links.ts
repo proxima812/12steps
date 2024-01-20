@@ -7,6 +7,7 @@ export const links = [
   {
     name: "Посты",
     link: "/posts",
+    astroPrefetch: true,
     iconName: "mdi:cloud",
     postsLength: true,
   },

@@ -25,6 +25,7 @@ const posts = (await getCollection("posts")).length;
           .map((item: any) => (
             <ButtonLink
               link={item.link}
+              {...(item.astroPrefetch ? {'data-astro-prefetch="load"': ''} : {})}
               class="flex shrink-0 items-center gap-1"
             >
               {item.iconName && <Icon name={item.iconName} />}
@@ -34,6 +35,7 @@ const posts = (await getCollection("posts")).length;
           ))
       }
     </div>
+
 
     <span
       aria-label="Меню"
@@ -55,7 +57,7 @@ const posts = (await getCollection("posts")).length;
                 link={item.link}
                 class="flex shrink-0 items-center gap-1 text-xl"
               >
-                  {item.iconName && <Icon name={item.iconName} />}
+                {item.iconName && <Icon name={item.iconName} />}
                 {item.name}
                 {item.postsLength ? ` (${posts})` : null}
               </ButtonLink>

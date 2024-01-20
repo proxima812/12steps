@@ -16,6 +16,7 @@ import { VitePWA } from "vite-plugin-pwa";
 export default defineConfig({
   site: SITE_URL,
   prefetch: {
+    prefetchAll: true,
     defaultStrategy: "viewport",
   },
   compressHTML: true,
