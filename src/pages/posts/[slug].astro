@@ -8,6 +8,8 @@ import { Icon } from "astro-icon/components";
 import { getCollection } from "astro:content";
 import BaseLayout from "src/layouts/BaseLayout.astro";
 
+import { customSlugify } from "@/utils/libs/customSlugify";
+
 const posts = await getCollection("posts");
 
 export async function getStaticPaths() {
@@ -58,7 +60,7 @@ const customCrumbs = [
   container_max_w="max-w-4xl"
 >
   <Breadcrumbs crumbs={customCrumbs}>
-    <Icon name="mdi:chevron-right" slot='separator'/>
+    <Icon name="mdi:chevron-right" slot="separator" />
   </Breadcrumbs>
   <article class="flex flex-col gap-12">
     <div class="flex flex-col gap-6">
@@ -97,6 +99,15 @@ const customCrumbs = [
     </div>
     {relatedPosts.length > 0 && <RelatedPosts posts={relatedPosts} />}
   </article>
+
+  <script
+    async
+    src="https://comments.app/js/widget.js?3"
+    data-comments-app-website="VKD98n54"
+    data-limit="15"
+    data-page-id={customSlugify(post.data.title)}
+    data-color="343638"
+    data-outlined="1"></script>
 
   <!-- Стилизуй и пойми, нужно ли TOC -->
   <!-- {headings && headings.length > 0 && <TableOfContents {headings} />} -->
