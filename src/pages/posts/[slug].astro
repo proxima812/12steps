@@ -97,17 +97,17 @@ const customCrumbs = [
     >
       <Content components={{ pre: Code }} />
     </div>
+    <script
+      async
+      data-page-id={customSlugify(post.data.title)}
+      src="https://comments.app/js/widget.js?3"
+      data-comments-app-website="VKD98n54"
+      data-limit="15"
+      data-color="72E350"
+      data-colorful="1"
+      data-dark="1"></script>
     {relatedPosts.length > 0 && <RelatedPosts posts={relatedPosts} />}
   </article>
-
-  <script
-    async
-    src="https://comments.app/js/widget.js?3"
-    data-comments-app-website="VKD98n54"
-    data-limit="15"
-    data-page-id={customSlugify(post.data.title)}
-    data-color="343638"
-    data-outlined="1"></script>
 
   <!-- Стилизуй и пойми, нужно ли TOC -->
   <!-- {headings && headings.length > 0 && <TableOfContents {headings} />} -->
