@@ -20,14 +20,30 @@ const links = [
   { name: "Работая с другими", href: "/bigbook/seminar/working-with-others" },
 ];
 
-import bigboookImg from "../../../../public/defaultOgImage.png";
+import bigboookImg from "@/assets/bigbook.png";
+import ButtonLink from "@/components/Customs/ButtonLink.astro";
 ---
 
-<BaseLayout container_max_w='max-w-6xl' title="" description="">
-  <main class="flex gap-12">
-    <div><Image src={bigboookImg} alt="" format="avif" /></div>
-    <div class="flex flex-col gap-3">
-      {links.map((item) => <a href={item.href}>{item.name}</a>)}
+<BaseLayout container_max_w="max-w-6xl" title="" description="">
+  <main class="flex flex-col gap-12 lg:flex-row">
+    <Image
+      src={bigboookImg}
+      class="overflow-hidden rounded-2xl"
+      alt="Джо и Чарли: изучение БКАА"
+      format="avif"
+      quality={"mid"}
+    />
+    <div class="flex shrink-0 flex-wrap gap-3 lg:flex-col">
+      {
+        links.map((item) => (
+          <ButtonLink
+            link={item.href}
+            class=" self-start ring-1 ring-inset ring-white/20 transition-colors duration-75 ease-linear hover:bg-white/20"
+          >
+            {item.name}
+          </ButtonLink>
+        ))
+      }
     </div>
   </main>
 </BaseLayout>

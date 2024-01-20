@@ -66,7 +66,7 @@ function Search({
         <div className="relative">
           <span
             className={twMerge(
-              "absolute left-0 top-0 flex h-[48px] w-[48px] items-center justify-center rounded-lg bg-zinc-800",
+              "absolute left-0 top-0 flex h-[48px] w-[48px] items-center justify-center rounded-2xl bg-zinc-800",
               classNameIcon,
             )}
           >
@@ -75,7 +75,7 @@ function Search({
           <input
             aria-label="Поле поиска"
             className={twMerge(
-              "h-[48px] w-full rounded-lg bg-zinc-900 py-3 pl-[62px] pr-5 focus:outline-none",
+              "h-[48px] w-full rounded-2xl bg-zinc-900 py-3 pl-[62px] pr-5 focus:outline-none",
               classNameSearch,
             )}
             role="search"

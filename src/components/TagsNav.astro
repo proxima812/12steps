@@ -35,7 +35,7 @@ const urlFull = new URL(Astro.url.pathname, Astro.site);
     tags &&
       tags.map((tag) => (
         <ButtonLink
-          class="whitespace-nowrap rounded-md ring-1 ring-inset ring-white/20 transition-colors duration-75 ease-linear hover:bg-white/20"
+          class="whitespace-nowrap ring-1 ring-inset ring-white/20 transition-colors duration-75 ease-linear hover:bg-white/20"
           link={`/tags/${customSlugify(tag)}`}
         >
           {tag} ({tagCounts[tag] || ""})
