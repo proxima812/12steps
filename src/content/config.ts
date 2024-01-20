@@ -16,6 +16,16 @@ const posts = defineCollection({
     }),
 });
 
+const pages = defineCollection({
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      heroImage: image().optional(),
+      index: z.boolean().optional(),
+    }),
+});
+
 const postsBB = defineCollection({
   schema: ({ image }) =>
     z.object({
@@ -36,4 +46,4 @@ const tags = defineCollection({
   }),
 });
 
-export const collections = { posts, tags, postsBB };
+export const collections = { posts,pages, tags, postsBB };

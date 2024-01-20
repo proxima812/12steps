@@ -1,19 +1,21 @@
 ---
 import { DEFAULT_TITLE } from "@/config/settings";
 import Metricks from "../Metricks.astro";
-import Favicons from './Favicons.astro'
+import Favicons from "./Favicons.astro";
 interface Props {
   name?: string;
   title: string;
   type?: string;
   description: string;
-  heroImage?: string;
+  heroImage?: any;
   locale?: string;
   tags?: string;
   canonicalURL?: string;
   author?: string;
+  index?: any;
 }
 const {
+  index,
   name,
   author,
   title,
@@ -40,8 +42,10 @@ function formatCanonicalURL(url: string | URL) {
 }
 
 const defaultOgImage = `${Astro.site}defaultOgImage.png`;
-
-const themeColor = "#fff";
+const socialImageURL = new URL(
+  heroImage ? heroImage : defaultOgImage,
+  Astro.url,
+).href;
 ---
 
 <head>
@@ -50,6 +54,14 @@ const themeColor = "#fff";
   <title>{title}</title>
   <meta name="generator" content={Astro.generator} />
   <link rel="sitemap" href="/sitemap-index.xml" />
+
+  {
+    index ? (
+      <meta name="robots" content="noindex, nofollow" />
+    ) : (
+      <meta name="robots" content="index, follow" />
+    )
+  }
 
   <link
     rel="alternate"
@@ -79,7 +91,7 @@ const themeColor = "#fff";
       <meta name="keywords" content={tags.join(", ")} />
     )
   }
-  <meta property="og:image" content={heroImage || defaultOgImage} />
+  <meta property="og:image" content={socialImageURL} />
 
   <script is:inline src="/registerSW.js"></script>
   <link rel="manifest" href="/manifest.webmanifest" />

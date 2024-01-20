@@ -7,6 +7,7 @@ import SEOTags from "@/components/seo/SEOTags.astro";
 import "@/styles/global.css";
 
 interface Props {
+  index?: any;
   name?: string;
   title: string;
   type?: any;
@@ -21,6 +22,7 @@ interface Props {
 }
 
 const {
+  index,
   name,
   author,
   title,
@@ -38,6 +40,7 @@ const {
 <!doctype html>
 <html lang="ru" class="scroll-smooth">
   <SEOTags
+    index={index}
     author={author}
     title={title}
     description={description}
@@ -60,9 +63,21 @@ const {
     </main>
     <Footer />
 
-    <Blur position="top-left" color={`${blurClass?.topLeft ?? "bg-purple-500"}`} />
-    <Blur position="top-right" color={`${blurClass?.topRight ?? "bg-amber-500"}`} />
-    <Blur position="bottom-right" color={`${blurClass?.bottomRight ?? "bg-gray-500"}`} />
-    <Blur position="bottom-left" color={`${blurClass?.bottomLeft ?? "bg-blue-500"}`} />
+    <Blur
+      position="top-left"
+      color={`${blurClass?.topLeft ?? "bg-purple-500"}`}
+    />
+    <Blur
+      position="top-right"
+      color={`${blurClass?.topRight ?? "bg-amber-500"}`}
+    />
+    <Blur
+      position="bottom-right"
+      color={`${blurClass?.bottomRight ?? "bg-gray-500"}`}
+    />
+    <Blur
+      position="bottom-left"
+      color={`${blurClass?.bottomLeft ?? "bg-blue-500"}`}
+    />
   </body>
 </html>

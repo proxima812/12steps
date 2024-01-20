@@ -88,5 +88,41 @@ export default config({
         name: fields.text({ label: "Имя тега" }),
       },
     }),
+    pages: collection({
+      label: "Страницы",
+      slugField: "title",
+      path: "src/content/pages/*",
+      entryLayout: "content",
+      format: {
+        contentField: "content",
+      },
+      schema: {
+        title: fields.slug({ name: { label: "Заголовок страницы" } }),
+        description: fields.text({
+          label: "Описание страницы",
+          description: "до 145 символов",
+          validation: { length: { min: 20, max: 150 } },
+        }),
+        heroImage: fields.image({
+          label: "ogImage (изображение страницы 1200x630)",
+          directory: "src/assets/images/pages",
+          publicPath: "../../assets/images/pages/",
+        }),
+        index: fields.checkbox({
+          label: "НЕ индексировать?",
+          description: "НЕ Индексировать страницу?",
+        }),
+        content: fields.document({
+          label: "Контент страницы",
+          formatting: true,
+          dividers: true,
+          links: true,
+          images: {
+            directory: "src/assets/images/pages",
+            publicPath: "../../assets/images/pages/",
+          },
+        }),
+      },
+    }),
   },
 });

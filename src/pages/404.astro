@@ -5,12 +5,21 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 <BaseLayout
   title="Ошибка 404 - страница не найдена."
   description="Страница не найдена.."
+  blurClass={{
+    topLeft: "bg-red-300",
+    topRight: "bg-yellow-300",
+    bottomRight: "bg-slate-900",
+    bottomLeft: "bg-gray-900",
+  }}
 >
-  <main class="flex flex-col gap-6">
-    <h1 class="text-center text-4xl">Ошибка 404 - страница не найдена</h1>
+  <main class="mt-12 flex flex-col gap-6">
+    <h1 class="text-center text-4xl">
+      <b>Ошибка 404</b> - страница не найдена
+    </h1>
     <div class="flex justify-center gap-3">
-      <a href="/" class="text-lg text-blue-500 underline">Главная</a>
-      <a href="/posts" class="text-lg text-blue-500 underline">Посты</a>
+      <a href="/" class="text-2xl text-blue-500 underline"
+        >Вернуться на главную</a
+      >
     </div>
   </main>
 </BaseLayout>
