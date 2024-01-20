@@ -24,7 +24,17 @@ import bigboookImg from "@/assets/bigbook.png";
 import ButtonLink from "@/components/Customs/ButtonLink.astro";
 ---
 
-<BaseLayout container_max_w="max-w-6xl" title="" description="">
+<BaseLayout
+  container_max_w="max-w-6xl"
+  title="Джо и Чарли: изучение БКАА"
+  description="На сегодняшний день, материалы Джо и Чарли являются самыми известными и используемыми в мире материалами по Большой книге. Эти два алкоголика объездили со своими занятиями по изучению Большой книги все 50 штатов США и многие страны мира, где есть АА."
+  blurClass={{
+    topLeft: "bg-blue-300",
+    topRight: "bg-sky-300",
+    bottomRight: "bg-gray-500",
+    bottomLeft: "bg-slate-500",
+  }}
+>
   <main class="flex flex-col gap-12 lg:flex-row">
     <Image
       src={bigboookImg}

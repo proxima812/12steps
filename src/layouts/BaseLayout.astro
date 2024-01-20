@@ -14,6 +14,7 @@ interface Props {
   heroImage?: string;
   locale?: string;
   tags?: any;
+  blurClass?: any;
   canonicalURL?: any;
   author?: string;
   container_max_w?: string;
@@ -28,6 +29,7 @@ const {
   heroImage,
   locale = "ru",
   tags,
+  blurClass,
   container_max_w,
   canonicalURL = new URL(Astro.url.pathname, Astro.site),
 } = Astro.props;
@@ -58,9 +60,9 @@ const {
     </main>
     <Footer />
 
-    <Blur position="top-left" color="bg-purple-500" />
-    <Blur position="top-right" color="bg-amber-500" />
-    <Blur position="bottom-right" color="bg-gray-500" />
-    <Blur position="bottom-left" color="bg-blue-500" />
+    <Blur position="top-left" color={`${blurClass?.topLeft ?? "bg-purple-500"}`} />
+    <Blur position="top-right" color={`${blurClass?.topRight ?? "bg-amber-500"}`} />
+    <Blur position="bottom-right" color={`${blurClass?.bottomRight ?? "bg-gray-500"}`} />
+    <Blur position="bottom-left" color={`${blurClass?.bottomLeft ?? "bg-blue-500"}`} />
   </body>
 </html>

@@ -1,18 +1,18 @@
 ---
-import { DEFAULT_TITLE } from "@/config/settings";
+import InfoMaterials from "./InfoMaterials.astro";
+import Projects from "./Projects.astro";
+
+// const p = [
+//   {'Мы верим в лучший и духовно развитый мир, но мы не идеальны.',
+// 'Материалы, посты, статьи, руководства, опыт, видео и многое другое..'}
+// ]
 ---
 
-<section class="relative z-10 flex items-center justify-center">
-  <div
-    class="container mx-auto flex max-w-5xl flex-col flex-wrap items-center justify-center gap-2 px-5"
-  >
-    <h1
-      class="mb-2 flex flex-wrap items-center justify-center gap-2 text-center text-5xl font-bold md:text-6xl"
-    >
-      {DEFAULT_TITLE}
-    </h1>
-    <p class="text-center text-base leading-relaxed text-gray-200 md:text-xl">
-      Материалы, посты, статьи, публикации, опыт и многое другое.
-    </p>
-  </div>
-</section>
+<div class="mt-12 flex flex-col items-center gap-12">
+  <h1 class="text-5xl font-black xl:text-7xl">12 шагов - находки</h1>
+  <p class="text-lg">
+    Мы верим в лучший и духовно развитый мир, <b><u>но мы не идеальны.</u></b>
+  </p>
+  <InfoMaterials />
+  <Projects />
+</div>

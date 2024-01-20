@@ -4,13 +4,19 @@ import BaseLayout from "@/layouts/BaseLayout.astro"
 import { YouTube } from "@astro-community/astro-embed-youtube"
 
 import Button from '@/components/Customs/Button.astro'
-import { videosTraditionsLinks } from "@/data/videosTraditionsLinks"
+import { videosTraditionsLinks } from "@/data/links"
 
 ---
 
 <BaseLayout
   title="12 Традиций видео спикерские"
   description="12 Традиций: видео изучение и познания, спикерские от членов соодружества"
+   blurClass={{
+    topLeft: "bg-red-300",
+    topRight: "bg-orange-300",
+    bottomRight: "bg-gray-500",
+    bottomLeft: "bg-slate-500",
+  }}
 >
   <div class="flex flex-wrap items-center justify-between gap-4">
     <div class="flex flex-wrap items-center gap-2"> 

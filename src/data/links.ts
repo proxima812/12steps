@@ -11,13 +11,13 @@ export const links = [
     postsLength: true,
   },
   {
-    name: "Традиции",
-    link: "/traditions",
-    iconName: "mdi:layers",
-  },
-  {
     name: "🗒 Джо и Чарли - семинар",
     link: "/bigbook/seminar",
+  },
+  {
+    name: "Видео о Традициях",
+    link: "/traditions",
+    iconName: "mdi:layers",
   },
   {
     socialLink: true,
@@ -45,12 +45,67 @@ export const links = [
   // },
 ];
 
-// 🚀@all_12steps
-// 🚀@all12_contacts
-// 🤖@bill_w_bot
-// 🤖@fb_steps_bot
+export const infoMaterials = [
+  {
+    name: "Материалы",
+    description: "Книг, руководств, файлов и прочего.",
+    svgIcon: "/svg/books.svg",
+  },
+  {
+    name: "Опыт",
+    description: "Людей, личные, продвижения и развития сообществ.",
+    svgIcon: "/svg/experience.svg",
+  },
+  {
+    name: "Руководства",
+    description: "К пути просветления, осознания и выздоровления.",
+    svgIcon: "/svg/manuals.svg",
+  },
+  {
+    name: "Разработка",
+    description: "Ботов, сайтов и проектов по несению 5 традиции.",
+    svgIcon: "/svg/development.svg",
+  },
+];
 
-// 🌐 https://think-daily.ru/
-// 🌐 https://12step.netlify.app/
+export const linksProjects = [
+  { ariaName: "12 шагов - база знаний", link: "", svgIcon: "/svg/BASE.svg" },
+  { ariaName: "Канал: 12 шагов - навсегда", link: "", svgIcon: "/svg/UN.svg" },
+  {
+    ariaName: "Сообщество: Анонминые Прокрастинаторы",
+    link: "",
+    svgIcon: "/svg/AP.svg",
+  },
+  {
+    ariaName: "Сайт с ежедневниками",
+    link: "",
+    svgIcon: "/svg/TD.svg",
+  },
+  { ariaName: "Группа АИЗ: живой интернет", link: "", svgIcon: "/svg/AIZ.svg" },
+];
 
-// 🎉@unity_8
+export const videosTraditionsLinks = [
+  { id: "9hzeFbaB2yc" },
+  { id: "nnVSU2q3pRE" },
+  { id: "27xiSxpfuwA" },
+  { id: "PkuiP6gQSuQ" },
+  { id: "-3GuXSx6iZY" },
+  { id: "0a7u2ar-zLs" },
+  { id: "77SbkKSUFw0" },
+  { id: "oDPX7St8lHw" },
+  { id: "zMfvPUQaQmU" },
+  { id: "whsrZ-mPDcA" },
+  { id: "5XIe-x1liIg" },
+  { id: "Ek6ucOLL_K0" },
+  { id: "PFpLiNGzezQ" },
+  { id: "b2xehJCFi_s" },
+  { id: "3HNS6_SiE7k" },
+  { id: "DZYwm8N86Ig" },
+  { id: "zxlzjV7LS6I" },
+  { id: "1lK0b-UPt-U" },
+  { id: "5oYmFDjUTu8" },
+  { id: "2imaDVSUoRM" },
+  { id: "-PyDyCVljA8" },
+  { id: "bMG2dj4Zb1M" },
+  { id: "oaGW4Sy8Ark" },
+];

@@ -1,0 +1,14 @@
+---
+import { linksProjects } from '@/data/links'
+---
+
+  <div class="flex flex-col items-center gap-3">
+    <span class="text-zinc-400">При поддержке и любовью к</span>
+    <div class="flex items-center gap-3">
+      {
+        linksProjects.map((item) => (
+          <img src={item.svgIcon} alt={item.ariaName} width="45" height="45" />
+        ))
+      }
+    </div>
+  </div>
