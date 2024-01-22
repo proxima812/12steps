@@ -45,17 +45,33 @@ export default config({
           label: "Описание",
           multiline: true,
         }),
-        tags: fields.array(
-          fields.relationship({
-            label: "Тег",
-            collection: "tags",
-          }),
-          {
-            label: "Теги",
-            itemLabel: (props) => props.value ?? "Выберите тег(-и)",
-            validation: { length: { min: 1 } },
-          },
-        ),
+        // tags: fields.array(
+        //   fields.relationship({
+        //     label: "Тег",
+        //     collection: "tags",
+        //   }),
+        //   {
+        //     label: "Теги",
+        //     itemLabel: (props) => props.value ?? "Выберите тег(-и)",
+        //     validation: { length: { min: 1 } },
+        //   },
+        // ),
+        tags: fields.multiselect({
+          label: "Теги к постам",
+          options: [
+            { label: "Шаги", value: "Шаги" },
+            { label: "Традиции", value: "Традиции" },
+            { label: "Разработка", value: "Разработка" },
+            { label: "Обзор", value: "Обзор" },
+            { label: "Боты", value: "Боты" },
+            { label: "Принципы", value: "Принципы" },
+            { label: "Опыт", value: "Опыт" },
+            { label: "Прочее", value: "Прочее" },
+            { label: "Молитвы", value: "Молитвы" },
+            { label: "Документ", value: "Документ" },
+            // { label: "", value: "" },
+          ],
+        }),
         heroImage: fields.image({
           label: "Изображение к посту",
           directory: "src/assets/images/posts",

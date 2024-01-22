@@ -1,39 +1,31 @@
 ---
 import PostCard from "@/components/PostCard.astro";
-import Search from "@/components/Search";
-import TagsNav from "@/components/TagsNav.astro";
-import { DEFAULT_TITLE } from "@/config/settings";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import type { IBookmark } from "@/types/global";
+
 import { getSinglePage } from "@/utils/libs/getSinglePage";
 import { getCollection } from "astro:content";
 
-const posts = await getSinglePage("posts");
+import type { IBookmark } from "@/types/global";
+
+// const posts = await getSinglePage("posts");
 
 const bookmarks = (Astro.cookies.get("bookmarks")?.json() || []) as IBookmark[];
+const posts =
+  (await getCollection(
+    "posts",
+    (item) => item && bookmarks.some((bookmark) => bookmark.id === item.id),
+  )) || [];
 ---
 
-<BaseLayout
-  title="Посты на тему 12 шагов"
-  description={`${DEFAULT_TITLE}. Более (${posts.length}) постов: 12 шагов, материалы, опыт, разработка и другое.`}
-  container_max_w="max-w-6xl"
->
-  <TagsNav />
-  <Search
-    client:load
-    classNameMainDiv="max-w-full"
-    classNameIcon="ring-1 ring-inset bg-zinc-800 ring-white/20"
-    classNameSearch="ring-1 ring-inset ring-white/20"
-    postsList={posts}
-  />
+<BaseLayout title="" description="">
   <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-   {
+    {
       posts.map(async (item: any) => {
         const isChecked = bookmarks.some((bookmark) => bookmark.id === item.id);
         return (
           <PostCard
             isChecked={isChecked}
-            item={item.id}
+            item={item}
             slug={item.slug}
             data={item.data}
           />
@@ -42,13 +34,15 @@ const bookmarks = (Astro.cookies.get("bookmarks")?.json() || []) as IBookmark[];
     }
   </div>
   <script>
-    import type { IBookmark } from "@/types/global";
     import { getCookie, setCookie } from "@/utils/cookie";
+    import type { IBookmark } from "@/types/global";
+ 
+
     import { navigate } from "astro:transitions/client";
 
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("astro:page-load", () => {
       const url = new URL(window.location.href);
-      const hasBookmarkPage = url.pathname.includes("bookmarks");
+      const hasBookmarkPage = url.pathname.includes("favorite");
       const bookmarkButtons = document.querySelectorAll("[data-bookmark]");
 
       function parseBookmarks(bookmarks: string) {
@@ -83,7 +77,7 @@ const bookmarks = (Astro.cookies.get("bookmarks")?.json() || []) as IBookmark[];
           setCookie("bookmarks", stringifyBookmarks(updatedBookmarks));
 
           if (hasBookmarkPage && bookmarkExists) {
-            navigate("/bookmarks");
+            navigate("/favorite");
           }
         }),
       );

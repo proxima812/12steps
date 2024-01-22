@@ -1,7 +1,8 @@
 ---
-import FormattedDate from "./Customs/FormattedDate.astro";
-import Tag from "./Tag.astro";
-const { data, slug, isBB } = Astro.props;
+import FormattedDate from "./Customs/FormattedDate.astro"
+import Tag from "./Tag.astro"
+import BookmarkIcon from "./icons/BookmarkIcon.astro"
+const { data, slug, isBB, item, isChecked } = Astro.props;
 ---
 
 <a
@@ -13,8 +14,24 @@ const { data, slug, isBB } = Astro.props;
     role="article"
     class:list={`${
       data.pubDate || data.tags ? "h-[230px]" : ""
-    } bg-center-gradient  rounded-2xl p-6 ring-1 ring-white/10 transition-transform ease-linear group-hover:translate-y-[-1px]`}
+    } bg-center-gradient relative rounded-2xl p-6 ring-1 ring-white/10 transition-transform ease-linear group-hover:translate-y-[-1px]`}
   >
+    {
+      // Убери disabled, как закончишь
+      !isBB && (
+        <button
+          disabled 
+          data-value={item}
+          data-checked={isChecked?.toString()}
+          data-bookmark
+          aria-label="Bookmark"
+          class="group absolute right-0 top-0 z-10 flex h-12 w-12 items-center justify-center rounded-3xl text-zinc-400 opacity-100 transition-all group-hover:opacity-100 data-[checked=true]:opacity-100 lg:opacity-0"
+        >
+          <BookmarkIcon />
+        </button>
+      )
+    }
+
     <div class="flex h-full flex-col justify-between">
       <div class="flex flex-col gap-4">
         {
