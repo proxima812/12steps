@@ -5,6 +5,8 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getSinglePage } from "@/utils/libs/getSinglePage";
 
 const posts = await getSinglePage("posts");
+
+export const prerender = false;
 ---
 
 <BaseLayout

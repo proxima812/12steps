@@ -6,6 +6,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { customSlugify } from "@/utils/libs/customSlugify";
 import { getSinglePage } from "@/utils/libs/getSinglePage";
 
+
 export async function getStaticPaths() {
   const allPosts = await getSinglePage("posts");
   const uniqueTags = [
