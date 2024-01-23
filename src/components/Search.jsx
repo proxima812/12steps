@@ -78,7 +78,6 @@ function Search({
               "h-[48px] w-full rounded-2xl bg-zinc-900 py-3 pl-[62px] pr-5 focus:outline-none",
               classNameSearch,
             )}
-            role="search"
             type="text"
             value={query}
             onChange={handleOnSearch}
