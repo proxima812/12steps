@@ -3,8 +3,7 @@
 ---
 
 <script is:inline type="text/partytown">
- // Wrapping the code in a function to run after the DOM is fully loaded
-document.addEventListener("DOMContentLoaded", function() {
+ ocument.addEventListener("DOMContentLoaded", function() {
     // Initialization function for Yandex Metrika
     (function (m, e, t, r, i, k, a) {
         // Check if Yandex Metrika is already initialized
@@ -16,8 +15,9 @@ document.addEventListener("DOMContentLoaded", function() {
         };
         m[i].l = 1 * new Date();
 
-        // Creating the script tag for Yandex Metrika
+        // Creating the script tag for Yandex Metrika with type="text/partytown"
         k = e.createElement(t);
+        k.type = "text/partytown"; // Set the type attribute
         a = e.getElementsByTagName(t)[0];
         k.async = 1;
         k.src = r;
