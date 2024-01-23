@@ -72,22 +72,22 @@ export const infoMaterials = [
 export const linksProjects = [
   {
     ariaName: "12 шагов - база знаний",
-    link: "",
+    link: "https://t.me/all_12steps",
     svgIcon: "/svg/BASE.svg",
   },
   {
     ariaName: "Канал: 12 шагов - навсегда",
-    link: "",
+    link: "https://t.me/unity_8",
     svgIcon: "/svg/UN.svg",
   },
   {
     ariaName: "Сообщество: Анонминые Прокрастинаторы",
-    link: "",
+    link: "https://t.me/community_pa",
     svgIcon: "/svg/AP.svg",
   },
   {
     ariaName: "Сайт с ежедневниками",
-    link: "",
+    link: "https://think-daily.ru/",
     svgIcon: "/svg/TD.svg",
   },
   {
