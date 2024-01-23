@@ -46,6 +46,10 @@ const socialImageURL = new URL(
   heroImage ? heroImage : defaultOgImage,
   Astro.url,
 ).href;
+
+function normalizeImageUrl(image: string ) {
+	return typeof image === 'string' ? image : image;
+}
 ---
 
 <head>
@@ -93,7 +97,7 @@ const socialImageURL = new URL(
       <meta name="keywords" content={tags.join(", ")} />
     )
   }
-  <meta property="og:image" content={socialImageURL} />
+  <meta property="og:image" content={normalizeImageUrl(socialImageURL)} />
 
   <script is:inline src="/registerSW.js"></script>
   <link rel="manifest" href="/manifest.webmanifest" />
