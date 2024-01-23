@@ -37,7 +37,6 @@ function Search({
   classNameMainDiv,
   classNameIcon,
   classNameSearch,
-  placeHolder,
 }) {
   const [query, setQuery] = useState("");
   const [selectedTag, setSelectedTag] = useState(""); // State for selected radio button

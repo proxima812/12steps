@@ -21,8 +21,9 @@ const bookmarks = (Astro.cookies.get("bookmarks")?.json() || []) as IBookmark[];
   container_max_w="max-w-6xl"
 >
   <TagsNav />
+  
   <Search
-    client:load
+    client:visible
     classNameMainDiv="max-w-full"
     classNameIcon="ring-1 ring-inset bg-zinc-800 ring-white/20"
     classNameSearch="ring-1 ring-inset ring-white/20"
@@ -45,8 +46,9 @@ const bookmarks = (Astro.cookies.get("bookmarks")?.json() || []) as IBookmark[];
   </div>
   <script>
     import type { IBookmark } from "@/types/global";
-    import { getCookie, setCookie } from "@/utils/cookie";
-    import { navigate } from "astro:transitions/client";
+import type { IBookmark } from "@/types/global"
+import { getCookie, setCookie } from "@/utils/cookie"
+import { navigate } from "astro:transitions/client"
 
     document.addEventListener("DOMContentLoaded", () => {
       const url = new URL(window.location.href);
