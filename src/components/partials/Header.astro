@@ -25,8 +25,9 @@ const posts = (await getCollection("posts")).length;
           .filter((item) => !item.socialLink)
           .map((item: any) => (
             <ButtonLink
+              aria-label='Ссылка'
               link={item.link}
-              {...(item.astroPrefetch ? {'data-astro-prefetch="load"': ''} : {})}
+              // {...(item.astroPrefetch ? {'data-astro-prefetch="load"': ''} : {})}
               class="flex shrink-0 items-center gap-1"
             >
               {item.iconName && <Icon name={item.iconName} />}
@@ -37,6 +38,10 @@ const posts = (await getCollection("posts")).length;
       }
     </div>
 
+    <ButtonLink link='/bookmarks' class='flex gap-1 items-center text-white'>
+      <Icon name='mdi:bookmark' />
+      <span>Избранные</span>
+    </ButtonLink>
 
     <span
       aria-label="Меню"
@@ -64,7 +69,12 @@ const posts = (await getCollection("posts")).length;
               </ButtonLink>
             ))
         }
+            <ButtonLink link='/bookmarks'  class='flex shrink-0 items-center gap-1 text-xl text-white'>
+      <Icon name='mdi:bookmark' />
+      <span>Избранные</span>
+    </ButtonLink>
       </div>
+      
     </div>
   </div>
 </header>

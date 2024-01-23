@@ -2,22 +2,20 @@ export const links = [
   {
     name: "Главная",
     link: "/",
-    iconName: "mdi:apps",
   },
   {
     name: "Посты",
     link: "/posts",
     astroPrefetch: true,
-    iconName: "mdi:cloud",
     postsLength: true,
-  },
-  {
-    name: "🗒 Джо и Чарли - семинар",
-    link: "/bigbook/seminar",
   },
   {
     name: "Видео о Традициях",
     link: "/traditions",
+  },
+  {
+    name: "Джо и Чарли - семинар",
+    link: "/bigbook/seminar",
     iconName: "mdi:layers",
   },
   {

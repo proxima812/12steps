@@ -7,7 +7,7 @@ import { linksProjects } from '@/data/links'
     <div class="flex items-center gap-3">
       {
         linksProjects.map((item) => (
-          <a target="_blank" href={item.link ?? '#'}><img width="45" height="45" loading="lazy" decoding="async" src={item.svgIcon} alt={item.ariaName}  /></a>
+          <a target="_blank" aria-label='Проект' href={item.link ?? '#'}><img width="45" height="45" loading="lazy" decoding="async" src={item.svgIcon} alt={item.ariaName}  /></a>
         ))
       }
     </div>

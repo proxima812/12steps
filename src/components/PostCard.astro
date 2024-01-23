@@ -5,22 +5,19 @@ import BookmarkIcon from "./icons/BookmarkIcon.astro"
 const { data, slug, isBB, item, isChecked } = Astro.props;
 ---
 
-<a
-  href={`${isBB ? `${isBB + slug}` : `/posts/${slug}`}`}
-  aria-label={`Читайте про "${data.title}"`}
-  class="group"
->
+
   <article
     role="article"
+    aria-label={`Читайте про "${data.title}"`}
     class:list={`${
       data.pubDate || data.tags ? "h-[230px]" : ""
-    } bg-center-gradient relative rounded-2xl p-6 ring-1 ring-white/10 transition-transform ease-linear group-hover:translate-y-[-1px]`}
+    } bg-center-gradient relative rounded-2xl p-6 ring-1 ring-white/10 transition-transform ease-linear group-hover:translate-y-[-1px] group`}
   >
     {
       // Убери disabled, как закончишь
       !isBB && (
         <button
-          disabled 
+          
           data-value={item}
           data-checked={isChecked?.toString()}
           data-bookmark
@@ -42,9 +39,9 @@ const { data, slug, isBB, item, isChecked } = Astro.props;
           )
         }
         <h2
-          class="line-clamp-2 text-2xl font-bold leading-tight transition-transform ease-linear group-hover:-translate-y-[2px]"
+          class="line-clamp-2 text-2xl font-bold leading-tight transition-transform ease-linear group-hover:-translate-y-[2px] max-w-[290px]"
         >
-          {data.title}
+          <a href={`${isBB ? `${isBB + slug}` : `/posts/${slug}`}`}>{data.title}</a>
         </h2>
 
         {
@@ -77,4 +74,4 @@ const { data, slug, isBB, item, isChecked } = Astro.props;
       }
     </div>
   </article>
-</a>
+

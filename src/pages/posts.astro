@@ -46,7 +46,6 @@ const bookmarks = (Astro.cookies.get("bookmarks")?.json() || []) as IBookmark[];
   </div>
   <script>
     import type { IBookmark } from "@/types/global";
-import type { IBookmark } from "@/types/global"
 import { getCookie, setCookie } from "@/utils/cookie"
 import { navigate } from "astro:transitions/client"
 

@@ -19,30 +19,50 @@ const posts =
   export const prerender = false;
 ---
 
-<BaseLayout title="" description="">
-  <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-    {
-      posts.map(async (item: any) => {
-        const isChecked = bookmarks.some((bookmark) => bookmark.id === item.id);
-        return (
-          <PostCard
-            isChecked={isChecked}
-            item={item}
-            slug={item.slug}
-            data={item.data}
-          />
-        );
-      })
-    }
-  </div>
+<BaseLayout title="" description=""  
+blurClass={{
+    topLeft: "bg-green-300/70",
+    topRight: "bg-emerald-300/70",
+    bottomRight: "bg-black",
+    bottomLeft: "bg-black",
+  }}
+  >
+{
+  posts && posts.length > 0 ? (
+    <>
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {posts.map((item) => {
+          const isChecked = bookmarks.some((bookmark) => bookmark.id === item.id);
+          return (
+            <PostCard
+              isChecked={isChecked}
+              item={item}
+              slug={item.slug}
+              data={item.data}
+            />
+          );
+        })}
+      </div>
+    </>
+  ) : (
+    <div class="flex justify-center items-center flex-col gap-6">
+      <h2 class="text-2xl">
+        У вас нет избранных постов. 🤫 
+        </h2>
+         <h2 class="text-2xl"><b><u>Или же обновите страницу! 🙏</u></b></h2>
+    </div>
+  )
+}
+
   <script>
-    import { getCookie, setCookie } from "@/utils/cookie";
-    import type { IBookmark } from "@/types/global";
+
+import type { IBookmark } from "@/types/global"
+import { getCookie, setCookie } from "@/utils/cookie"
  
 
-    import { navigate } from "astro:transitions/client";
+    import { navigate } from "astro:transitions/client"
 
-    document.addEventListener("astro:page-load", () => {
+    document.addEventListener("DOMContentLoaded", () => {
       const url = new URL(window.location.href);
       const hasBookmarkPage = url.pathname.includes("favorite");
       const bookmarkButtons = document.querySelectorAll("[data-bookmark]");
