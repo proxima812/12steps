@@ -70,8 +70,16 @@ export const infoMaterials = [
 ];
 
 export const linksProjects = [
-  { ariaName: "12 шагов - база знаний", link: "", svgIcon: "/svg/BASE.svg" },
-  { ariaName: "Канал: 12 шагов - навсегда", link: "", svgIcon: "/svg/UN.svg" },
+  {
+    ariaName: "12 шагов - база знаний",
+    link: "",
+    svgIcon: "/svg/BASE.svg",
+  },
+  {
+    ariaName: "Канал: 12 шагов - навсегда",
+    link: "",
+    svgIcon: "/svg/UN.svg",
+  },
   {
     ariaName: "Сообщество: Анонминые Прокрастинаторы",
     link: "",
@@ -82,7 +90,11 @@ export const linksProjects = [
     link: "",
     svgIcon: "/svg/TD.svg",
   },
-  { ariaName: "Группа АИЗ: живой интернет", link: "", svgIcon: "/svg/AIZ.svg" },
+  {
+    ariaName: "Группа АИЗ: живой интернет",
+    link: "",
+    svgIcon: "/svg/AIZ.svg",
+  },
 ];
 
 export const videosTraditionsLinks = [

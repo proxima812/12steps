@@ -7,7 +7,7 @@ import { linksProjects } from '@/data/links'
     <div class="flex items-center gap-3">
       {
         linksProjects.map((item) => (
-          <img src={item.svgIcon} alt={item.ariaName} width="45" height="45" />
+          <img width="45" height="45" loading="lazy" decoding="async" src={item.svgIcon} alt={item.ariaName}  />
         ))
       }
     </div>

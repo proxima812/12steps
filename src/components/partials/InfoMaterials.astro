@@ -1,5 +1,5 @@
 ---
-import { infoMaterials } from "@/data/links";
+import { infoMaterials } from "@/data/links"
 ---
 
 <section class="grid gap-3 md:grid-cols-2">
@@ -10,7 +10,7 @@ import { infoMaterials } from "@/data/links";
         aria-label={item.name}
       >
         <div class="flex items-center gap-3">
-          <img src={item.svgIcon} alt={item.name} />
+          <img src={item.svgIcon} width="45" height="45" loading="lazy" decoding="async" alt={item.name} />
           <span class="font-medium">{item.name}</span>
         </div>
         <p>{item.description}</p>
