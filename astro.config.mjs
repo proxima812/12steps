@@ -1,4 +1,3 @@
-import { manifest } from "./src/utils/manifest";
 import markdoc from "@astrojs/markdoc";
 import mdx from "@astrojs/mdx";
 import partytown from "@astrojs/partytown";
@@ -10,8 +9,10 @@ import keystatic from "@keystatic/astro";
 import compress from "astro-compress";
 import icon from "astro-icon";
 import { defineConfig } from "astro/config";
-import { SITE_URL } from "./src/config/settings";
 import { VitePWA } from "vite-plugin-pwa";
+import { SITE_URL } from "./src/config/settings";
+import { manifest } from "./src/utils/manifest";
+
 // https://astro.build/config
 export default defineConfig({
   site: SITE_URL,

@@ -1,18 +1,17 @@
 ---
-import Breadcrumbs from "@/components/Customs/Breadcrumbs.astro";
-import FormattedDate from "@/components/Customs/FormattedDate.astro";
-import RelatedPosts from "@/components/RelatedPosts.astro";
-import Tag from "@/components/Tag.astro";
-import Code from "@/components/mdx/Code.astro";
-import { Icon } from "astro-icon/components";
-import { getCollection } from "astro:content";
-import BaseLayout from "src/layouts/BaseLayout.astro";
+import Breadcrumbs from "@/components/Customs/Breadcrumbs.astro"
+import FormattedDate from "@/components/Customs/FormattedDate.astro"
+import RelatedPosts from "@/components/RelatedPosts.astro"
+import Tag from "@/components/Tag.astro"
+import Code from "@/components/mdx/Code.astro"
+import { Icon } from "astro-icon/components"
+import { getCollection } from "astro:content"
+import BaseLayout from "src/layouts/BaseLayout.astro"
 
 
-import Share from "@/components/Share.astro";
+import Share from "@/components/Share.astro"
 
 const posts = await getCollection("posts");
-
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
   return posts.map((post) => ({
@@ -22,7 +21,6 @@ export async function getStaticPaths() {
 }
 
 const post = Astro.props;
-
 // Похожие посты по тегам
 const getRelatedPosts = (post: any) => {
   const relatedPosts = posts.filter(
@@ -60,12 +58,14 @@ const customCrumbs = [
   type
   container_max_w="max-w-4xl"
 >
+            
   <Breadcrumbs crumbs={customCrumbs}>
     <Icon name="mdi:chevron-right" slot="separator" />
   </Breadcrumbs>
   <article class="flex flex-col gap-12">
     <div class="flex flex-col gap-6">
       <h1 class="text-4xl font-bold lg:text-6xl">
+        
         {post.data.title}
       </h1>
       <p class="text-sm text-zinc-300 md:text-lg">
@@ -79,6 +79,7 @@ const customCrumbs = [
           <div class="flex flex-wrap items-center gap-3">
             <FormattedDate date={post.data.pubDate} />
             <Share data={post.data} slug={post.slug} />
+
           </div>
         </div>
       </div>
