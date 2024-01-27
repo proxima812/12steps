@@ -76,7 +76,7 @@ export const linksProjects = [
   {
     ariaName: "Канал: 12 шагов - навсегда",
     link: "https://t.me/unity_8",
-    svgIcon: "/svg/UN.svg",
+    svgIcon: "/jpg/UN.jpg",
   },
   {
     ariaName: "Сообщество: Анонминые Прокрастинаторы",

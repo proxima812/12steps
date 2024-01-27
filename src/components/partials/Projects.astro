@@ -1,14 +1,26 @@
 ---
-import { linksProjects } from '@/data/links'
+import { linksProjects } from "@/data/links";
 ---
 
-  <div class="flex flex-col items-center gap-3">
-    <span class="text-zinc-400">При поддержке и любовью к</span>
-    <div class="flex items-center gap-3">
-      {
-        linksProjects.map((item) => (
-          <a target="_blank" aria-label='Проект' href={item.link ?? '#'}><img width="45" height="45" loading="lazy" decoding="async" src={item.svgIcon} alt={item.ariaName}  /></a>
-        ))
-      }
-    </div>
+<div class="flex flex-col items-center gap-3">
+  <span class="text-zinc-400">При поддержке и любовью к</span>
+  <div class="flex items-center gap-3">
+    {
+      linksProjects.map((item) => {
+        return (
+          <a target="_blank" aria-label="Проект" href={item.link ?? "#"}>
+            <img
+              class="rounded-[6px]"
+              width="45"
+              height="45"
+              loading="lazy"
+              decoding="async"
+              src={item.svgIcon}
+              alt={item.ariaName}
+            />
+          </a>
+        );
+      })
+    }
   </div>
+</div>
