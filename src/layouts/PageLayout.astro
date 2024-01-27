@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 
-const { title, description, heroImage, index } = Astro.props;
+const { title, description, heroImage, index, blurClass } = Astro.props;
 ---
 
 <BaseLayout
@@ -9,8 +9,9 @@ const { title, description, heroImage, index } = Astro.props;
   description={description}
   index={index}
   heroImage={heroImage}
+  blurClass={blurClass}
 >
-  <main class="prose prose-lg prose-invert prose-yellow max-w-none xl:prose-xl">
+  <main class="prose prose-lg prose-invert prose-white max-w-none xl:prose-xl">
     <h1>{title}</h1>
     <slot />
   </main>

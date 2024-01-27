@@ -14,7 +14,7 @@ const posts = (await getCollection("posts")).length;
       container_max_w ?? "max-w-6xl"
     } container mx-auto flex items-center justify-between px-5`}
   >
-    <a href="/" aria-label="Логотип">
+    <a href="/" aria-label="Логотип сайта 12steps">
       <Logo />
     </a>
 
@@ -23,7 +23,7 @@ const posts = (await getCollection("posts")).length;
                 ? { 'data-astro-prefetch="load"': "" }
                 : {})} 
               -->
-    <div class="hidden items-center gap-3 lg:flex">
+    <div aria-label="Основная панель меню" class="hidden items-center gap-3 lg:flex">
       {
         links
           .filter((item) => !item.socialLink)
@@ -41,10 +41,16 @@ const posts = (await getCollection("posts")).length;
       }
     </div>
 
-    <ButtonLink link="/bookmarks" class="flex items-center gap-1 text-white">
-      <Icon name="mdi:bookmark" />
-      <span>Избранные</span>
-    </ButtonLink>
+    <div aria-label="Правая панель меню" class="hidden items-center gap-3 lg:flex">
+      <ButtonLink link="/bookmarks" class="flex items-center gap-1 text-white">
+        <Icon name="mdi:bookmark" />
+        <span>Избранные</span>
+      </ButtonLink>
+      <ButtonLink link="/about" aria-label='об проекте' class="flex items-center gap-1 text-white">
+        <Icon name="mdi:information-slab-circle-outline" />
+        <span>об проекте</span>
+      </ButtonLink>
+    </div>
 
     <span
       aria-label="Меню"
@@ -79,6 +85,10 @@ const posts = (await getCollection("posts")).length;
           <Icon name="mdi:bookmark" />
           <span>Избранные</span>
         </ButtonLink>
+          <ButtonLink link="/about" aria-label='об проекте' class="flex shrink-0 items-center gap-1 text-xl text-white">
+        <Icon name="mdi:information-slab-circle-outline" />
+        <span>об проекте</span>
+      </ButtonLink>
       </div>
     </div>
   </div>
