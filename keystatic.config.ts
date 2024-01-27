@@ -69,6 +69,7 @@ export default config({
             { label: "Прочее", value: "Прочее" },
             { label: "Молитвы", value: "Молитвы" },
             { label: "Документ", value: "Документ" },
+            { label: "Методы шагов", value: "Методы шагов" },
             // { label: "", value: "" },
           ],
         }),
