@@ -12,6 +12,7 @@ import { defineConfig } from "astro/config";
 import { VitePWA } from "vite-plugin-pwa";
 import { SITE_URL } from "./src/config/settings";
 import { manifest } from "./src/utils/manifest";
+import metaTags from "astro-meta-tags";
 
 // https://astro.build/config
 export default defineConfig({
@@ -38,6 +39,7 @@ export default defineConfig({
       },
     }),
     compress(),
+    metaTags(),
   ],
   vite: {
     plugins: [

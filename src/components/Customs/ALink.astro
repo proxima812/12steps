@@ -1,0 +1,15 @@
+---
+import type { HTMLAttributes } from "astro/types";
+interface Props extends HTMLAttributes<"a"> {
+  link: string;
+}
+
+const { link, class: className, ...props } = Astro.props;
+import { Icon } from 'astro-icon/components'
+import { twMerge } from 'tailwind-merge'
+---
+
+<a href={link} {...props} class={twMerge(className,"flex gap-1 items-center")}>
+  <Icon name='mdi:link' />
+  <slot />
+</a>
