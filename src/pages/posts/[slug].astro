@@ -1,15 +1,14 @@
 ---
-import Breadcrumbs from "@/components/Customs/Breadcrumbs.astro"
-import FormattedDate from "@/components/Customs/FormattedDate.astro"
-import RelatedPosts from "@/components/RelatedPosts.astro"
-import Tag from "@/components/Tag.astro"
-import Code from "@/components/mdx/Code.astro"
-import { Icon } from "astro-icon/components"
-import { getCollection } from "astro:content"
-import BaseLayout from "src/layouts/BaseLayout.astro"
+import Breadcrumbs from "@/components/Customs/Breadcrumbs.astro";
+import FormattedDate from "@/components/Customs/FormattedDate.astro";
+import RelatedPosts from "@/components/RelatedPosts.astro";
+import Tag from "@/components/Tag.astro";
+import Code from "@/components/mdx/Code.astro";
+import { Icon } from "astro-icon/components";
+import { getCollection } from "astro:content";
+import BaseLayout from "src/layouts/BaseLayout.astro";
 
-
-import Share from "@/components/Share.astro"
+import Share from "@/components/Share.astro";
 
 const posts = await getCollection("posts");
 export async function getStaticPaths() {
@@ -58,17 +57,15 @@ const customCrumbs = [
   type
   container_max_w="max-w-4xl"
 >
-            
   <Breadcrumbs crumbs={customCrumbs}>
     <Icon name="mdi:chevron-right" slot="separator" />
   </Breadcrumbs>
   <article class="flex flex-col gap-12">
     <div class="flex flex-col gap-6">
       <h1 class="text-4xl font-bold lg:text-6xl">
-        
         {post.data.title}
       </h1>
-      <p class="text-sm text-zinc-300 md:text-lg">
+      <p class="text-sm text-zinc-700 md:text-lg dark:text-zinc-300">
         {post.data.description}
       </p>
       <div class="flex flex-col gap-3">
@@ -79,7 +76,6 @@ const customCrumbs = [
           <div class="flex flex-wrap items-center gap-3">
             <FormattedDate date={post.data.pubDate} />
             <Share data={post.data} slug={post.slug} />
-
           </div>
         </div>
       </div>
@@ -98,7 +94,7 @@ const customCrumbs = [
 
     <div
       aria-label="Контент поста"
-      class="md:prose-md prose prose-slate prose-invert max-w-none font-light lg:prose-lg prose-headings:max-w-[280px] prose-a:text-blue-500 prose-blockquote:border-blue-100 prose-blockquote:text-blue-300 prose-li:marker:text-yellow-300 sm:prose-headings:max-w-full"
+      class="prose prose-blue max-w-none sm:prose-lg dark:prose-invert"
     >
       <Content components={{ pre: Code }} />
     </div>

@@ -8,11 +8,11 @@ import vercel from "@astrojs/vercel/serverless";
 import keystatic from "@keystatic/astro";
 import compress from "astro-compress";
 import icon from "astro-icon";
+import metaTags from "astro-meta-tags";
 import { defineConfig } from "astro/config";
 import { VitePWA } from "vite-plugin-pwa";
 import { SITE_URL } from "./src/config/settings";
 import { manifest } from "./src/utils/manifest";
-import metaTags from "astro-meta-tags";
 
 // https://astro.build/config
 export default defineConfig({
@@ -21,7 +21,7 @@ export default defineConfig({
     prefetchAll: true,
     defaultStrategy: "viewport",
   },
-  compressHTML: true,
+
   integrations: [
     tailwind(),
     sitemap({

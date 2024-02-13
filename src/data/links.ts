@@ -74,9 +74,19 @@ export const linksProjects = [
     svgIcon: "/svg/BASE.svg",
   },
   {
+    ariaName: "12 шагов - контакты",
+    link: "https://t.me/all12_contacts",
+    svgIcon: "/jpg/con.jpg",
+  },
+  {
     ariaName: "Канал: 12 шагов - навсегда",
     link: "https://t.me/unity_8",
     svgIcon: "/jpg/UN.jpg",
+  },
+  {
+    ariaName: " 12 шагов - методы, опыт",
+    link: "https://t.me/all_12methods",
+    svgIcon: "/jpg/met.jpg",
   },
   {
     ariaName: "Сообщество: Анонминые Прокрастинаторы",
@@ -87,6 +97,11 @@ export const linksProjects = [
     ariaName: "Сайт с ежедневниками",
     link: "https://think-daily.ru/",
     svgIcon: "/svg/TD.svg",
+  },
+  {
+    ariaName: "Анонимные Сообщества",
+    link: "https://t.me/+VI8A0iqwZMkzOTRi",
+    svgIcon: "/jpg/auu.jpg",
   },
   {
     ariaName: "Группа АИЗ: живой интернет",

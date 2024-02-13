@@ -1,16 +1,24 @@
 ---
-import { infoMaterials } from "@/data/links"
+import { infoMaterials } from "@/data/links";
 ---
 
 <section class="grid gap-3 md:grid-cols-2">
   {
     infoMaterials.map((item) => (
-      <div 
-        class="flex flex-col gap-3 rounded-2xl bg-zinc-900 p-3 ring-1 ring-zinc-800"
+      <div
+        class="flex flex-col gap-3 rounded-2xl bg-white p-3 ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-zinc-800"
         aria-label={item.name}
       >
         <div class="flex items-center gap-3">
-          <img src={item.svgIcon} width="45" height="45" loading="lazy" decoding="async" alt={item.name} />
+          <img
+            src={item.svgIcon}
+            width="45"
+            height="45"
+            loading="lazy"
+            decoding="async"
+            class="rounded-full outline outline-[1px] outline-purple-500"
+            alt={item.name}
+          />
           <span class="font-medium">{item.name}</span>
         </div>
         <p>{item.description}</p>

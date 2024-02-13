@@ -11,7 +11,9 @@ const { title, description, heroImage, index, blurClass } = Astro.props;
   heroImage={heroImage}
   blurClass={blurClass}
 >
-  <main class="prose prose-lg prose-invert prose-white max-w-none xl:prose-xl">
+  <main
+    class="prose-white prose prose-lg max-w-none xl:prose-xl dark:prose-invert"
+  >
     <h1>{title}</h1>
     <slot />
   </main>

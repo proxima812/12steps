@@ -1,77 +1,69 @@
 ---
-import FormattedDate from "./Customs/FormattedDate.astro"
-import Tag from "./Tag.astro"
-import BookmarkIcon from "./icons/BookmarkIcon.astro"
+import FormattedDate from "./Customs/FormattedDate.astro";
+import Tag from "./Tag.astro";
+import BookmarkIcon from "./icons/BookmarkIcon.astro";
 const { data, slug, isBB, item, isChecked } = Astro.props;
 ---
 
+<article
+  role="article"
+  aria-label={`Читайте про "${data.title}"`}
+  class:list={`${data.pubDate || data.tags ? "h-[160px]" : ""} ${
+    data.speechVoice && "ring-inset ring-blue-400"
+  } dark:bg-center-gradient-dark bg-center-gradient-light group relative rounded-2xl p-6 ring-1 ring-zinc-200 transition-transform ease-linear group-hover:translate-y-[-1px] dark:ring-white/10`}
+>
+  {
+    // Убери disabled, как закончишь
+    !isBB && (
+      <button
+        data-value={item}
+        data-checked={isChecked?.toString()}
+        data-bookmark
+        aria-label="Bookmark"
+        class="group absolute right-0 top-0 z-10 flex h-12 w-12 items-center justify-center rounded-3xl text-zinc-400 opacity-100 transition-all group-hover:opacity-100 data-[checked=true]:opacity-100 lg:opacity-0"
+      >
+        <BookmarkIcon />
+      </button>
+    )
+  }
 
-  <article
-    role="article"
-    aria-label={`Читайте про "${data.title}"`}
-    class:list={`${
-      data.pubDate || data.tags ? "h-[230px]" : ""
-    } bg-center-gradient relative rounded-2xl p-6 ring-1 ring-white/10 transition-transform ease-linear group-hover:translate-y-[-1px] group`}
-  >
-    {
-      // Убери disabled, как закончишь
-      !isBB && (
-        <button
-          
-          data-value={item}
-          data-checked={isChecked?.toString()}
-          data-bookmark
-          aria-label="Bookmark"
-          class="group absolute right-0 top-0 z-10 flex h-12 w-12 items-center justify-center rounded-3xl text-zinc-400 opacity-100 transition-all group-hover:opacity-100 data-[checked=true]:opacity-100 lg:opacity-0"
+  <div class="flex h-full flex-col justify-between">
+    <div class="flex flex-col gap-4">
+      <h2
+        class="line-clamp-2 max-w-[290px] text-2xl font-bold leading-tight transition-transform ease-linear group-hover:-translate-y-[2px]"
+      >
+        <a href={`${isBB ? `${isBB + slug}` : `/posts/${slug}`}`}
+          >{data.title}</a
         >
-          <BookmarkIcon />
-        </button>
-      )
-    }
-
-    <div class="flex h-full flex-col justify-between">
-      <div class="flex flex-col gap-4">
-        {
-          data.speechVoice && (
-            <span class="self-start rounded-full bg-blue-950/90 px-3 py-1 text-sm ring-1 ring-blue-500/90">
-              🔈 пост озвучен
-            </span>
-          )
-        }
-        <h2
-          class="line-clamp-2 text-2xl font-bold leading-tight transition-transform ease-linear group-hover:-translate-y-[2px] max-w-[290px]"
-        >
-          <a href={`${isBB ? `${isBB + slug}` : `/posts/${slug}`}`}>{data.title}</a>
-        </h2>
-
-        {
-          data.description && (
-            <p class="line-clamp-3 text-sm leading-relaxed text-gray-300">
-              {data.description}
-            </p>
-          )
-        }
-      </div>
+      </h2>
 
       {
-        (data.pubDate || data.tags) && (
-          <div class="flex items-center justify-between gap-1">
-            {data.tags && (
-              <aside aria-label="Теги" class="flex flex-wrap gap-2">
-                {data.tags.map((tag) => (
-                  <Tag tag={tag} />
-                ))}
-              </aside>
-            )}
-
-            <FormattedDate
-              aria-label="Дата публикации"
-              date={data.pubDate}
-              class="shrink-0 text-sm"
-            />
-          </div>
+        isBB && (
+          <p class="line-clamp-3 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
+            {data.description}
+          </p>
         )
       }
     </div>
-  </article>
 
+    {
+      (data.pubDate || data.tags) && (
+        <div class="flex items-center justify-between gap-1">
+          {data.tags && (
+            <aside aria-label="Теги" class="flex flex-wrap gap-2">
+              {data.tags.map((tag) => (
+                <Tag tag={tag} />
+              ))}
+            </aside>
+          )}
+
+          <FormattedDate
+            aria-label="Дата публикации"
+            date={data.pubDate}
+            class="shrink-0 text-sm"
+          />
+        </div>
+      )
+    }
+  </div>
+</article>

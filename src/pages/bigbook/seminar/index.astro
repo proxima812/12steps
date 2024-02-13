@@ -29,10 +29,10 @@ import ButtonLink from "@/components/Customs/ButtonLink.astro";
   title="Джо и Чарли: изучение БКАА"
   description="На сегодняшний день, материалы Джо и Чарли являются самыми известными и используемыми в мире материалами по Большой книге. Эти два алкоголика объездили со своими занятиями по изучению Большой книги все 50 штатов США и многие страны мира, где есть АА."
   blurClass={{
-    topLeft: "bg-blue-300",
-    topRight: "bg-sky-300",
-    bottomRight: "bg-gray-500",
-    bottomLeft: "bg-slate-500",
+    topLeft: "dark:bg-blue-300",
+    topRight: "dark:bg-sky-300",
+    bottomRight: "dark:bg-gray-500",
+    bottomLeft: "dark:bg-slate-500",
   }}
 >
   <main class="flex flex-col gap-12 lg:flex-row">
@@ -48,7 +48,7 @@ import ButtonLink from "@/components/Customs/ButtonLink.astro";
         links.map((item) => (
           <ButtonLink
             link={item.href}
-            class=" self-start ring-1 ring-inset ring-white/20 transition-colors duration-75 ease-linear hover:bg-white/20"
+            class="self-start whitespace-nowrap ring-1 ring-inset ring-zinc-200 transition-colors duration-75 ease-linear hover:bg-white dark:ring-white/20 dark:hover:bg-white/20"
           >
             {item.name}
           </ButtonLink>

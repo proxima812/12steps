@@ -45,17 +45,6 @@ export default config({
           label: "Описание",
           multiline: true,
         }),
-        // tags: fields.array(
-        //   fields.relationship({
-        //     label: "Тег",
-        //     collection: "tags",
-        //   }),
-        //   {
-        //     label: "Теги",
-        //     itemLabel: (props) => props.value ?? "Выберите тег(-и)",
-        //     validation: { length: { min: 1 } },
-        //   },
-        // ),
         tags: fields.multiselect({
           label: "Теги к постам",
           options: [

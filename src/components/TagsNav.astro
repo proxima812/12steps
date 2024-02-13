@@ -17,25 +17,18 @@ posts.forEach((post) => {
   });
 });
 
-const urlFull = new URL(Astro.url.pathname, Astro.site);
+
 ---
 
 <nav
-  class="flex w-full items-center gap-3 overflow-x-scroll py-3 lg:flex-wrap flex-nowrap lg:overflow-hidden lg:py-0"
+  class="flex w-full flex-nowrap items-center gap-3 overflow-x-scroll py-3 lg:flex-wrap lg:overflow-hidden lg:py-0"
 >
-  <ButtonLink
-    link="/posts"
-    class:list={Astro.url.pathname === "/posts" 
-      ? "whitespace-nowrap"
-      : "whitespace-nowrap bg-white text-black hover:bg-white "}
-  >
-    Все посты
-  </ButtonLink>
+  <ButtonLink link="/posts" class="whitespace-nowrap">Все посты</ButtonLink>
   {
     tags &&
       tags.map((tag) => (
         <ButtonLink
-          class="whitespace-nowrap ring-1 ring-inset ring-white/20 transition-colors duration-75 ease-linear hover:bg-white/20"
+          class="whitespace-nowrap ring-1 ring-inset ring-zinc-200 transition-colors duration-75 ease-linear hover:bg-white dark:ring-white/20 dark:hover:bg-white/20"
           link={`/tags/${customSlugify(tag)}`}
         >
           {tag} ({tagCounts[tag] || ""})

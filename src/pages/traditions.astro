@@ -1,10 +1,10 @@
 ---
-import YB from "@/components/icons/YBIcon.astro"
-import BaseLayout from "@/layouts/BaseLayout.astro"
-import { YouTube } from "@astro-community/astro-embed-youtube"
+import YB from "@/components/icons/YBIcon.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { YouTube } from "@astro-community/astro-embed-youtube";
 
-import Button from '@/components/Customs/Button.astro'
-import { videosTraditionsLinks } from "@/data/links"
+import Button from "@/components/Customs/Button.astro";
+import { videosTraditionsLinks } from "@/data/links";
 
 export const prerender = false;
 ---
@@ -12,25 +12,26 @@ export const prerender = false;
 <BaseLayout
   title="12 Традиций видео спикерские"
   description="12 Традиций: видео изучение и познания, спикерские от членов соодружества"
-   blurClass={{
-    topLeft: "bg-red-300",
-    topRight: "bg-orange-300",
-    bottomRight: "bg-gray-500",
-    bottomLeft: "bg-slate-500",
+  blurClass={{
+    topLeft: "dark:bg-red-300",
+    topRight: "dark:bg-orange-300",
+    bottomRight: "dark:bg-gray-500",
+    bottomLeft: "dark:bg-slate-500",
   }}
 >
   <div class="flex flex-wrap items-center justify-between gap-4">
-    <div class="flex flex-wrap items-center gap-2"> 
-      <Button link='https://t.me/fb_steps_bot' className='text-red-500'>
+    <div class="flex flex-wrap items-center gap-2">
+      <Button link="https://t.me/fb_steps_bot" className="text-red-500">
         <YB /><span>Прислать видео</span>
       </Button>
-
     </div>
     <div>
       <h4 class="text-3xl font-bold">
         Видео по 12 Традициям ({videosTraditionsLinks.length})
       </h4>
-      <p class="text-right text-gray-400">Видео от канала Надя П.</p>
+      <p class="text-right text-zinc-700 dark:text-zinc-300">
+        Видео от канала Надя П.
+      </p>
     </div>
   </div>
   <main class="grid gap-6 md:grid-cols-2">

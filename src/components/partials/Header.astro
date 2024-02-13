@@ -4,6 +4,8 @@ import { Icon } from "astro-icon/components";
 import { getCollection } from "astro:content";
 import ButtonLink from "../Customs/ButtonLink.astro";
 import Logo from "../Logo.astro";
+import ThemeMode from "@/components/ThemeMode";
+
 const { container_max_w } = Astro.props;
 const posts = (await getCollection("posts")).length;
 ---
@@ -23,7 +25,10 @@ const posts = (await getCollection("posts")).length;
                 ? { 'data-astro-prefetch="load"': "" }
                 : {})} 
               -->
-    <div aria-label="Основная панель меню" class="hidden items-center gap-3 lg:flex">
+    <div
+      aria-label="Основная панель меню"
+      class="hidden items-center gap-0 lg:flex"
+    >
       {
         links
           .filter((item) => !item.socialLink)
@@ -41,15 +46,26 @@ const posts = (await getCollection("posts")).length;
       }
     </div>
 
-    <div aria-label="Правая панель меню" class="hidden items-center gap-3 lg:flex">
-      <ButtonLink link="/bookmarks" class="flex items-center gap-1 text-white">
+    <div
+      aria-label="Правая панель меню"
+      class="hidden items-center gap-0 lg:flex"
+    >
+      <ButtonLink
+        link="/bookmarks"
+        class="flex items-center gap-1 dark:text-white"
+      >
         <Icon name="mdi:bookmark" />
         <span>Избранные</span>
       </ButtonLink>
-      <ButtonLink link="/about" aria-label='об проекте' class="flex items-center gap-1 text-white">
+      <ButtonLink
+        link="/about"
+        aria-label="об проекте"
+        class="flex items-center gap-1 dark:text-white"
+      >
         <Icon name="mdi:information-slab-circle-outline" />
         <span>об проекте</span>
       </ButtonLink>
+      <ThemeMode client:only="react" />
     </div>
 
     <span
@@ -70,7 +86,7 @@ const posts = (await getCollection("posts")).length;
             .map((item: any) => (
               <ButtonLink
                 link={item.link}
-                class="flex shrink-0 items-center gap-1 text-xl"
+                class="flex shrink-0 items-center gap-1 text-xl text-white dark:text-zinc-900"
               >
                 {item.iconName && <Icon name={item.iconName} />}
                 {item.name}
@@ -85,14 +101,19 @@ const posts = (await getCollection("posts")).length;
           <Icon name="mdi:bookmark" />
           <span>Избранные</span>
         </ButtonLink>
-          <ButtonLink link="/about" aria-label='об проекте' class="flex shrink-0 items-center gap-1 text-xl text-white">
-        <Icon name="mdi:information-slab-circle-outline" />
-        <span>об проекте</span>
-      </ButtonLink>
+        <ButtonLink
+          link="/about"
+          aria-label="об проекте"
+          class="flex shrink-0 items-center gap-1 text-xl text-white"
+        >
+          <Icon name="mdi:information-slab-circle-outline" />
+          <span>об проекте</span>
+        </ButtonLink>
       </div>
     </div>
   </div>
 </header>
+
 <script>
   const openMenu = document.querySelector("#openMenu");
   const menu = document.querySelector("#menu");

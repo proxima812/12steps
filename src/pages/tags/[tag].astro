@@ -34,11 +34,11 @@ const bookmarks = (Astro.cookies.get("bookmarks")?.json() || []) as IBookmark[];
   title={`Постов по тегу: (${posts.length})`}
 >
   <TagsNav />
-  <Search
-    client:load
+   <Search
+    client:visible
     classNameMainDiv="max-w-full"
-    classNameIcon="ring-1 ring-inset bg-zinc-800 ring-white/20"
-    classNameSearch="ring-1 ring-inset ring-white/20"
+    classNameIcon="ring-1 ring-inset dark:bg-zinc-800 bg-zinc-100 ring-zinc-200 dark:ring-white/20"
+    classNameSearch="ring-1 ring-inset ring-zinc-200 dark:ring-white/20"
     postsList={posts}
   />
   <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
