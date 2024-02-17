@@ -47,11 +47,13 @@ const customCrumbs = [
     href: "#",
   },
 ];
+
+
 ---
 
 <BaseLayout
   title={post.data.title}
-  description={post.data.description}
+  description={post.data.description && post.data.tags}
   tags={post.data.tags}
   heroImage={ogUrl}
   type

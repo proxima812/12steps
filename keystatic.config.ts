@@ -39,6 +39,7 @@ export default config({
           },
         }),
         pubDate: fields.date({
+          defaultValue: { kind: "today" },
           label: "Дата публикации",
         }),
         description: fields.text({

@@ -21,7 +21,11 @@ export default defineConfig({
     prefetchAll: true,
     defaultStrategy: "viewport",
   },
-
+  // experimental: {
+  //   clientPrerender: true,
+  //   contentCollectionCache: true,
+  //   optimizeHoistedScript: true,
+  // },
   integrations: [
     tailwind(),
     sitemap({

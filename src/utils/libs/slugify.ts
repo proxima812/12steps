@@ -5,3 +5,4 @@ export const slugify = (content: string) => {
 
   return slug(content);
 };
+

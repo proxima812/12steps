@@ -4,11 +4,9 @@ const posts = defineCollection({
   // Type-check frontmatter using a schema
   schema: ({ image }) =>
     z.object({
-      title: z.string().max(80),
-      description: z.string().max(165),
-      tags: z.array(z.string()).default(["Прочее"]).optional(),
-      // authors: z.array(z.string()).default(["Пользователь"]),
-      // categories: z.array(z.string()).default(["Другое"]),
+      title: z.string(),
+      description: z.string().optional(),
+      tags: z.array(z.string()).default(["Прочее"]),
       pubDate: z.coerce.date(),
       heroImage: image().optional(),
       speechVoice: z.boolean().default(false).optional(),
@@ -46,4 +44,4 @@ const tags = defineCollection({
   }),
 });
 
-export const collections = { posts,pages, tags, postsBB };
+export const collections = { posts, pages, tags, postsBB };
