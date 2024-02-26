@@ -15,8 +15,8 @@ const isActive = link === pathname || link === pathname.replace(/\/$/, "");
 <a
   href={link}
   class={twMerge(
-    "hover:bg-white/20 transition-colors ease-linear duration-75 rounded-2xl px-3.5 py-1.5 dark:text-white text-zinc-900",
-    isActive ? "bg-gradient-to-tr from-zinc-600 to-zinc-700 text-white" : "",
+    "font-medium",
+    isActive ? " dark:text-zinc-400 text-zinc-500 font-normal" : "",
     className,
   )}
   {...props}

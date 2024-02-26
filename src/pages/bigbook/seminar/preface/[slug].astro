@@ -39,7 +39,12 @@ const { title, description } = post.data;
 const { Content, headings } = await post.render();
 ---
 
-<BaseLayout title={title} description={description} type>
+<BaseLayout
+  title={title}
+  description={description}
+  type
+  container_max_w="max-w-4xl"
+>
   <!-- Стилизуй и пойми, нужно ли TOC -->
   <!-- {headings && headings.length > 0 && <TableOfContents {headings} />} -->
 

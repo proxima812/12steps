@@ -1,0 +1,74 @@
+---
+export const prerender = false;
+
+import Breadcrumbs from "@/components/Customs/Breadcrumbs.astro";
+import PostCard from "@/components/PostCard.astro";
+import { DEFAULT_TITLE } from "@/config/settings";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import type { IBookmark } from "@/types/global";
+import { getSinglePage } from "@/utils/libs/getSinglePage";
+import { Icon } from "astro-icon/components";
+
+const posts = await getSinglePage("posts");
+const bookmarks = (Astro.cookies.get("bookmarks")?.json() || []) as IBookmark[];
+
+const postsByTags = posts.reduce((acc, item) => {
+  // Предполагаем, что каждый пост имеет свойство data с массивом тегов
+  item.data.tags.forEach((tag) => {
+    if (!acc[tag]) {
+      acc[tag] = [];
+    }
+    acc[tag].push(item);
+  });
+  return acc;
+}, {});
+
+const customCrumbs = [
+  {
+    text: "Главная",
+    href: "/",
+  },
+  {
+    text: "Материалы",
+    href: "#",
+  },
+];
+---
+
+<BaseLayout
+  title="Посты на тему 12 шагов"
+  description={`${DEFAULT_TITLE}. Более (${posts.length}) постов: 12 шагов, материалы, опыт, разработка и другое.`}
+>
+  <div class="grid gap-6">
+    <Breadcrumbs crumbs={customCrumbs}>
+      <Icon name="mdi:chevron-right" slot="separator" />
+    </Breadcrumbs>
+
+    {
+      Object.entries(postsByTags).map(([tag, taggedPosts]) => (
+        <>
+          <h2 class="text-2xl font-bold">{tag}</h2>
+          <section class="grid grid-cols-1 gap-6 md:grid-cols-2">
+            {taggedPosts.map((item) => {
+              const isChecked = bookmarks.some(
+                (bookmark) => bookmark.id === item.id,
+              );
+              return (
+                <PostCard
+                  key={item.id}
+                  isChecked={isChecked}
+                  item={item.id}
+                  slug={item.slug}
+                  data={item.data}
+                />
+              );
+            })}
+          </section>
+        </>
+      ))
+    }
+  </div>
+  <script>
+    import "../../ts/bookmark";
+  </script>
+</BaseLayout>

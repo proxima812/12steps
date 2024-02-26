@@ -20,14 +20,9 @@ const posts = (await getCollection("posts")).length;
       <Logo />
     </a>
 
-    <!-- 
-      {...(item.astroPrefetch
-                ? { 'data-astro-prefetch="load"': "" }
-                : {})} 
-              -->
     <div
       aria-label="Основная панель меню"
-      class="hidden items-center gap-0 lg:flex"
+      class="hidden items-center gap-3 lg:flex"
     >
       {
         links
@@ -48,25 +43,23 @@ const posts = (await getCollection("posts")).length;
 
     <div
       aria-label="Правая панель меню"
-      class="hidden items-center gap-0 lg:flex"
+      class="hidden items-center gap-3 lg:flex"
     >
-      <ButtonLink
-        link="/bookmarks"
-        class="flex items-center gap-1 dark:text-white"
-      >
+      <ButtonLink link="/bookmarks" class="flex items-center gap-1">
         <Icon name="mdi:bookmark" />
         <span>Избранные</span>
       </ButtonLink>
       <ButtonLink
         link="/about"
         aria-label="об проекте"
-        class="flex items-center gap-1 dark:text-white"
+        class="flex items-center gap-1"
       >
-        <Icon name="mdi:information-slab-circle-outline" />
+        <Icon name="mdi:book-information-variant" />
         <span>об проекте</span>
       </ButtonLink>
-      <ThemeMode client:only="react" />
     </div>
+
+    <ThemeMode classNameStyle="hidden lg:block" client:only="react" />
 
     <span
       aria-label="Меню"
@@ -77,16 +70,16 @@ const posts = (await getCollection("posts")).length;
 
     <div
       id="menu"
-      class="absolute left-0 top-20 z-[99] hidden h-full w-full bg-black/60 backdrop-blur-lg"
+      class="absolute left-0 top-20 z-[99] hidden h-full w-full bg-black/10 backdrop-blur-2xl"
     >
-      <div class="flex flex-col items-end gap-3 pr-5 pt-5">
+      <div class="flex flex-col items-end gap-6 pr-5 pt-5">
         {
           links
             .filter((item) => !item.socialLink)
             .map((item: any) => (
               <ButtonLink
                 link={item.link}
-                class="flex shrink-0 items-center gap-1 text-xl text-white dark:text-zinc-900"
+                class="flex shrink-0 items-center gap-1 text-xl"
               >
                 {item.iconName && <Icon name={item.iconName} />}
                 {item.name}
@@ -96,7 +89,7 @@ const posts = (await getCollection("posts")).length;
         }
         <ButtonLink
           link="/bookmarks"
-          class="flex shrink-0 items-center gap-1 text-xl text-white"
+          class="flex shrink-0 items-center gap-1 text-xl"
         >
           <Icon name="mdi:bookmark" />
           <span>Избранные</span>
@@ -104,11 +97,12 @@ const posts = (await getCollection("posts")).length;
         <ButtonLink
           link="/about"
           aria-label="об проекте"
-          class="flex shrink-0 items-center gap-1 text-xl text-white"
+          class="flex shrink-0 items-center gap-1 text-xl"
         >
           <Icon name="mdi:information-slab-circle-outline" />
           <span>об проекте</span>
         </ButtonLink>
+        <ThemeMode classNameStyle="lg:hidden" client:only="react" />
       </div>
     </div>
   </div>
@@ -118,9 +112,11 @@ const posts = (await getCollection("posts")).length;
   const openMenu = document.querySelector("#openMenu");
   const menu = document.querySelector("#menu");
   const header = document.querySelector("#header");
+  const body = document.querySelector("body");
 
   openMenu.addEventListener("click", () => {
     menu.classList.toggle("hidden");
-    header.classList.toggle("bg-black/60");
+    body.classList.toggle("overflow-hidden");
+    header.classList.toggle("bg-black/10");
   });
 </script>

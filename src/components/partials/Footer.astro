@@ -1,5 +1,16 @@
 ---
-
+const { container_max_w } = Astro.props;
 ---
 
-<footer class="py-5"></footer>
+<footer class="rounded-t-2xl py-5">
+  <div
+    class:list={`${
+      container_max_w ?? "max-w-6xl"
+    } container mx-auto flex flex-wrap items-center justify-between gap-3 px-5`}
+  >
+    <a href="https://t.me/fb_steps_bot" class="text-blue-500 underline"
+      >Обратная связь</a
+    >
+    <span>2023-2024</span>
+  </div>
+</footer>

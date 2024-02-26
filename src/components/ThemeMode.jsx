@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function ThemeToggle() {
+export default function ThemeToggle({ classNameStyle }) {
   const [theme, setTheme] = useState(localStorage.getItem("theme") ?? "light");
 
   const handleClick = () => {
@@ -20,9 +20,9 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={handleClick}
-      className="rounded-full bg-blue-50 px-3.5 py-1.5 font-medium text-blue-400 ring-1 ring-inset ring-blue-300 dark:bg-blue-950 dark:text-blue-100 dark:ring-blue-600"
+      className={`${classNameStyle} rounded-full px-2.5 py-1 text-zinc-800 ring-1 ring-zinc-800  dark:text-white dark:ring-white`}
     >
-      {theme === "light" ? "Светлая 🌙" : "Темная 🌞"}
+      {theme === "light" ? "Темный 🌞" : "Светлый 🌙"}
     </button>
   );
 }

@@ -4,20 +4,25 @@ export const links = [
     link: "/",
   },
   {
-    name: "Посты",
-    link: "/posts",
-    astroPrefetch: true,
-    postsLength: true,
-  },
-  {
-    name: "Видео о Традициях",
-    link: "/traditions",
-  },
-  {
-    name: "Джо и Чарли - семинар",
-    link: "/bigbook/seminar",
+    name: "Семинары, проекты",
+    link: "/others",
     iconName: "mdi:layers",
   },
+  {
+    name: "Материалы",
+    link: "/materials",
+    iconName: "mdi:folder-search",
+    postsLength: true,
+  },
+  // {
+  //   name: "Видео о Традициях",
+  //   link: "/traditions",
+  // },
+  // {
+  //   name: "Джо и Чарли - семинар",
+  //   link: "/bigbook/seminar",
+  //   iconName: "mdi:layers",
+  // },
   {
     socialLink: true,
     name: "12 шагов - база знаний",

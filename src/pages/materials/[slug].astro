@@ -1,14 +1,10 @@
 ---
 import Breadcrumbs from "@/components/Customs/Breadcrumbs.astro";
-import FormattedDate from "@/components/Customs/FormattedDate.astro";
 import RelatedPosts from "@/components/RelatedPosts.astro";
-import Tag from "@/components/Tag.astro";
 import Code from "@/components/mdx/Code.astro";
 import { Icon } from "astro-icon/components";
 import { getCollection } from "astro:content";
 import BaseLayout from "src/layouts/BaseLayout.astro";
-
-import Share from "@/components/Share.astro";
 
 const posts = await getCollection("posts");
 export async function getStaticPaths() {
@@ -37,18 +33,19 @@ const { Content, headings } = await post.render();
 const ogUrl = new URL(`/posts/${post.slug}.png`, Astro.url.origin).href;
 
 const customCrumbs = [
+    {
+    text: "Главная",
+    href: "/",
+  },
   {
-    text: "Посты",
-    href: "/posts",
-    title: "Part of the breadcrumb list",
+    text: "Материалы",
+    href: "/materials",
   },
   {
     text: post.data.title,
     href: "#",
   },
 ];
-
-
 ---
 
 <BaseLayout
@@ -62,26 +59,11 @@ const customCrumbs = [
   <Breadcrumbs crumbs={customCrumbs}>
     <Icon name="mdi:chevron-right" slot="separator" />
   </Breadcrumbs>
+
   <article class="flex flex-col gap-12">
-    <div class="flex flex-col gap-6">
-      <h1 class="text-4xl font-bold lg:text-6xl">
-        {post.data.title}
-      </h1>
-      <p class="text-sm text-zinc-700 md:text-lg dark:text-zinc-300">
-        {post.data.description}
-      </p>
-      <div class="flex flex-col gap-3">
-        <div class="flex flex-wrap items-center justify-between gap-3">
-          <div class="z-[2] flex gap-3" aria-label="Теги поста">
-            {post.data.tags && post.data.tags.map((tag) => <Tag tag={tag} />)}
-          </div>
-          <div class="flex flex-wrap items-center gap-3">
-            <FormattedDate date={post.data.pubDate} />
-            <Share data={post.data} slug={post.slug} />
-          </div>
-        </div>
-      </div>
-    </div>
+    <h1 class="text-4xl font-bold lg:text-6xl">
+      {post.data.title}
+    </h1>
 
     {
       post.data.speechVoice && (
@@ -94,12 +76,12 @@ const customCrumbs = [
       )
     }
 
-    <div
+    <main
       aria-label="Контент поста"
       class="prose prose-blue max-w-none sm:prose-lg dark:prose-invert"
     >
       <Content components={{ pre: Code }} />
-    </div>
+    </main>
     <!-- <script
       async
       data-page-id={customSlugify(post.data.title)}

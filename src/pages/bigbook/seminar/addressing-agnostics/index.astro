@@ -1,11 +1,28 @@
 ---
 import PostCard from "@/components/PostCard.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+
 import { getSinglePage } from "@/utils/libs/getSinglePage";
 
 const posts = (await getSinglePage("postsBB")).sort(
   (a, b) => a.data.id - b.data.id,
 );
+const customCrumbs = [
+  {
+    text: "Главная",
+    href: "/",
+  },
+  {
+    text: "Семинары, проекты",
+    href: "/others",
+  },
+  {
+    text: "Семинар Джо и Чарли",
+    href: "/bigbook/seminar/",
+  },
+];
+import Breadcrumbs from "@/components/Customs/Breadcrumbs.astro";
+import { Icon } from "astro-icon/components";
 
 const criteria = {
   pre: "Предисловие",
@@ -18,26 +35,41 @@ const criteria = {
   work: "В действии!",
   "12step": "Работая с другими",
 };
+const bookmarks = (Astro.cookies.get("bookmarks")?.json() || []) as IBookmark[];
+import type { IBookmark } from "@/types/global";
 ---
 
 <BaseLayout
   title={`Глава: ${criteria.agnostic}`}
   description={`Семинар по изучению БКАА с Джо и Чарли - Глава: ${criteria.agnostic}`}
 >
-  <main
-    class="grid grid-cols-1 items-start gap-6 md:grid-cols-2 lg:grid-cols-3"
-  >
+  <Breadcrumbs crumbs={customCrumbs}>
+    <Icon name="mdi:chevron-right" slot="separator" />
+  </Breadcrumbs>
+  <main class="grid grid-cols-1 gap-6 md:grid-cols-2">
     {
       posts &&
         posts
-          .filter((post: any) => post.data.head === "agnostic")
-          .map((post: any) => (
-            <PostCard
-              isBB="/bigbook/seminar/addressing-agnostics/"
-              data={post.data}
-              slug={post.slug}
-            />
-          ))
+          .filter((item: any) => item.data.head === "agnostic")
+          .map((item: any) => {
+            const isChecked = bookmarks.some(
+              (bookmark) => bookmark.id === item.id,
+            );
+            return (
+              <PostCard
+                isBB="/bigbook/seminar/addressing-agnostics/"
+                data={item.data}
+                slug={item.slug}
+                key={item.id}
+                isChecked={isChecked}
+                item={item.id}
+              />
+            );
+          })
     }
   </main>
+  <script>
+    import "../../../../ts/bookmark";
+    import "../../../../ts/bookmark";
+  </script>
 </BaseLayout>

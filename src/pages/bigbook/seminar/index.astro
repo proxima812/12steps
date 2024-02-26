@@ -1,31 +1,75 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { Image } from "astro:assets";
 
 const links = [
-  { name: "Предисловие", href: "/bigbook/seminar/preface" },
-  { name: "Мнение доктора", href: "/bigbook/seminar/doctors-opinion" },
-  { name: "Рассказ Билла", href: "/bigbook/seminar/bills-story" },
-  { name: "Выход есть", href: "/bigbook/seminar/there-is-a-solution" },
   {
-    name: "Ещё об алкоголизме",
+    name: "📘 Джо и Чарли: изучение БКАА: Предисловие",
+    href: "/bigbook/seminar/preface",
+    materials: "11",
+  },
+  {
+    name: "📘 Джо и Чарли: изучение БКАА: Мнение доктора",
+    href: "/bigbook/seminar/doctors-opinion",
+    materials: "8",
+  },
+  {
+    name: "📘 Джо и Чарли: изучение БКАА: Рассказ Билла",
+    href: "/bigbook/seminar/bills-story",
+    materials: "10",
+  },
+  {
+    name: "📘 Джо и Чарли: изучение БКАА: Выход есть",
+    href: "/bigbook/seminar/there-is-a-solution",
+    materials: "9",
+  },
+  {
+    name: "📘 Джо и Чарли: изучение БКАА: Ещё об алкоголизме",
     href: "/bigbook/seminar/more-about-alcoholism",
+    materials: "6",
   },
   {
-    name: "Обращение к агностикам",
+    name: "📘 Джо и Чарли: изучение БКАА: Обращение к агностикам",
     href: "/bigbook/seminar/addressing-agnostics",
+    materials: "7",
   },
-  { name: "Как это работает?", href: "/bigbook/seminar/how-does-it-work" },
-  { name: "В действии!", href: "/bigbook/seminar/in-action" },
-  { name: "Работая с другими", href: "/bigbook/seminar/working-with-others" },
+  {
+    name: "📘 Джо и Чарли: изучение БКАА: Как это работает?",
+    href: "/bigbook/seminar/how-does-it-work",
+    materials: "26",
+  },
+  {
+    name: "📘 Джо и Чарли: изучение БКАА: В действии!",
+    href: "/bigbook/seminar/in-action",
+    materials: "21",
+  },
+  {
+    name: "📘 Джо и Чарли: изучение БКАА: Работая с другими",
+    href: "/bigbook/seminar/working-with-others",
+    materials: "4",
+  },
 ];
 
-import bigboookImg from "@/assets/bigbook.png";
+import Breadcrumbs from "@/components/Customs/Breadcrumbs.astro";
 import ButtonLink from "@/components/Customs/ButtonLink.astro";
+import { Icon } from "astro-icon/components";
+
+const customCrumbs = [
+  {
+    text: "Главная",
+    href: "/",
+  },
+  {
+    text: "Семинары, проекты",
+    href: "/others",
+  },
+  {
+    text: "Семинар Джо и Чарли",
+    href: "/bigbook/seminar/",
+  },
+];
 ---
 
 <BaseLayout
-  container_max_w="max-w-6xl"
   title="Джо и Чарли: изучение БКАА"
   description="На сегодняшний день, материалы Джо и Чарли являются самыми известными и используемыми в мире материалами по Большой книге. Эти два алкоголика объездили со своими занятиями по изучению Большой книги все 50 штатов США и многие страны мира, где есть АА."
   blurClass={{
@@ -35,25 +79,17 @@ import ButtonLink from "@/components/Customs/ButtonLink.astro";
     bottomLeft: "dark:bg-slate-500",
   }}
 >
-  <main class="flex flex-col gap-12 lg:flex-row">
-    <Image
-      src={bigboookImg}
-      class="overflow-hidden rounded-2xl"
-      alt="Джо и Чарли: изучение БКАА"
-      format="avif"
-      quality={"mid"}
-    />
-    <div class="flex shrink-0 flex-wrap gap-3 lg:flex-col">
-      {
-        links.map((item) => (
-          <ButtonLink
-            link={item.href}
-            class="self-start whitespace-nowrap ring-1 ring-inset ring-zinc-200 transition-colors duration-75 ease-linear hover:bg-white dark:ring-white/20 dark:hover:bg-white/20"
-          >
-            {item.name}
-          </ButtonLink>
-        ))
-      }
-    </div>
-  </main>
+  <Breadcrumbs crumbs={customCrumbs}>
+    <Icon name="mdi:chevron-right" slot="separator" />
+  </Breadcrumbs>
+
+  <nav class="flex flex-col gap-6">
+    {
+      links.map((item) => (
+        <ButtonLink link={item.href} class="">
+          {item.name} ({item.materials})
+        </ButtonLink>
+      ))
+    }
+  </nav>
 </BaseLayout>

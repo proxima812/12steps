@@ -24,8 +24,6 @@ function LoopIcon() {
   );
 }
 
-// Configs fuse.js
-// https://fusejs.io/api/options.html
 const options = {
   keys: ["data.title", "data.description", "data.slug", "data.tags"],
   includeMatches: true,
@@ -60,9 +58,7 @@ function Search({
 
   return (
     <>
-      <div
-        className={twMerge("relative w-full max-w-[556px]", classNameMainDiv)}
-      >
+      <div className={twMerge("relative w-full max-w-full", classNameMainDiv)}>
         <div className="relative">
           <span
             className={twMerge(
@@ -102,7 +98,7 @@ function Search({
                   className="rounded-lg bg-white p-2 ring-1 ring-zinc-200 transition-colors duration-75  ease-linear hover:bg-zinc-100 dark:bg-zinc-900 dark:ring-white/10 dark:hover:bg-zinc-950"
                   key={post.slug}
                 >
-                  <a href={`/posts/${post.slug}`}>
+                  <a href={`/materials/${post.slug}`}>
                     <h4 className="font-bold">{post.data.title}</h4>
                     {post.data.description && (
                       <p className="text-sm text-gray-400">
