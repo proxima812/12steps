@@ -44,6 +44,36 @@ const customCrumbs = [
       <Icon name="mdi:chevron-right" slot="separator" />
     </Breadcrumbs>
 
+    <h2 class="flex items-center gap-1 text-2xl font-medium text-purple-500">
+      <Icon name="mdi:clock-plus" />
+      <span>Последнее добавление</span>
+    </h2>
+    <div class="flex flex-wrap gap-6 rounded-xl bg-white p-6">
+      {
+        posts
+          .sort(
+            (a: any, b: any) =>
+              +new Date(b.data.pubDate) - +new Date(a.data.pubDate),
+          )
+          .slice(0, 3)
+          .map((item) => {
+            const isChecked = bookmarks.some(
+              (bookmark) => bookmark.id === item.id,
+            );
+
+            return (
+              <PostCard
+                key={item.id}
+                isChecked={isChecked}
+                item={item.id}
+                slug={item.slug}
+                data={item.data}
+              />
+            );
+          })
+      }
+    </div>
+
     {
       Object.entries(postsByTags).map(([tag, taggedPosts]) => (
         <>
@@ -69,6 +99,7 @@ const customCrumbs = [
     }
   </div>
   <script>
+    import "../../ts/bookmark";
     import "../../ts/bookmark";
   </script>
 </BaseLayout>

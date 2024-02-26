@@ -9,7 +9,7 @@ const { data, slug, isBB, item, isChecked } = Astro.props;
   class:list={`${data.speechVoice && "ring-inset ring-blue-400"}`}
 >
   <div class="flex flex-col gap-4">
-    <h2 class="flex items-center gap-5">
+    <h2 class="flex items-center gap-2">
       {
         (
           <button
@@ -23,7 +23,9 @@ const { data, slug, isBB, item, isChecked } = Astro.props;
           </button>
         )
       }
-      <a href={`${isBB ? `${isBB + slug}` : `/materials/${slug}`}`}>{data.title}</a>
+      <a href={`${isBB ? `${isBB + slug}` : `/materials/${slug}`}`}
+        >{data.title}</a
+      >
     </h2>
 
     {
